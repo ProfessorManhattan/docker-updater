@@ -1,0 +1,12 @@
+{
+  "badge_style": "flat",
+  "description_template": "A general-purpose Dockerfile project that includes Node.js, DockerSlim, and jqIMAGE_SIZE_PLACEHOLDER",
+  "docker_command": "npm run update",
+  "docker_command_alias": "updater",
+  "dockerhub_description": "A general-purpose Docker image that includes Node.js, DockerSlim, and jq",
+  "dockerslim_command": "--http-probe=false --exec 'npx -y @appnest/readme --help' --mount \\\"$PWD:/work\\\" --workdir '/work' --include-path '/usr/local/bin/docker-slim' --include-path '/usr/bin/jq' --include-path '/usr/bin/git' --include-path '/bin/bash' --include-path '/usr/bin/npm' --include-path '/usr/bin/node' --include-path '/bin/sed'",
+  "pretty_name": "Updater",
+  "project_title": "Updater (Node.js/Docker/DockerSlim/jq)",
+  "slug": "updater",
+  "subgroup": "ci-pipeline"
+}
