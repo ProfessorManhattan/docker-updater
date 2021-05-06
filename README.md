@@ -37,7 +37,7 @@
   </a>
 </p>
 
-> <br/>**A general-purpose Dockerfile project that includes Node.js, DockerSlim, and jq (only 9.82812 MB compressed!)**<br/><br/>
+> <br/>**A general-purpose Dockerfile project that includes Node.js, DockerSlim, and jq (only 40.0154 MB compressed!)**<br/><br/>
 
 **NOTE:** To use our compact image for Updater, you must use a build tagged with the `slim` keyword. For instance, to use the latest slim build you should specify the image as `megabytelabs/updater:slim`.
 
