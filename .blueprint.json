@@ -1,6 +1,6 @@
 {
   "badge_style": "flat",
-  "description_template": "A general-purpose Dockerfile project that includes Node.js, DockerSlim, and jqIMAGE_SIZE_PLACEHOLDER",
+  "description_template": "A general-purpose Dockerfile project that includes Node.js, DockerSlim, and jq in a single containerIMAGE_SIZE_PLACEHOLDER",
   "docker_command": "npm run update",
   "docker_command_alias": "updater",
   "dockerhub_description": "A general-purpose Docker image that includes Node.js, DockerSlim, and jq",
