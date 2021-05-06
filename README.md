@@ -142,7 +142,7 @@ To build and publish a slim Dockerfile to Docker Hub, you can use the following 
 ```shell
 docker login -u "DOCKERHUB_USERNAME" -p "DOCKERHUB_PASSWORD" docker.io
 docker build -t "DOCKERHUB_USERNAME/updater:latest" .
-docker-slim build --tag megabytelabs/updater:slim --tag megabytelabs/updater:${npm_package_version}-slim --http-probe=false --exec 'npx --help' --mount "$PWD:/work" --workdir '/work' --include-path '/usr/local/bin/docker-slim' --include-path '/usr/bin/jq' --include-path '/usr/bin/git' --include-path '/bin/bash' --include-path '/usr/bin/npm' --include-path '/usr/bin/node' --include-path '/bin/sed' megabytelabs/updater:latest
+docker-slim build --tag megabytelabs/updater:slim --http-probe=false --exec 'npx --help' --mount "$PWD:/work" --workdir '/work' --include-path '/usr/local/bin/docker-slim' --include-path '/usr/bin/jq' --include-path '/usr/bin/git' --include-path '/bin/bash' --include-path '/usr/bin/npm' --include-path '/usr/bin/node' --include-path '/bin/sed' megabytelabs/updater:latest
 docker push "DOCKERHUB_USERNAME/updater:slim"
 ```
 
