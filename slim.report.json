@@ -21,7 +21,7 @@
   },
   "source_image": {
     "identity": {
-      "id": "sha256:eedf9abaffb1625028d7e9a14d52318859faea8c50e5a4ca25b0e3e19b5e34bd",
+      "id": "sha256:f0214a9b3d2c5b5bd3c7a67b53acf02959801b2507e4bdf38bf39a2f4818d544",
       "tags": ["0.0.9", "latest"],
       "names": ["megabytelabs/updater:0.0.9", "megabytelabs/updater:latest"]
     },
@@ -36,11 +36,11 @@
     "labels": {
       "maintainer": "Megabyte Labs <help@megabyte.space",
       "org.opencontainers.image.authors": "Brian Zalewski <brian@megabyte.space>",
-      "org.opencontainers.image.created": "2021-05-11T18:29:24-04:00",
-      "org.opencontainers.image.description": "A general-purpose Dockerfile project that includes Node.js, DockerSlim, and jq in a single container (only 40.0154 MB compressed!)",
+      "org.opencontainers.image.created": "2021-05-11T18:30:59-04:00",
+      "org.opencontainers.image.description": "A general-purpose Dockerfile project that includes Node.js, DockerSlim, and jq in a single container (only 220.469 MB compressed!)",
       "org.opencontainers.image.documentation": "https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater/-/blob/master/README.md",
       "org.opencontainers.image.licenses": "MIT",
-      "org.opencontainers.image.revision": "7dcf251458d374b104b192fa411e347cba43769e",
+      "org.opencontainers.image.revision": "be0b77e0487ecd9ad69b820c1a82a7ca9d457aa2",
       "org.opencontainers.image.source": "https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater.git",
       "org.opencontainers.image.url": "https://megabyte.space",
       "org.opencontainers.image.vendor": "Megabyte Labs",
@@ -57,19 +57,19 @@
       "DOCKERSLIM_URL=https://downloads.dockerslim.com/releases/1.35.1/dist_linux.tar.gz"
     ]
   },
-  "minified_image_size": 496366134,
-  "minified_image_size_human": "496 MB",
+  "minified_image_size": 490129295,
+  "minified_image_size_human": "490 MB",
   "minified_image": "megabytelabs/updater:0.0.9-slim",
   "minified_image_has_data": true,
-  "minified_by": 0.7196157262413072,
-  "artifact_location": "/tmp/docker-slim-state/.docker-slim-state/images/eedf9abaffb1625028d7e9a14d52318859faea8c50e5a4ca25b0e3e19b5e34bd/artifacts",
+  "minified_by": 0.728772753728177,
+  "artifact_location": "/tmp/docker-slim-state/.docker-slim-state/images/f0214a9b3d2c5b5bd3c7a67b53acf02959801b2507e4bdf38bf39a2f4818d544/artifacts",
   "container_report_name": "creport.json",
   "seccomp_profile_name": "megabytelabs-updater-seccomp.json",
   "apparmor_profile_name": "megabytelabs-updater-apparmor-profile",
   "image_stack": [
     {
       "is_top_image": true,
-      "id": "sha256:eedf9abaffb1625028d7e9a14d52318859faea8c50e5a4ca25b0e3e19b5e34bd",
+      "id": "sha256:f0214a9b3d2c5b5bd3c7a67b53acf02959801b2507e4bdf38bf39a2f4818d544",
       "full_name": "megabytelabs/updater:0.0.9",
       "repo_name": "megabytelabs/updater",
       "version_tag": "0.0.9",
@@ -543,8 +543,8 @@
           "layer_index": 0,
           "size": 0,
           "command_snippet": "RUN [\"LABEL\",\"org.opencontainers.image.creat...",
-          "command_all": "RUN [\"LABEL\",\"org.opencontainers.image.created=2021-05-11T18:29:24-04:00\"]",
-          "system_commands": ["[\"LABEL\",\"org.opencontainers.image.created=2021-05-11T18:29:24-04:00\"]"],
+          "command_all": "RUN [\"LABEL\",\"org.opencontainers.image.created=2021-05-11T18:30:59-04:00\"]",
+          "system_commands": ["[\"LABEL\",\"org.opencontainers.image.created=2021-05-11T18:30:59-04:00\"]"],
           "comment": "buildkit.dockerfile.v0"
         },
         {
@@ -556,9 +556,9 @@
           "layer_index": 0,
           "size": 0,
           "command_snippet": "RUN [\"LABEL\",\"org.opencontainers.image.descr...",
-          "command_all": "RUN [\"LABEL\",\"org.opencontainers.image.description=A\",\"general-purpose\",\"Dockerfile\",\"project\",\"that\",\"includes\",\"Node.js,\",\"DockerSlim,\",\"and\",\"jq\",\"in\",\"a\",\"single\",\"container\",\"(only\",\"40.0154\",\"MB\",\"compressed!)\"]",
+          "command_all": "RUN [\"LABEL\",\"org.opencontainers.image.description=A\",\"general-purpose\",\"Dockerfile\",\"project\",\"that\",\"includes\",\"Node.js,\",\"DockerSlim,\",\"and\",\"jq\",\"in\",\"a\",\"single\",\"container\",\"(only\",\"220.469\",\"MB\",\"compressed!)\"]",
           "system_commands": [
-            "[\"LABEL\",\"org.opencontainers.image.description=A\",\"general-purpose\",\"Dockerfile\",\"project\",\"that\",\"includes\",\"Node.js,\",\"DockerSlim,\",\"and\",\"jq\",\"in\",\"a\",\"single\",\"container\",\"(only\",\"40.0154\",\"MB\",\"compressed!)\"]"
+            "[\"LABEL\",\"org.opencontainers.image.description=A\",\"general-purpose\",\"Dockerfile\",\"project\",\"that\",\"includes\",\"Node.js,\",\"DockerSlim,\",\"and\",\"jq\",\"in\",\"a\",\"single\",\"container\",\"(only\",\"220.469\",\"MB\",\"compressed!)\"]"
           ],
           "comment": "buildkit.dockerfile.v0"
         },
@@ -599,9 +599,9 @@
           "layer_index": 0,
           "size": 0,
           "command_snippet": "RUN [\"LABEL\",\"org.opencontainers.image.revis...",
-          "command_all": "RUN [\"LABEL\",\"org.opencontainers.image.revision=7dcf251458d374b104b192fa411e347cba43769e\"]",
+          "command_all": "RUN [\"LABEL\",\"org.opencontainers.image.revision=be0b77e0487ecd9ad69b820c1a82a7ca9d457aa2\"]",
           "system_commands": [
-            "[\"LABEL\",\"org.opencontainers.image.revision=7dcf251458d374b104b192fa411e347cba43769e\"]"
+            "[\"LABEL\",\"org.opencontainers.image.revision=be0b77e0487ecd9ad69b820c1a82a7ca9d457aa2\"]"
           ],
           "comment": "buildkit.dockerfile.v0"
         },

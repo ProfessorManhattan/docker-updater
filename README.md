@@ -37,7 +37,7 @@
   </a>
 </p>
 
-> <br/>**A general-purpose Dockerfile project that includes Node.js, DockerSlim, and jq in a single container (only 40.0154 MB compressed!)**<br/><br/>
+> <br/>**A general-purpose Dockerfile project that includes Node.js, DockerSlim, and jq in a single container (only 220.469 MB compressed!)**<br/><br/>
 
 **NOTE:** To use our compact image for Updater, you must use a build tagged with the `slim` keyword. For instance, to use the latest slim build you should specify the image as `megabytelabs/updater:slim`.
 
@@ -142,7 +142,7 @@ To build and publish a slim Dockerfile to Docker Hub, you can use the following 
 ```shell
 docker login -u "DOCKERHUB_USERNAME" -p "DOCKERHUB_PASSWORD" docker.io
 docker build -t "DOCKERHUB_USERNAME/updater:latest" .
-docker-slim build --tag megabytelabs/updater:slim --http-probe=false --exec 'npx --help; git init' --include-path '/usr/local/bin/docker-slim' --include-path '/usr/bin/jq' --include-path '/usr/bin/git' --include-path '/bin/bash' --include-path '/usr/bin/npm' --include-path '/usr/bin/node' --include-path '/bin/sed' megabytelabs/updater:latest
+docker-slim build --tag megabytelabs/updater:slim --http-probe=false --exec 'git help' --include-path '/usr/local/bin/docker-slim' --include-path '/usr/bin/jq' --include-path '/usr/bin/git' --include-path '/usr/bin/npx' --include-path '/bin/bash' --include-path '/usr/bin/npm' --include-path '/usr/bin/node' --include-path '/bin/sed' megabytelabs/updater:latest
 docker push "DOCKERHUB_USERNAME/updater:slim"
 ```
 
