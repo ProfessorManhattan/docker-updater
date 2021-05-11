@@ -10,6 +10,7 @@ RUN apk --no-cache add --virtual build-dependencies \
       wget=1.21.1-r1 \
   && apk --no-cache add \
       bash=5.1.0-r0 \
+      curl=7.76.1-r0 \
       git=2.30.2-r0 \
       jq=1.6-r1 \
       nodejs=14.16.1-r1 \
@@ -36,7 +37,7 @@ ARG VERSION
 LABEL maintainer="Megabyte Labs <help@megabyte.space"
 LABEL org.opencontainers.image.authors="Brian Zalewski <brian@megabyte.space>"
 LABEL org.opencontainers.image.created=$BUILD_DATE
-LABEL org.opencontainers.image.description="A general-purpose Dockerfile project that includes Node.js, DockerSlim, and jq in a single container (only 40.0156 MB compressed!)"
+LABEL org.opencontainers.image.description="A general-purpose Dockerfile project that includes Node.js, DockerSlim, and jq in a single container (only 40.2647 MB compressed!)"
 LABEL org.opencontainers.image.documentation="https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater/-/blob/master/README.md"
 LABEL org.opencontainers.image.licenses="MIT"
 LABEL org.opencontainers.image.revision=$REVISION
