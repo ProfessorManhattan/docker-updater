@@ -7,23 +7,23 @@ First of all, thanks for visiting this page 😊 ❤️ ! We are totally ecstati
 
 ## ➤ Table of Contents
 
-* [➤ Code of Conduct](#code-of-conduct)
-* [➤ Overview](#overview)
-* [➤ Philosophy](#philosophy)
+* [➤ Code of Conduct](#-code-of-conduct)
+* [➤ Overview](#-overview)
+* [➤ Philosophy](#-philosophy)
 	* [Choosing a Base Image](#choosing-a-base-image)
-* [➤ Requirements](#requirements)
+* [➤ Requirements](#-requirements)
 	* [Optional Requirements](#optional-requirements)
-* [➤ Getting Started](#getting-started)
+* [➤ Getting Started](#-getting-started)
 	* [Descriptions of Build Scripts](#descriptions-of-build-scripts)
 	* [Creating DockerSlim Builds](#creating-dockerslim-builds)
 	* [Updating the `.blueprint.json` File](#updating-the-blueprintjson-file)
-* [➤ Creating a New Dockerfile Project](#creating-a-new-dockerfile-project)
-* [➤ Testing](#testing)
+* [➤ Creating a New Dockerfile Project](#-creating-a-new-dockerfile-project)
+* [➤ Testing](#-testing)
 	* [Creating Test Cases](#creating-test-cases)
 	* [Testing DockerSlim Builds](#testing-dockerslim-builds)
 	* [Testing Web Apps](#testing-web-apps)
-* [➤ Linting](#linting)
-* [➤ Pull Requests](#pull-requests)
+* [➤ Linting](#-linting)
+* [➤ Pull Requests](#-pull-requests)
 	* [How to Commit Code](#how-to-commit-code)
 	* [Pre-Commit Hook](#pre-commit-hook)
 
@@ -229,7 +229,7 @@ It is **important** to test all common use cases. Some people might be using the
 
 ### Testing Web Apps
 
-When testing Docker-based web applications, ensure that after you destroy the container you can bring the Docker container back up to its previous state using volumes and file mounts. This allows users to periodically update the Docker container while having their settings persist.
+When testing Docker-based web applications, ensure that after you destroy the container along with its volumes you can bring the Docker container back up to its previous state using volumes and file mounts. This allows users to periodically update the Docker container while having their settings persist. This requirement is also for disaster recovery.
 
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#linting)
