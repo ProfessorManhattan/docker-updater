@@ -5,13 +5,13 @@
   <span> | </span>
   <a href="https://hub.docker.com/u/megabytelabs">DockerHub Profile</a>
   <span> | </span>
-  <a href="https://hub.docker.com/r/megabytelabs/updater">DockerHub Image</a>
+  <a href="https://hub.docker.com/r/megabytelabs/@megabytelabs/updater">DockerHub Image</a>
   <span> | </span>
   <a href="https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater/-/blob/master/CONTRIBUTING.md">Contributing</a>
   <span> | </span>
   <a href="https://app.slack.com/client/T01ABCG4NK1/C01NN74H0LW/details/">Chat</a>
   <span> | </span>
-  <a href="https://github.com/MegabyteLabs/docker-updater">GitHub Mirror</a>
+  <a href="https://github.com/MegabyteLabs/docker-@megabytelabs/updater">GitHub Mirror</a>
 </h4>
 <p>
   <a href="https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater">
@@ -37,7 +37,7 @@
   </a>
 </p>
 
-> <br/>**A general-purpose Dockerfile project that includes Node.js, DockerSlim, and jq in a single container (only 46.5216 MB compressed!)**<br/><br/>
+> <br/>**A general-purpose Dockerfile project that includes Node.js, DockerSlim, and jq in a single container (only 45.865 MB compressed!)**<br/><br/>
 
 **NOTE:** To use our compact image for Updater, you must use a build tagged with the `slim` keyword. For instance, to use the latest slim build you should specify the image as `megabytelabs/updater:slim`.
 
@@ -91,7 +91,7 @@ If you choose to utilize the development tools provided by this project then at 
 There are several different ways you can use the Docker container provided by this project. For starters, you can test the feature out locally by running:
 
 ```shell
-docker run -v ${PWD}:/work -w /work megabytelabs/updater:preferred_tag npm run update
+docker run -v ${PWD}:/work -w /work megabytelabs/@megabytelabs/updater:preferred_tag npm run update
 ```
 
 This allows you to run Updater without installing it locally. This could be good for security since the application is within a container and also keeps your file system clean.
@@ -100,7 +100,7 @@ You can also add a bash alias to your `~/.bashrc` file so that you can run the U
 
 ```shell
 updater() {
-    docker run -v ${PWD}:/work -w /work megabytelabs/updater:preferred_tag npm run update
+    docker run -v ${PWD}:/work -w /work megabytelabs/@megabytelabs/updater:preferred_tag npm run update
 }
 ```
 
@@ -125,8 +125,8 @@ You may have a use case that requires some modifications to our Docker image. Af
 
 ```shell
 docker login -u "DOCKERHUB_USERNAME" -p "DOCKERHUB_PASSWORD" docker.io
-docker build --pull -t "DOCKERHUB_USERNAME/updater:latest" .
-docker push "DOCKERHUB_USERNAME/updater:latest"
+docker build --pull -t "DOCKERHUB_USERNAME/@megabytelabs/updater:latest" .
+docker push "DOCKERHUB_USERNAME/@megabytelabs/updater:latest"
 ```
 
 Replace `DOCKERHUB_USERNAME` and `DOCKERHUB_PASSWORD` in the snippet above with your Docker Hub username and password. The commands will build the Docker image and upload it to [Docker Hub](https://hub.docker.com/) where it will be publicly accessible. You can see this logic being implemented as a [GitLab CI task here](https://gitlab.com/megabyte-labs/ci/gitlab-ci-templates/-/blob/master/dockerhub.gitlab-ci.yml). This GitLab CI task works in conjunction with the `.gitlab-ci.yml` file in the root of this repository.
@@ -141,9 +141,9 @@ To build and publish a slim Dockerfile to Docker Hub, you can use the following 
 
 ```shell
 docker login -u "DOCKERHUB_USERNAME" -p "DOCKERHUB_PASSWORD" docker.io
-docker build -t "DOCKERHUB_USERNAME/updater:latest" .
+docker build -t "DOCKERHUB_USERNAME/@megabytelabs/updater:latest" .
 docker-slim build --tag megabytelabs/updater:slim --http-probe=false --exec 'npm help | npx --help' --include-path '/etc/ssl/certs' --include-path '/usr/share/git-core/templates' --include-path '/usr/libexec/git-core/git-remote-https' --include-path '/usr/lib/libpcre2-8.so.0' --include-path '/usr/libexec/git-core/git-sh-i18n--envsubst' --include-path '/usr/bin/curl' --include-path '/usr/lib/libcurl.so.4' --include-path '/usr/lib/libcurl.so.4.7.0' --include-path '/usr/lib/libpcre2-8.so.0.10.1' --include-path '/usr/local/bin/docker-slim' --include-path '/usr/bin/jq' --include-path '/usr/lib/libonig.so.5' --include-path '/usr/lib/libonig.so.5.1.0' --include-path '/usr/bin/git' --include-path '/usr/libexec/git-core/git-submodule' --include-path '/usr/libexec/git-core/git-sh-setup' --include-path '/usr/libexec/git-core/git-sh-i18n' --include-path '/usr/bin/npx' --include-path '/bin/bash' --include-path '/usr/bin/npm' --include-path '/usr/lib/node_modules' --include-path '/usr/bin/node' --include-path '/bin/sed' megabytelabs/updater:latest
-docker push "DOCKERHUB_USERNAME/updater:slim"
+docker push "DOCKERHUB_USERNAME/@megabytelabs/updater:slim"
 ```
 
 It may be possible to modify the DockerSlim command above to fix an issue or reduce the footprint even more than our command. You can modify the slim build command inline in the `package.json` file. However, running `bash .start.sh` will overwrite your changes in the `package.json` file. We detail a better way of modifying the `npm run build:slim` configuration in [CONTRIBUTING.md](https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater/-/blob/master/CONTRIBUTING.md).

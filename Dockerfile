@@ -1,4 +1,4 @@
-FROM docker:20.10-dind
+FROM docker:20-dind
 
 ENV container docker
 ENV DOCKERSLIM_SHA256 b0f1b488d33b09be8beb224d4d26cb2d3e72669a46d242a3734ec744116b004c
@@ -38,7 +38,7 @@ ARG VERSION
 LABEL maintainer="Megabyte Labs <help@megabyte.space"
 LABEL org.opencontainers.image.authors="Brian Zalewski <brian@megabyte.space>"
 LABEL org.opencontainers.image.created=$BUILD_DATE
-LABEL org.opencontainers.image.description="A general-purpose Dockerfile project that includes Node.js, DockerSlim, and jq in a single container (only 46.5216 MB compressed!)"
+LABEL org.opencontainers.image.description="A general-purpose Dockerfile project that includes Node.js, DockerSlim, and jq in a single container (only 45.865 MB compressed!)"
 LABEL org.opencontainers.image.documentation="https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater/-/blob/master/README.md"
 LABEL org.opencontainers.image.licenses="MIT"
 LABEL org.opencontainers.image.revision=$REVISION

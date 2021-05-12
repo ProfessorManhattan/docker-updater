@@ -316,7 +316,7 @@ Some of the linters are also baked into the CI pipeline. The pipeline will trigg
 
 ## ➤ Pull Requests
 
-All pull requests should be associated with issues. You can find the [issues board on GitLab](https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater/-/issues). The pull requests should be made to [the GitLab repository](https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater) instead of the [GitHub repository](https://github.com/MegabyteLabs/docker-updater). This is because we use GitLab as our primary repository and mirror the changes to GitHub for the community.
+All pull requests should be associated with issues. You can find the [issues board on GitLab](https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater/-/issues). The pull requests should be made to [the GitLab repository](https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater) instead of the [GitHub repository](https://github.com/MegabyteLabs/docker-@megabytelabs/updater). This is because we use GitLab as our primary repository and mirror the changes to GitHub for the community.
 
 ### How to Commit Code
 
