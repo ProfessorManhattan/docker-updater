@@ -21,13 +21,13 @@
   },
   "source_image": {
     "identity": {
-      "id": "sha256:fe373f920176a93a21ef8dff1b53b3d32cf4036adb234bd8056284b5cc7163c7",
-      "tags": ["0.0.21", "latest"],
-      "names": ["megabytelabs/updater:0.0.21", "megabytelabs/updater:latest"]
+      "id": "sha256:cb3ab027122ce3660d4c1f6b811fffe7aa80f3e0e86058e024d26792209527a6",
+      "tags": ["0.0.22", "latest"],
+      "names": ["megabytelabs/updater:0.0.22", "megabytelabs/updater:latest"]
     },
-    "size": 357428754,
+    "size": 357416033,
     "size_human": "357 MB",
-    "create_time": "2021-05-11T23:06:35Z",
+    "create_time": "2021-05-12T01:32:53Z",
     "docker_version": "",
     "architecture": "amd64",
     "exposed_ports": ["2375/tcp", "2376/tcp"],
@@ -36,15 +36,15 @@
     "labels": {
       "maintainer": "Megabyte Labs <help@megabyte.space",
       "org.opencontainers.image.authors": "Brian Zalewski <brian@megabyte.space>",
-      "org.opencontainers.image.created": "2021-05-11T21:13:46-04:00",
+      "org.opencontainers.image.created": "2021-05-11T21:32:45-04:00",
       "org.opencontainers.image.description": "A general-purpose Dockerfile project that includes Node.js, DockerSlim, and jq in a single container (only 42.866 MB compressed!)",
       "org.opencontainers.image.documentation": "https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater/-/blob/master/README.md",
       "org.opencontainers.image.licenses": "MIT",
-      "org.opencontainers.image.revision": "83fb7c4de03408f53e309c55ffb4c9c0f8d77b4e",
+      "org.opencontainers.image.revision": "94b24a8669e8e722c86df4217e381e0c708b959f",
       "org.opencontainers.image.source": "https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater.git",
       "org.opencontainers.image.url": "https://megabyte.space",
       "org.opencontainers.image.vendor": "Megabyte Labs",
-      "org.opencontainers.image.version": "0.0.21",
+      "org.opencontainers.image.version": "0.0.22",
       "space.megabyte.type": "ci-pipeline"
     },
     "env_vars": [
@@ -57,25 +57,25 @@
       "DOCKERSLIM_URL=https://downloads.dockerslim.com/releases/1.35.1/dist_linux.tar.gz"
     ]
   },
-  "minified_image_size": 132745147,
+  "minified_image_size": 132744939,
   "minified_image_size_human": "133 MB",
-  "minified_image": "megabytelabs/updater:0.0.21-slim",
+  "minified_image": "megabytelabs/updater:0.0.22-slim",
   "minified_image_has_data": true,
-  "minified_by": 2.6925937563653455,
-  "artifact_location": "/tmp/docker-slim-state/.docker-slim-state/images/fe373f920176a93a21ef8dff1b53b3d32cf4036adb234bd8056284b5cc7163c7/artifacts",
+  "minified_by": 2.692502145034697,
+  "artifact_location": "/tmp/docker-slim-state/.docker-slim-state/images/cb3ab027122ce3660d4c1f6b811fffe7aa80f3e0e86058e024d26792209527a6/artifacts",
   "container_report_name": "creport.json",
   "seccomp_profile_name": "megabytelabs-updater-seccomp.json",
   "apparmor_profile_name": "megabytelabs-updater-apparmor-profile",
   "image_stack": [
     {
       "is_top_image": true,
-      "id": "sha256:fe373f920176a93a21ef8dff1b53b3d32cf4036adb234bd8056284b5cc7163c7",
-      "full_name": "megabytelabs/updater:0.0.21",
+      "id": "sha256:cb3ab027122ce3660d4c1f6b811fffe7aa80f3e0e86058e024d26792209527a6",
+      "full_name": "megabytelabs/updater:0.0.22",
       "repo_name": "megabytelabs/updater",
-      "version_tag": "0.0.21",
-      "raw_tags": ["megabytelabs/updater:0.0.21", "megabytelabs/updater:latest"],
-      "create_time": "2021-05-11T23:06:35Z",
-      "new_size": 357428754,
+      "version_tag": "0.0.22",
+      "raw_tags": ["megabytelabs/updater:0.0.22", "megabytelabs/updater:latest"],
+      "create_time": "2021-05-12T01:32:53Z",
+      "new_size": 357416033,
       "new_size_human": "357 MB",
       "instructions": [
         {
@@ -371,7 +371,7 @@
         },
         {
           "type": "RUN",
-          "time": "2021-05-11T23:06:35Z",
+          "time": "2021-05-12T01:32:53Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -384,7 +384,7 @@
         },
         {
           "type": "RUN",
-          "time": "2021-05-11T23:06:35Z",
+          "time": "2021-05-12T01:32:53Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -399,7 +399,7 @@
         },
         {
           "type": "RUN",
-          "time": "2021-05-11T23:06:35Z",
+          "time": "2021-05-12T01:32:53Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -414,7 +414,7 @@
         },
         {
           "type": "RUN",
-          "time": "2021-05-11T23:06:35Z",
+          "time": "2021-05-12T01:32:53Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -427,23 +427,23 @@
         },
         {
           "type": "RUN",
-          "time": "2021-05-11T23:06:35Z",
+          "time": "2021-05-12T01:32:53Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
           "layer_index": 0,
-          "size": 94506788,
+          "size": 94494067,
           "size_human": "94 MB",
           "command_snippet": "RUN [\"RUN\",\"/bin/ash\",\"-eo\",\"pipefail\",\"-c\",...",
-          "command_all": "RUN [\"RUN\",\"/bin/ash\",\"-eo\",\"pipefail\",\"-c\",\"apk\",\"--no-cache\",\"add\",\"--virtual\",\"build-dependencies\",\"perl=5.32.0-r0\",\"wget=1.21.1-r1\",\"\\u0026\\u0026\",\"apk\",\"--no-cache\",\"add\",\"bash=5.1.0-r0\",\"curl=7.76.1-r0\",\"git=2.30.2-r0\",\"jq=1.6-r1\",\"nodejs=14.16.1-r1\",\"npm=14.16.1-r1\",\"\\u0026\\u0026\",\"npm\",\"install\",\"-g\",\"run-func@1.0.5\",\"\\u0026\\u0026\",\"wget\",\"-nv\",\"$DOCKERSLIM_URL\",\"-O\",\"/tmp/dockerslim.tar.gz\",\"\\u0026\\u0026\",\"echo\",\"$DOCKERSLIM_SHA256  /tmp/dockerslim.tar.gz\",\"|\",\"sha256sum\",\"-c\",\"\\u0026\\u0026\",\"tar\",\"-zxvf\",\"/tmp/dockerslim.tar.gz\",\"\\u0026\\u0026\",\"cp\",\"-rf\",\"dist_linux/*\",\"/usr/local/bin\",\"\\u0026\\u0026\",\"rm\",\"-rf\",\"/tmp/*\",\"dist_linux\",\"\\u0026\\u0026\",\"chmod\",\"+x\",\"/usr/local/bin/docker-slim\",\"\\u0026\\u0026\",\"chmod\",\"+x\",\"/usr/local/bin/docker-slim-sensor\",\"\\u0026\\u0026\",\"apk\",\"del\",\"build-dependencies\",\"\\u0026\\u0026\",\"rm\",\"-Rf\",\"/var/cache/apk/*\"]",
+          "command_all": "RUN [\"RUN\",\"/bin/ash\",\"-eo\",\"pipefail\",\"-c\",\"apk\",\"--no-cache\",\"add\",\"--virtual\",\"build-dependencies\",\"perl=5.32.0-r0\",\"wget=1.21.1-r1\",\"\\u0026\\u0026\",\"apk\",\"--no-cache\",\"add\",\"bash=5.1.0-r0\",\"curl=7.76.1-r0\",\"git=2.30.2-r0\",\"jq=1.6-r1\",\"nodejs=14.16.1-r1\",\"npm=14.16.1-r1\",\"\\u0026\\u0026\",\"wget\",\"-nv\",\"$DOCKERSLIM_URL\",\"-O\",\"/tmp/dockerslim.tar.gz\",\"\\u0026\\u0026\",\"echo\",\"$DOCKERSLIM_SHA256  /tmp/dockerslim.tar.gz\",\"|\",\"sha256sum\",\"-c\",\"\\u0026\\u0026\",\"tar\",\"-zxvf\",\"/tmp/dockerslim.tar.gz\",\"\\u0026\\u0026\",\"cp\",\"-rf\",\"dist_linux/*\",\"/usr/local/bin\",\"\\u0026\\u0026\",\"rm\",\"-rf\",\"/tmp/*\",\"dist_linux\",\"\\u0026\\u0026\",\"chmod\",\"+x\",\"/usr/local/bin/docker-slim\",\"\\u0026\\u0026\",\"chmod\",\"+x\",\"/usr/local/bin/docker-slim-sensor\",\"\\u0026\\u0026\",\"apk\",\"del\",\"build-dependencies\",\"\\u0026\\u0026\",\"rm\",\"-Rf\",\"/var/cache/apk/*\"]",
           "system_commands": [
-            "[\"RUN\",\"/bin/ash\",\"-eo\",\"pipefail\",\"-c\",\"apk\",\"--no-cache\",\"add\",\"--virtual\",\"build-dependencies\",\"perl=5.32.0-r0\",\"wget=1.21.1-r1\",\"u0026u0026\",\"apk\",\"--no-cache\",\"add\",\"bash=5.1.0-r0\",\"curl=7.76.1-r0\",\"git=2.30.2-r0\",\"jq=1.6-r1\",\"nodejs=14.16.1-r1\",\"npm=14.16.1-r1\",\"u0026u0026\",\"npm\",\"install\",\"-g\",\"run-func@1.0.5\",\"u0026u0026\",\"wget\",\"-nv\",\"$DOCKERSLIM_URL\",\"-O\",\"/tmp/dockerslim.tar.gz\",\"u0026u0026\",\"echo\",\"$DOCKERSLIM_SHA256  /tmp/dockerslim.tar.gz\",\"|\",\"sha256sum\",\"-c\",\"u0026u0026\",\"tar\",\"-zxvf\",\"/tmp/dockerslim.tar.gz\",\"u0026u0026\",\"cp\",\"-rf\",\"dist_linux/*\",\"/usr/local/bin\",\"u0026u0026\",\"rm\",\"-rf\",\"/tmp/*\",\"dist_linux\",\"u0026u0026\",\"chmod\",\"+x\",\"/usr/local/bin/docker-slim\",\"u0026u0026\",\"chmod\",\"+x\",\"/usr/local/bin/docker-slim-sensor\",\"u0026u0026\",\"apk\",\"del\",\"build-dependencies\",\"u0026u0026\",\"rm\",\"-Rf\",\"/var/cache/apk/*\"]"
+            "[\"RUN\",\"/bin/ash\",\"-eo\",\"pipefail\",\"-c\",\"apk\",\"--no-cache\",\"add\",\"--virtual\",\"build-dependencies\",\"perl=5.32.0-r0\",\"wget=1.21.1-r1\",\"u0026u0026\",\"apk\",\"--no-cache\",\"add\",\"bash=5.1.0-r0\",\"curl=7.76.1-r0\",\"git=2.30.2-r0\",\"jq=1.6-r1\",\"nodejs=14.16.1-r1\",\"npm=14.16.1-r1\",\"u0026u0026\",\"wget\",\"-nv\",\"$DOCKERSLIM_URL\",\"-O\",\"/tmp/dockerslim.tar.gz\",\"u0026u0026\",\"echo\",\"$DOCKERSLIM_SHA256  /tmp/dockerslim.tar.gz\",\"|\",\"sha256sum\",\"-c\",\"u0026u0026\",\"tar\",\"-zxvf\",\"/tmp/dockerslim.tar.gz\",\"u0026u0026\",\"cp\",\"-rf\",\"dist_linux/*\",\"/usr/local/bin\",\"u0026u0026\",\"rm\",\"-rf\",\"/tmp/*\",\"dist_linux\",\"u0026u0026\",\"chmod\",\"+x\",\"/usr/local/bin/docker-slim\",\"u0026u0026\",\"chmod\",\"+x\",\"/usr/local/bin/docker-slim-sensor\",\"u0026u0026\",\"apk\",\"del\",\"build-dependencies\",\"u0026u0026\",\"rm\",\"-Rf\",\"/var/cache/apk/*\"]"
           ],
           "comment": "buildkit.dockerfile.v0"
         },
         {
           "type": "RUN",
-          "time": "2021-05-11T23:06:35Z",
+          "time": "2021-05-12T01:32:53Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -456,7 +456,7 @@
         },
         {
           "type": "RUN",
-          "time": "2021-05-11T23:06:35Z",
+          "time": "2021-05-12T01:32:53Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -469,7 +469,7 @@
         },
         {
           "type": "RUN",
-          "time": "2021-05-11T23:06:35Z",
+          "time": "2021-05-12T01:32:53Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -482,7 +482,7 @@
         },
         {
           "type": "RUN",
-          "time": "2021-05-11T23:06:35Z",
+          "time": "2021-05-12T01:32:53Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -495,7 +495,7 @@
         },
         {
           "type": "RUN",
-          "time": "2021-05-11T23:06:35Z",
+          "time": "2021-05-12T01:32:53Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -508,7 +508,7 @@
         },
         {
           "type": "RUN",
-          "time": "2021-05-11T23:06:35Z",
+          "time": "2021-05-12T01:32:53Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -521,7 +521,7 @@
         },
         {
           "type": "RUN",
-          "time": "2021-05-11T23:06:35Z",
+          "time": "2021-05-12T01:32:53Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -536,20 +536,20 @@
         },
         {
           "type": "RUN",
-          "time": "2021-05-11T23:06:35Z",
+          "time": "2021-05-12T01:32:53Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
           "layer_index": 0,
           "size": 0,
           "command_snippet": "RUN [\"LABEL\",\"org.opencontainers.image.creat...",
-          "command_all": "RUN [\"LABEL\",\"org.opencontainers.image.created=2021-05-11T21:13:46-04:00\"]",
-          "system_commands": ["[\"LABEL\",\"org.opencontainers.image.created=2021-05-11T21:13:46-04:00\"]"],
+          "command_all": "RUN [\"LABEL\",\"org.opencontainers.image.created=2021-05-11T21:32:45-04:00\"]",
+          "system_commands": ["[\"LABEL\",\"org.opencontainers.image.created=2021-05-11T21:32:45-04:00\"]"],
           "comment": "buildkit.dockerfile.v0"
         },
         {
           "type": "RUN",
-          "time": "2021-05-11T23:06:35Z",
+          "time": "2021-05-12T01:32:53Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -564,7 +564,7 @@
         },
         {
           "type": "RUN",
-          "time": "2021-05-11T23:06:35Z",
+          "time": "2021-05-12T01:32:53Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -579,7 +579,7 @@
         },
         {
           "type": "RUN",
-          "time": "2021-05-11T23:06:35Z",
+          "time": "2021-05-12T01:32:53Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -592,22 +592,22 @@
         },
         {
           "type": "RUN",
-          "time": "2021-05-11T23:06:35Z",
+          "time": "2021-05-12T01:32:53Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
           "layer_index": 0,
           "size": 0,
           "command_snippet": "RUN [\"LABEL\",\"org.opencontainers.image.revis...",
-          "command_all": "RUN [\"LABEL\",\"org.opencontainers.image.revision=83fb7c4de03408f53e309c55ffb4c9c0f8d77b4e\"]",
+          "command_all": "RUN [\"LABEL\",\"org.opencontainers.image.revision=94b24a8669e8e722c86df4217e381e0c708b959f\"]",
           "system_commands": [
-            "[\"LABEL\",\"org.opencontainers.image.revision=83fb7c4de03408f53e309c55ffb4c9c0f8d77b4e\"]"
+            "[\"LABEL\",\"org.opencontainers.image.revision=94b24a8669e8e722c86df4217e381e0c708b959f\"]"
           ],
           "comment": "buildkit.dockerfile.v0"
         },
         {
           "type": "RUN",
-          "time": "2021-05-11T23:06:35Z",
+          "time": "2021-05-12T01:32:53Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -622,7 +622,7 @@
         },
         {
           "type": "RUN",
-          "time": "2021-05-11T23:06:35Z",
+          "time": "2021-05-12T01:32:53Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -635,7 +635,7 @@
         },
         {
           "type": "RUN",
-          "time": "2021-05-11T23:06:35Z",
+          "time": "2021-05-12T01:32:53Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -648,20 +648,20 @@
         },
         {
           "type": "RUN",
-          "time": "2021-05-11T23:06:35Z",
+          "time": "2021-05-12T01:32:53Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
           "layer_index": 0,
           "size": 0,
           "command_snippet": "RUN [\"LABEL\",\"org.opencontainers.image.versi...",
-          "command_all": "RUN [\"LABEL\",\"org.opencontainers.image.version=0.0.21\"]",
-          "system_commands": ["[\"LABEL\",\"org.opencontainers.image.version=0.0.21\"]"],
+          "command_all": "RUN [\"LABEL\",\"org.opencontainers.image.version=0.0.22\"]",
+          "system_commands": ["[\"LABEL\",\"org.opencontainers.image.version=0.0.22\"]"],
           "comment": "buildkit.dockerfile.v0"
         },
         {
           "type": "RUN",
-          "time": "2021-05-11T23:06:35Z",
+          "time": "2021-05-12T01:32:53Z",
           "is_last_instruction": true,
           "is_nop": false,
           "is_exec_form": true,
@@ -672,7 +672,7 @@
           "command_all": "RUN [\"LABEL\",\"space.megabyte.type=ci-pipeline\"]",
           "system_commands": ["[\"LABEL\",\"space.megabyte.type=ci-pipeline\"]"],
           "comment": "buildkit.dockerfile.v0",
-          "raw_tags": ["megabytelabs/updater:0.0.21", "megabytelabs/updater:latest"]
+          "raw_tags": ["megabytelabs/updater:0.0.22", "megabytelabs/updater:latest"]
         }
       ]
     }
