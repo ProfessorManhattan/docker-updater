@@ -13,10 +13,8 @@ RUN apk --no-cache add --virtual build-dependencies \
       curl=7.76.1-r0 \
       git=2.30.2-r0 \
       jq=1.6-r1 \
-      ncurses=6.2_p20210109-r0 \
       nodejs=14.16.1-r1 \
       npm=14.16.1-r1 \
-  && npm install -g run-func@1.0.5 \
   && wget -nv $DOCKERSLIM_URL -O /tmp/dockerslim.tar.gz \
   && echo "$DOCKERSLIM_SHA256  /tmp/dockerslim.tar.gz" | sha256sum -c \
   && tar -zxvf /tmp/dockerslim.tar.gz \
@@ -38,7 +36,7 @@ ARG VERSION
 LABEL maintainer="Megabyte Labs <help@megabyte.space"
 LABEL org.opencontainers.image.authors="Brian Zalewski <brian@megabyte.space>"
 LABEL org.opencontainers.image.created=$BUILD_DATE
-LABEL org.opencontainers.image.description="A general-purpose Dockerfile project that includes Node.js, DockerSlim, and jq in a single container (only 42.2453 MB compressed!)"
+LABEL org.opencontainers.image.description="A general-purpose Dockerfile project that includes Node.js, DockerSlim, and jq in a single container (only 42.866 MB compressed!)"
 LABEL org.opencontainers.image.documentation="https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater/-/blob/master/README.md"
 LABEL org.opencontainers.image.licenses="MIT"
 LABEL org.opencontainers.image.revision=$REVISION

@@ -6,7 +6,10 @@
 
 set -e
 
-curl -sL https://git.io/_has | bash -s docker git jq node npm wget
+if [ "$container" != 'docker' ]; then
+  curl -sL https://git.io/_has | bash -s docker git jq node npm wget
+fi
+
 export REPO_TYPE=dockerfile
 git submodule update --init --recursive
 if [ ! -f "./.modules/${REPO_TYPE}/update.sh" ]; then
@@ -14,6 +17,7 @@ if [ ! -f "./.modules/${REPO_TYPE}/update.sh" ]; then
   git submodule add -b master https://gitlab.com/megabyte-space/common/$REPO_TYPE.git ./.modules/$REPO_TYPE
 else
   cd ./.modules/$REPO_TYPE || exit
+  git config pull.rebase true
   git checkout master && git pull origin master
   cd ../.. || exit
 fi
