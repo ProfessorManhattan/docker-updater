@@ -1,11 +1,8 @@
-FROM docker:20-dind
+FROM alpine:3
 
 ENV container docker
-ENV DOCKERSLIM_SHA256 b0f1b488d33b09be8beb224d4d26cb2d3e72669a46d242a3734ec744116b004c
-ENV DOCKERSLIM_URL https://downloads.dockerslim.com/releases/1.35.1/dist_linux.tar.gz
 ENV NODE_EXTRA_CA_CERTS /etc/ssl/certs/ca-certificates.crt
 
-SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 RUN apk --no-cache add --virtual build-dependencies \
       perl=5.32.0-r0 \
       wget=1.21.1-r1 \
@@ -17,19 +14,12 @@ RUN apk --no-cache add --virtual build-dependencies \
       nodejs=14.16.1-r1 \
       npm=14.16.1-r1 \
   && npm install -g npm@latest \
-  && wget -nv $DOCKERSLIM_URL -O /tmp/dockerslim.tar.gz \
-  && echo "$DOCKERSLIM_SHA256  /tmp/dockerslim.tar.gz" | sha256sum -c \
-  && tar -zxvf /tmp/dockerslim.tar.gz \
-  && cp -rf dist_linux/* /usr/local/bin \
-  && rm -rf /tmp/* dist_linux \
-  && chmod +x /usr/local/bin/docker-slim \
-  && chmod +x /usr/local/bin/docker-slim-sensor \
   && apk del build-dependencies \
   && rm -Rf /var/cache/apk/*
 
 WORKDIR /work
 
-CMD ["bash", ".start.sh"]
+CMD ["node", "--version"]
 
 ARG BUILD_DATE
 ARG REVISION
@@ -38,7 +28,7 @@ ARG VERSION
 LABEL maintainer="Megabyte Labs <help@megabyte.space"
 LABEL org.opencontainers.image.authors="Brian Zalewski <brian@megabyte.space>"
 LABEL org.opencontainers.image.created=$BUILD_DATE
-LABEL org.opencontainers.image.description="A general-purpose Dockerfile project that includes Node.js, DockerSlim, and jq in a single container (only 45.865 MB compressed!)"
+LABEL org.opencontainers.image.description="A general-purpose, compact Dockerfile project that includes bash, curl, git, jq, and Node.js in a single container (only 45.865 MB compressed!)"
 LABEL org.opencontainers.image.documentation="https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater/-/blob/master/README.md"
 LABEL org.opencontainers.image.licenses="MIT"
 LABEL org.opencontainers.image.revision=$REVISION

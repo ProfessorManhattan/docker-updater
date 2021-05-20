@@ -1,17 +1,27 @@
-<!-- ⚠️ This README has been generated from the file(s) "./.modules/docs/blueprint-readme-ci.md" ⚠️--><h1>Dockerfile: Updater (Node.js/Docker/DockerSlim/jq)</h1>
+<!-- ⚠️ This README has been generated from the file(s) "./.modules/docs/blueprint-readme-ci-slim.md" ⚠️--><h1>Dockerfile: Updater (bash/curl/git/jq/Node.js)</h1>
 
 <h4>
-  <a href="https://megabyte.space">Homepage</a>
-  <span> | </span>
-  <a href="https://hub.docker.com/u/megabytelabs">DockerHub Profile</a>
-  <span> | </span>
-  <a href="https://hub.docker.com/r/megabytelabs/@megabytelabs/updater">DockerHub Image</a>
-  <span> | </span>
-  <a href="https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater/-/blob/master/CONTRIBUTING.md">Contributing</a>
-  <span> | </span>
-  <a href="https://app.slack.com/client/T01ABCG4NK1/C01NN74H0LW/details/">Chat</a>
-  <span> | </span>
-  <a href="https://github.com/MegabyteLabs/docker-@megabytelabs/updater">GitHub Mirror</a>
+  <a href="https://megabyte.space" title="Megabyte Labs homepage">
+    <img src="https://gitlab.com/megabyte-labs/assets/-/raw/master/svg/home.svg" />
+  </a>
+  <a href="https://hub.docker.com/u/megabytelabs" title="Megabyte Labs profile on DockerHub">
+    <img src="https://gitlab.com/megabyte-labs/assets/-/raw/master/svg/dockerhub-profile.svg" />
+  </a>
+  <a href="https://hub.docker.com/r/megabytelabs/updater" title="DockerHub page for this project">
+    <img src="https://gitlab.com/megabyte-labs/assets/-/raw/master/svg/dockerhub-image.svg" />
+  </a>
+  <a href="https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater/-/blob/master/CONTRIBUTING.md" title="Find out how to contribute to this project">
+    <img src="https://gitlab.com/megabyte-labs/assets/-/raw/master/svg/contribute.svg" />
+  </a>
+  <a href="https://app.slack.com/client/T01ABCG4NK1/C01NN74H0LW/details/" title="Slack chat room">
+    <img src="https://gitlab.com/megabyte-labs/assets/-/raw/master/svg/chat.svg" />
+  </a>
+  <a href="https://github.com/MegabyteLabs/docker-updater" title="GitHub mirror">
+    <img src="https://gitlab.com/megabyte-labs/assets/-/raw/master/svg/github.svg" />
+  </a>
+  <a href="https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater" title="GitLab repository">
+    <img src="https://gitlab.com/megabyte-labs/assets/-/raw/master/svg/gitlab.svg" />
+  </a>
 </h4>
 <p>
   <a href="https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater">
@@ -24,38 +34,35 @@
     <img alt="DockerHub pulls: Updater" src="https://img.shields.io/docker/pulls/megabytelabs/updater?logo=docker&logoColor=white&style=flat" />
   </a>
   <a href="https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater" target="_blank">
-    <img alt="GitLab pipeline status" src="https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater/badges/master/pipeline.svg" />
+    <img alt="GitLab pipeline status" src="https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater/badges/master/pipeline.svg?style=flat" />
   </a>
   <a href="https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater/-/raw/master/LICENSE" target="_blank">
-    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" />
+    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg?style=flat" />
   </a>
-  <a href="https://github.com/https://github.com/MegabyteLabs" target="_blank">
+  <a href="https://github.com/MegabyteLabs" target="_blank">
     <img alt="GitHub: https://github.com/MegabyteLabs" src="https://img.shields.io/github/followers/MegabyteLabs?style=social" target="_blank" />
   </a>
   <a href="https://twitter.com/PrfssrManhattan" target="_blank">
-    <img alt="Twitter: PrfssrManhattan" src="https://img.shields.io/twitter/follow/PrfssrManhattan.svg?style=social" />
+    <img alt="Twitter: PrfssrManhattan" src="https://img.shields.io/twitter/url/https/twitter.com/PrfssrManhattan.svg?style=social&label=Follow%20%40PrfssrManhattan" />
   </a>
 </p>
 
-> <br/>**A general-purpose Dockerfile project that includes Node.js, DockerSlim, and jq in a single container (only 45.865 MB compressed!)**<br/><br/>
-
-**NOTE:** To use our compact image for Updater, you must use a build tagged with the `slim` keyword. For instance, to use the latest slim build you should specify the image as `megabytelabs/updater:slim`.
-
+> <br/>**A general-purpose, compact Dockerfile project that includes bash, curl, git, jq, and Node.js in a single container (only 45.865 MB compressed!)**<br/><br/>
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#table-of-contents)
 
 ## ➤ Table of Contents
 
-* [➤ Overview](#-overview)
-* [➤ Requirements](#-requirements)
-	* [Optional Requirements](#optional-requirements)
-* [➤ Example Usage](#-example-usage)
-	* [Integrating with GitLab CI](#integrating-with-gitlab-ci)
-	* [Building the Docker Container](#building-the-docker-container)
-	* [Building a Slim Container](#building-a-slim-container)
-	* [Build Tools](#build-tools)
-* [➤ Contributing](#-contributing)
-* [➤ License](#-license)
+- [➤ Overview](#-overview)
+- [➤ Requirements](#-requirements)
+  - [Optional Requirements](#optional-requirements)
+- [➤ Example Usage](#-example-usage)
+  - [Integrating with GitLab CI](#integrating-with-gitlab-ci)
+  - [Building the Docker Container](#building-the-docker-container)
+  - [Building a Slim Container](#building-a-slim-container)
+  - [Build Tools](#build-tools)
+- [➤ Contributing](#-contributing)
+- [➤ License](#-license)
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#overview)
 
@@ -69,18 +76,17 @@ Instead of using one of the countless Updater public Docker images available, we
 
 At first glance, you might notice that there are many files in this repository. Nearly all the files and folders that have a period prepended to them are development configurations. The tools that these files and folders configure are meant to make development easier and faster. They are also meant to improve team development by forcing developers to follow strict standards so that the same design patterns are used across all of our repositories.
 
-
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#requirements)
 
 ## ➤ Requirements
 
-* **[Docker](https://gitlab.com/megabyte-labs/ansible-roles/docker)**
+- **[Docker](https://gitlab.com/megabyte-labs/ansible-roles/docker)**
 
 ### Optional Requirements
 
-* [DockerSlim](https://gitlab.com/megabyte-labs/ansible-roles/dockerslim) - Used for generating compact, secure images
-* [jq](https://gitlab.com/megabyte-labs/ansible-roles/jq) - Used by `.start.sh` to interact with JSON documents from the bash shell
-* [Node.js](https://gitlab.com/megabyte-labs/ansible-roles/nodejs) (*Version >=10*) - Utilized to add development features like a pre-commit hook and maintenance tasks
+- [DockerSlim](https://gitlab.com/megabyte-labs/ansible-roles/dockerslim) - Used for generating compact, secure images
+- [jq](https://gitlab.com/megabyte-labs/ansible-roles/jq) - Used by `.start.sh` to interact with JSON documents from the bash shell
+- [Node.js](https://gitlab.com/megabyte-labs/ansible-roles/nodejs) (_Version >=10_) - Utilized to add development features like a pre-commit hook and maintenance tasks
 
 If you choose to utilize the development tools provided by this project then at some point you will have to run `bash .start.sh` (or `npm i` which calls `bash .start.sh` after it is done). The `.start.sh` script will attempt to automatically install any requirements (without sudo) that are not already present on your build system to the user's `~/.local/bin` folder. For more details on how the Optional Requirements are used and set up, check out the [CONTRIBUTING.md](https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater/-/blob/master/CONTRIBUTING.md) guide.
 
@@ -91,7 +97,7 @@ If you choose to utilize the development tools provided by this project then at 
 There are several different ways you can use the Docker container provided by this project. For starters, you can test the feature out locally by running:
 
 ```shell
-docker run -v ${PWD}:/work -w /work megabytelabs/@megabytelabs/updater:preferred_tag npm run update
+docker run -v ${PWD}:/work -w /work megabytelabs/updater:slim bash .start.sh
 ```
 
 This allows you to run Updater without installing it locally. This could be good for security since the application is within a container and also keeps your file system clean.
@@ -100,9 +106,11 @@ You can also add a bash alias to your `~/.bashrc` file so that you can run the U
 
 ```shell
 updater() {
-    docker run -v ${PWD}:/work -w /work megabytelabs/@megabytelabs/updater:preferred_tag npm run update
+  docker run -v ${PWD}:/work -w /work megabytelabs/updater:slim "$@"
 }
 ```
+
+_Note: Some CLI tools run without any arguments passed in. For example, the CLI tool `ansible-lint` runs by simply entering `ansible-lint` in the terminal. Our Docker images default command is to show the version so to get around this quirk you would run `ansible-lint .`._
 
 ### Integrating with GitLab CI
 
@@ -125,8 +133,8 @@ You may have a use case that requires some modifications to our Docker image. Af
 
 ```shell
 docker login -u "DOCKERHUB_USERNAME" -p "DOCKERHUB_PASSWORD" docker.io
-docker build --pull -t "DOCKERHUB_USERNAME/@megabytelabs/updater:latest" .
-docker push "DOCKERHUB_USERNAME/@megabytelabs/updater:latest"
+docker build --pull -t "DOCKERHUB_USERNAME/updater:latest" .
+docker push "DOCKERHUB_USERNAME/updater:latest"
 ```
 
 Replace `DOCKERHUB_USERNAME` and `DOCKERHUB_PASSWORD` in the snippet above with your Docker Hub username and password. The commands will build the Docker image and upload it to [Docker Hub](https://hub.docker.com/) where it will be publicly accessible. You can see this logic being implemented as a [GitLab CI task here](https://gitlab.com/megabyte-labs/ci/gitlab-ci-templates/-/blob/master/dockerhub.gitlab-ci.yml). This GitLab CI task works in conjunction with the `.gitlab-ci.yml` file in the root of this repository.
@@ -141,9 +149,9 @@ To build and publish a slim Dockerfile to Docker Hub, you can use the following 
 
 ```shell
 docker login -u "DOCKERHUB_USERNAME" -p "DOCKERHUB_PASSWORD" docker.io
-docker build -t "DOCKERHUB_USERNAME/@megabytelabs/updater:latest" .
-docker-slim build --tag megabytelabs/updater:slim --http-probe=false --exec 'npm help | npx --help' --include-path '/etc/ssl/certs' --include-path '/usr/share/git-core/templates' --include-path '/usr/libexec/git-core/git-remote-https' --include-path '/usr/lib/libpcre2-8.so.0' --include-path '/usr/libexec/git-core/git-sh-i18n--envsubst' --include-path '/usr/bin/curl' --include-path '/usr/lib/libcurl.so.4' --include-path '/usr/lib/libcurl.so.4.7.0' --include-path '/usr/lib/libpcre2-8.so.0.10.1' --include-path '/usr/local/bin/docker-slim' --include-path '/usr/bin/jq' --include-path '/usr/lib/libonig.so.5' --include-path '/usr/lib/libonig.so.5.1.0' --include-path '/usr/bin/git' --include-path '/usr/libexec/git-core/git-submodule' --include-path '/usr/libexec/git-core/git-sh-setup' --include-path '/usr/libexec/git-core/git-sh-i18n' --include-path '/usr/bin/npx' --include-path '/bin/bash' --include-path '/usr/bin/npm' --include-path '/usr/lib/node_modules' --include-path '/usr/bin/node' --include-path '/bin/sed' megabytelabs/updater:latest
-docker push "DOCKERHUB_USERNAME/@megabytelabs/updater:slim"
+docker build -t "DOCKERHUB_USERNAME/updater:latest" .
+docker-slim build --tag DOCKERHUB_USERNAME/updater:slim --http-probe=false --exec 'npm help | npx --help DOCKER_SLIM_BUILD_COMMANDDOCKER_SLIM_BUILD_COMMAND jq --version' --preserve-path-file 'paths.txt' DOCKERHUB_USERNAME/updater:latest
+docker push "DOCKERHUB_USERNAME/updater:slim"
 ```
 
 It may be possible to modify the DockerSlim command above to fix an issue or reduce the footprint even more than our command. You can modify the slim build command inline in the `package.json` file. However, running `bash .start.sh` will overwrite your changes in the `package.json` file. We detail a better way of modifying the `npm run build:slim` configuration in [CONTRIBUTING.md](https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater/-/blob/master/CONTRIBUTING.md).
@@ -194,7 +202,6 @@ start:
 
 For more details, check out the [CONTRIBUTING.md](https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater/-/blob/master/CONTRIBUTING.md) file.
 
-
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#contributing)
 
 ## ➤ Contributing
@@ -209,7 +216,8 @@ Contributions, issues, and feature requests are welcome! Feel free to check the 
 I create open source projects out of love. Although I have a job, shelter, and as much fast food as I can handle, it would still be pretty cool to be appreciated by the community for something I have spent a lot of time and money on. Please consider sponsoring me! Who knows? Maybe I will be able to quit my job and publish open source full time.
 <br/><br/>Sincerely,<br/><br/>
 
-***Brian Zalewski***<br/><br/>
+**_Brian Zalewski_**<br/><br/>
+
 </blockquote>
 
 <a href="https://www.patreon.com/ProfessorManhattan">
@@ -218,10 +226,8 @@ I create open source projects out of love. Although I have a job, shelter, and a
 
 </details>
 
-
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#license)
 
 ## ➤ License
 
 Copyright © 2021 [Megabyte LLC](https://megabyte.space). This project is [MIT](https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater/-/raw/master/LICENSE) licensed.
-

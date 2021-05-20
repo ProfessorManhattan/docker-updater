@@ -1,12 +1,13 @@
 {
   "badge_style": "flat",
-  "description_template": "A general-purpose Dockerfile project that includes Node.js, DockerSlim, and jq in a single containerIMAGE_SIZE_PLACEHOLDER",
-  "docker_command": "npm run update",
+  "description_template": "A general-purpose, compact Dockerfile project that includes bash, curl, git, jq, and Node.js in a single containerIMAGE_SIZE_PLACEHOLDER",
+  "docker_command": "bash .start.sh",
   "docker_command_alias": "updater",
-  "dockerhub_description": "A general-purpose Docker image that includes Node.js, DockerSlim, and jq",
-  "dockerslim_command": "--http-probe=false --exec 'npm help | npx --help' --include-path '/etc/ssl/certs' --include-path '/usr/share/git-core/templates' --include-path '/usr/libexec/git-core/git-remote-https' --include-path '/usr/lib/libpcre2-8.so.0' --include-path '/usr/libexec/git-core/git-sh-i18n--envsubst' --include-path '/usr/bin/curl' --include-path '/usr/lib/libcurl.so.4' --include-path '/usr/lib/libcurl.so.4.7.0' --include-path '/usr/lib/libpcre2-8.so.0.10.1' --include-path '/usr/local/bin/docker-slim' --include-path '/usr/bin/jq' --include-path '/usr/lib/libonig.so.5' --include-path '/usr/lib/libonig.so.5.1.0' --include-path '/usr/bin/git' --include-path '/usr/libexec/git-core/git-submodule' --include-path '/usr/libexec/git-core/git-sh-setup' --include-path '/usr/libexec/git-core/git-sh-i18n' --include-path '/usr/bin/npx' --include-path '/bin/bash' --include-path '/usr/bin/npm' --include-path '/usr/lib/node_modules' --include-path '/usr/bin/node' --include-path '/bin/sed'",
+  "dockerhub_description": "A general-purpose, compact Docker image that includes bash, curl, git, jq, and Node.js",
+  "dockerslim_command": "--http-probe=false --exec 'npm help | npx --help && jq --version' --preserve-path-file 'paths.txt'",
+  "preferred_tag": "slim",
   "pretty_name": "Updater",
-  "project_title": "Updater (Node.js/Docker/DockerSlim/jq)",
+  "project_title": "Updater (bash/curl/git/jq/Node.js)",
   "slug": "updater",
   "subgroup": "ci-pipeline"
 }
