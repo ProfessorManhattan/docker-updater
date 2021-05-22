@@ -4,7 +4,7 @@
   "docker_command": "bash .start.sh",
   "docker_command_alias": "updater",
   "dockerhub_description": "A general-purpose, compact Docker image that includes bash, curl, git, jq, and Node.js",
-  "dockerslim_command": "--http-probe=false --exec 'npm help | npx --help && jq --version' --preserve-path-file 'paths.txt'",
+  "dockerslim_command": "--http-probe=false --exec 'bash --version' --preserve-path-file 'paths.txt'",
   "preferred_tag": "slim",
   "pretty_name": "Updater",
   "project_title": "Updater (bash/curl/git/jq/Node.js)",
