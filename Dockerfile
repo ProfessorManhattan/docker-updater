@@ -13,6 +13,8 @@ RUN apk --no-cache add --virtual build-dependencies \
       jq=1.6-r1 \
       nodejs=14.16.1-r1 \
       npm=14.16.1-r1 \
+      python3=3.8.10-r0 \
+      py3-pip=20.3.4-r0 \
   && npm install -g npm@latest \
   && apk del build-dependencies \
   && rm -Rf /var/cache/apk/*
@@ -28,7 +30,7 @@ ARG VERSION
 LABEL maintainer="Megabyte Labs <help@megabyte.space"
 LABEL org.opencontainers.image.authors="Brian Zalewski <brian@megabyte.space>"
 LABEL org.opencontainers.image.created=$BUILD_DATE
-LABEL org.opencontainers.image.description="A general-purpose, compact Dockerfile project that includes bash, curl, git, jq, and Node.js in a single container (only 24.569 MB compressed!)"
+LABEL org.opencontainers.image.description="A general-purpose, compact Dockerfile project that includes bash, curl, git, jq, and Node.js in a single container (only 24.5605 MB compressed!)"
 LABEL org.opencontainers.image.documentation="https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater/-/blob/master/README.md"
 LABEL org.opencontainers.image.licenses="MIT"
 LABEL org.opencontainers.image.revision=$REVISION

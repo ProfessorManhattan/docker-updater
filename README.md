@@ -47,7 +47,7 @@
   </a>
 </p>
 
-> <br/>**A general-purpose, compact Dockerfile project that includes bash, curl, git, jq, and Node.js in a single container (only 24.569 MB compressed!)**<br/><br/>
+> <br/>**A general-purpose, compact Dockerfile project that includes bash, curl, git, jq, and Node.js in a single container (only 24.5605 MB compressed!)**<br/><br/>
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#table-of-contents)
 
@@ -150,7 +150,7 @@ To build and publish a slim Dockerfile to Docker Hub, you can use the following 
 ```shell
 docker login -u "DOCKERHUB_USERNAME" -p "DOCKERHUB_PASSWORD" docker.io
 docker build -t "DOCKERHUB_USERNAME/updater:latest" .
-docker-slim build --tag DOCKERHUB_USERNAME/updater:slim --http-probe=false --exec 'bash --version' --preserve-path-file 'paths.txt' DOCKERHUB_USERNAME/updater:latest
+docker-slim build --tag DOCKERHUB_USERNAME/updater:slim --http-probe=false --exec 'pip3 install mod-ansible-autodoc' --preserve-path-file 'paths.txt' DOCKERHUB_USERNAME/updater:latest
 docker push "DOCKERHUB_USERNAME/updater:slim"
 ```
 
