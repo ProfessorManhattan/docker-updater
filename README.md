@@ -47,7 +47,7 @@
   </a>
 </p>
 
-> <br/>**A general-purpose, compact Dockerfile project that includes bash, curl, git, jq, and Node.js in a single container (only 24.4164 MB compressed!)**<br/><br/>
+> <br/>**A general-purpose, compact Dockerfile project that includes bash, curl, git, jq, and Node.js in a single container (only 24.2864 MB compressed!)**<br/><br/>
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#table-of-contents)
 

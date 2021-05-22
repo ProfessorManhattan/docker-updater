@@ -9,13 +9,15 @@
 /usr/bin/npx
 /usr/lib/libcurl.so.4
 /usr/lib/libcurl.so.4.7.0
+/usr/lib/libncursesw.so.6
+/usr/lib/libncursesw.so.6.2
 /usr/lib/libonig.so.5
 /usr/lib/libonig.so.5.1.0
 /usr/lib/libpcre2-8.so.0
 /usr/lib/libpcre2-8.so.0.10.1
+/usr/lib/libreadline.so.8
+/usr/lib/libreadline.so.8.1
 /usr/lib/node_modules
-/usr/lib/readline.so.8
-/usr/lib/readline.so.8.1
 /usr/libexec/git-core/git-remote-https
 /usr/libexec/git-core/git-sh-i18n
 /usr/libexec/git-core/git-sh-i18n--envsubst
