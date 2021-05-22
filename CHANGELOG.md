@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.31](https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater/compare/v0.0.30...v0.0.31) (2021-05-22)
+
 ### [0.0.30](https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater/compare/v0.0.29...v0.0.30) (2021-05-20)
 
 ### [0.0.29](https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater/compare/v0.0.28...v0.0.29) (2021-05-12)

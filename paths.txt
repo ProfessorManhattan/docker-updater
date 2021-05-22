@@ -14,6 +14,8 @@
 /usr/lib/libpcre2-8.so.0
 /usr/lib/libpcre2-8.so.0.10.1
 /usr/lib/node_modules
+/usr/lib/readline.so.8
+/usr/lib/readline.so.8.1
 /usr/libexec/git-core/git-remote-https
 /usr/libexec/git-core/git-sh-i18n
 /usr/libexec/git-core/git-sh-i18n--envsubst

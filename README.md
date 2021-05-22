@@ -42,12 +42,12 @@
   <a href="https://github.com/MegabyteLabs" target="_blank">
     <img alt="GitHub: https://github.com/MegabyteLabs" src="https://img.shields.io/github/followers/MegabyteLabs?style=social" target="_blank" />
   </a>
-  <a href="https://twitter.com/PrfssrManhattan" target="_blank">
-    <img alt="Twitter: PrfssrManhattan" src="https://img.shields.io/twitter/url/https/twitter.com/PrfssrManhattan.svg?style=social&label=Follow%20%40PrfssrManhattan" />
+  <a href="https://twitter.com/MegabyteLabs" target="_blank">
+    <img alt="Twitter: MegabyteLabs" src="https://img.shields.io/twitter/url/https/twitter.com/MegabyteLabs.svg?style=social&label=Follow%20%40MegabyteLabs" />
   </a>
 </p>
 
-> <br/>**A general-purpose, compact Dockerfile project that includes bash, curl, git, jq, and Node.js in a single container (only 45.865 MB compressed!)**<br/><br/>
+> <br/>**A general-purpose, compact Dockerfile project that includes bash, curl, git, jq, and Node.js in a single container (only 24.4164 MB compressed!)**<br/><br/>
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#table-of-contents)
 
