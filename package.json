@@ -6,11 +6,11 @@
   "homepage": "https://megabyte.space",
   "repository": {
     "type": "git",
-    "url": "git+https://gitlab.com/megabyte-labs/dockerfile/DOCKER_PROJECT_SUBGROUP/DOCKER_PROJECT_SLUG.git"
+    "url": "git+https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater.git"
   },
   "bugs": {
     "email": "help@megabyte.space",
-    "url": "https://gitlab.com/megabyte-labs/dockerfile/DOCKER_PROJECT_SUBGROUP/DOCKER_PROJECT_SLUG/-/issues"
+    "url": "https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater/-/issues"
   },
   "version": "0.0.34",
   "scripts": {
