@@ -9,5 +9,6 @@
   "pretty_name": "Updater",
   "project_title": "Updater (bash/curl/git/jq/Node.js)",
   "slug": "updater",
-  "subgroup": "ci-pipeline"
+  "subgroup": "ci-pipeline",
+  "slug_full": "updater"
 }

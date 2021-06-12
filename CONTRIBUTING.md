@@ -239,6 +239,7 @@ The `.blueprint.json` file stores some of the information required to automatica
 | `pretty_name`           | The full (pretty) name of the tool (used for generating documentation).                                                                                                                                                                                                                   |
 | `project_title`         | The title of the project - this controls the title of the README.md and will generally be the same as the `pretty_name`.                                                                                                                                                                  |
 | `slug`                  | The slug is found by looking at the URL of the repository (e.g. for Ansible Lint, the slug would be `ansible-lint` since the last part of [this URL](https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/ansible-lint) is ansible-lint).                                              |
+| `slug_full`             | This variable is populated by `.start.sh` by combining the `subgroup` and `slug` variables.                                                                                                                                                                                               |
 | `subgroup`              | The subgroup is found by looking at the second to last part of the URL of the repository (e.g. for Ansible Lint the subgroup would be `ci-pipeline`).                                                                                                                                     |
 
 When populating the `.blueprint.json` file, it is a good idea to check out [repositories in the same group](https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline) to see what variables are being utilized.
@@ -318,7 +319,7 @@ Some of the linters are also baked into the CI pipeline. The pipeline will trigg
 
 ## ➤ Pull Requests
 
-All pull requests should be associated with issues. You can find the [issues board on GitLab](https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater/-/issues). The pull requests should be made to [the GitLab repository](https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater) instead of the [GitHub repository](https://github.com/MegabyteLabs/docker-updater). This is because we use GitLab as our primary repository and mirror the changes to GitHub for the community.
+All pull requests should be associated with issues. You can find the [issues board on GitLab](https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater/-/issues). The pull requests should be made to [the GitLab repository](https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater) instead of the [GitHub repository](https://github.com/ProfessorManhattan/docker-updater). This is because we use GitLab as our primary repository and mirror the changes to GitHub for the community.
 
 ### How to Commit Code
 
