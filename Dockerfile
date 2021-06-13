@@ -4,23 +4,23 @@ ENV container docker
 ENV NODE_EXTRA_CA_CERTS /etc/ssl/certs/ca-certificates.crt
 
 RUN apk --no-cache add --virtual build-dependencies \
-      perl=5.32.0-r0 \
-      wget=1.21.1-r1 \
+      perl~=5 \
+      wget~=1 \
   && apk --no-cache add \
-      bash=5.1.0-r0 \
-      curl=7.77.0-r1 \
-      git=2.30.2-r0 \
-      jq=1.6-r1 \
-      nodejs=14.16.1-r1 \
-      npm=14.16.1-r1 \
-      python3=3.8.10-r0 \
-      py3-pip=20.3.4-r0 \
+      bash~=5 \
+      curl~=7 \
+      git~=2 \
+      jq~=1 \
+      nodejs~=14 \
+      npm~=14 \
+      python3~=3 \
+      py3-pip~=20 \
   && npm install -g npm@latest \
   && apk del build-dependencies \
   && rm -Rf /var/cache/apk/*
 
 WORKDIR /work
-
+ENTRYPOINT ["/bin/bash"]
 CMD ["node", "--version"]
 
 ARG BUILD_DATE
