@@ -8,7 +8,7 @@ RUN apk --no-cache add --virtual build-dependencies \
       wget=1.21.1-r1 \
   && apk --no-cache add \
       bash=5.1.0-r0 \
-      curl=7.76.1-r0 \
+      curl=7.77.0-r1 \
       git=2.30.2-r0 \
       jq=1.6-r1 \
       nodejs=14.16.1-r1 \
