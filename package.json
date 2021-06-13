@@ -1,27 +1,37 @@
 {
-  "name": "@megabytelabs/docker-updater",
-  "description": "A general-purpose, compact Dockerfile project that includes bash, curl, git, jq, and Node.js in a single container (only 24.5605 MB compressed!)",
+  "name": "@megabytelabs/updater",
+  "description": "Node.js files/configurations that support the creation of Dockerfiles",
   "license": "MIT",
   "author": "Brian Zalewski <brian@megabyte.space> (https://megabyte.space)",
+  "homepage": "https://megabyte.space",
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater.git"
+  },
+  "bugs": {
+    "email": "help@megabyte.space",
+    "url": "https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater/-/issues"
+  },
   "version": "0.0.34",
   "scripts": {
+    "_publish:noslim": "run-s publish:login && npx lint-staged && run-s build:latest update test build:latest update test version && git push --follow-tags origin master && run-s build publish:publish publish:readme publish:readme-description",
     "build": "run-s build:*",
     "build:latest": "docker build --build-arg BUILD_DATE=$(git show -s --format=%cI) --build-arg REVISION=$(git rev-parse HEAD) --build-arg VERSION=${npm_package_version} --tag megabytelabs/updater:latest --tag megabytelabs/updater:${npm_package_version} .",
     "build:slim": "docker-slim build --tag megabytelabs/updater:slim --http-probe=false --exec 'pip3 install mod-ansible-autodoc' --preserve-path-file 'paths.txt' megabytelabs/updater:latest && prettier --write slim.report.json && docker tag megabytelabs/updater:slim megabytelabs/updater:${npm_package_version}-slim",
     "commit": "git-cz",
     "fix": "run-s fix:*",
-    "fix:prettier": "prettier \"{*.json,*.sh,*.yml}\" --write",
+    "fix:prettier": "prettier --write \"!{.husky/_/husky.sh,.gitmodules,.modules,Dockerfile}\" .",
     "fix:shellcheck": "shellcheck -f diff Dockerfile | git apply",
     "info": "npm-scripts-info",
     "postinstall": "husky install && run-s update",
-    "prepare-release": "run-s update test build update test version",
+    "prepare-release": "if [[ \"$(docker images -q megabytelabs/updater:latest 2> /dev/null)\" == '' ]] || [[ \"$(docker images -q megabytelabs/updater:slim 2> /dev/null)\" == '' ]]; then run-s build; fi && run-s update test build update test version",
     "publish": "run-s publish:*",
     "publish:login": "docker login",
     "publish:prepare": "npx lint-staged && run-s prepare-release && git push --follow-tags origin master && run-s build && (if [ -f slim.report.json ]; then (git add slim.report.json && git commit -m 'chore(slim-report) Adding slim.report.json.' && git push origin master); fi)",
     "publish:publish": "docker push megabytelabs/updater:latest && docker push megabytelabs/updater:${npm_package_version}",
     "publish:publish-slim": "docker push megabytelabs/updater:slim && docker push megabytelabs/updater:${npm_package_version}-slim",
     "publish:readme": "docker pushrm megabytelabs/updater",
-    "publish:readme-description": "SHORT_DESCRIPTION=$(jq -r '.dockerhub_description' .blueprint.json) && PACKAGE_SLUG=$(jq -r '.slug' .blueprint.json) && docker pushrm --short \"${SHORT_DESCRIPTION}\" megabytelabs/${PACKAGE_SLUG}",
+    "publish:readme-description": "SHORT_DESCRIPTION=$(jq -r '.dockerhub_description' .blueprint.json) && PACKAGE_SLUG=$(jq -r '.slug_full' .blueprint.json) && docker pushrm --short \"${SHORT_DESCRIPTION}\" megabytelabs/${PACKAGE_SLUG}",
     "scan": "run-s build scan:*",
     "scan:_login": "docker scan --accept-license --login",
     "scan:latest": "docker scan --file Dockerfile megabytelabs/updater:latest",
@@ -33,7 +43,7 @@
     "test": "run-s test:*",
     "test:docker": "docker run -v ${PWD}:/work -w /work hadolint/hadolint:latest hadolint Dockerfile",
     "test:preprettier": "if [ -f slim.report.json ]; then prettier --write slim.report.json; fi && if [ -f .blueprint.json ]; then prettier --write .blueprint.json; fi",
-    "test:prettier": "prettier \"{*.json,*.sh,*.yml}\" --list-different",
+    "test:prettier": "prettier --list-different \"!{.husky/_/husky.sh,.gitmodules,.modules,Dockerfile}\" .",
     "test:shellcheck": "find . -type d \\( -name .cache -o -name .git -o -name .modules  -o -name node_modules -o -name .husky -o -name .start.sh -o -name test \\) -prune -o -type f \\( -name \\*.sh -o -name \\*.sh.j2 \\) -print0 | xargs -0 -r -n1 shellcheck",
     "update": "bash .start.sh && cp ./.modules/dockerfile/.start.sh .start.sh",
     "version": "standard-version -a --no-verify"
@@ -58,6 +68,18 @@
     "shellcheck": "^1.0.0",
     "standard-version": "^9.0.0"
   },
+  "keywords": [
+    "alias",
+    "docker",
+    "dockerfile",
+    "documentation",
+    "megabytelabs",
+    "professormanhattan",
+    "updater"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
   "funding": [
     {
       "type": "opencollective",
@@ -69,7 +91,7 @@
     }
   ],
   "lint-staged": {
-    "**/*.{json,sh,yml}": [
+    "**/*.{json,sh,yml},Dockerfile": [
       "prettier --write"
     ],
     "package.json": [
@@ -78,14 +100,14 @@
   },
   "prettier": "@megabytelabs/prettier-config",
   "scripts-info": {
-    "build": "Build the regular Docker image and then build the slim image",
+    "build": "Build the regular Docker image and then build the slim image (if the project supports it)",
     "build:latest": "Build the regular Docker image",
     "build:slim": "Build a compact Docker image with DockerSlim",
     "commit": "The preferred way of running git commit (instead of git commit, we prefer you run 'npm run commit' in the root of this repository)",
     "fix": "Automatically fix formatting errors",
     "info": "Logs descriptions of all the npm tasks",
-    "prepare-release": "Updates the CHANGELOG with commits made using 'npm run commit' and updates the project to be ready for release",
-    "publish": "Creates new release(s) and uploads the release(s) to DockerHub",
+    "prepare-release": "Builds and updates the project and then updates the CHANGELOG with commits made using 'npm run commit'. Updates the project to be ready for release",
+    "publish": "Creates a new release and uploads the release to DockerHub",
     "scan": "Scans images for vulnerabilities",
     "shell": "Run the Docker container and open a shell",
     "shell:slim": "Runs the Docker slim image container and open a shell",
