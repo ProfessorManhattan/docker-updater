@@ -12,7 +12,7 @@
     "email": "help@megabyte.space",
     "url": "https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater/-/issues"
   },
-  "version": "0.0.34",
+  "version": "0.0.35",
   "scripts": {
     "_publish:noslim": "run-s publish:login && npx lint-staged && run-s build:latest update test build:latest update test version && git push --follow-tags origin master && run-s build publish:publish publish:readme publish:readme-description",
     "build": "run-s build:*",
