@@ -21,24 +21,24 @@
   },
   "source_image": {
     "identity": {
-      "id": "sha256:3b0a2c27b2bd9b8670547db3403364c40763d82958f34b93fcd69c470aaf6379",
+      "id": "sha256:61d928be2cd2f225dc32623c4a737e071c860d1d1b3489c60a8685bc52d0e7b8",
       "tags": ["0.0.35", "latest"],
       "names": ["megabytelabs/updater:0.0.35", "megabytelabs/updater:latest"]
     },
-    "size": 136800062,
+    "size": 136921684,
     "size_human": "137 MB",
-    "create_time": "2021-06-13T09:43:26Z",
+    "create_time": "2021-06-13T10:20:31Z",
     "docker_version": "",
     "architecture": "amd64",
     "os": "linux",
     "labels": {
       "maintainer": "Megabyte Labs <help@megabyte.space",
       "org.opencontainers.image.authors": "Brian Zalewski <brian@megabyte.space>",
-      "org.opencontainers.image.created": "2021-06-13T05:44:34-04:00",
-      "org.opencontainers.image.description": "A general-purpose, compact Dockerfile project that includes bash, curl, git, jq, and Node.js in a single container (only 32.1585 MB compressed!)",
+      "org.opencontainers.image.created": "2021-06-13T05:45:12-04:00",
+      "org.opencontainers.image.description": "A general-purpose, compact Dockerfile project that includes bash, curl, git, jq, and Node.js in a single container (only 30.5027 MB compressed!)",
       "org.opencontainers.image.documentation": "https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater/-/blob/master/README.md",
       "org.opencontainers.image.licenses": "MIT",
-      "org.opencontainers.image.revision": "eddd0ccdaadc2bda96a0751d21ab0ab062df148f",
+      "org.opencontainers.image.revision": "463b9af69a877f1c6abc853b9d11ba9ac784793a",
       "org.opencontainers.image.source": "https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater.git",
       "org.opencontainers.image.url": "https://megabyte.space",
       "org.opencontainers.image.vendor": "Megabyte Labs",
@@ -51,25 +51,25 @@
       "NODE_EXTRA_CA_CERTS=/etc/ssl/certs/ca-certificates.crt"
     ]
   },
-  "minified_image_size": 85246791,
-  "minified_image_size_human": "85 MB",
+  "minified_image_size": 85564663,
+  "minified_image_size_human": "86 MB",
   "minified_image": "megabytelabs/updater:slim",
   "minified_image_has_data": true,
-  "minified_by": 1.6047532158717857,
-  "artifact_location": "/tmp/docker-slim-state/.docker-slim-state/images/3b0a2c27b2bd9b8670547db3403364c40763d82958f34b93fcd69c470aaf6379/artifacts",
+  "minified_by": 1.6002129757701493,
+  "artifact_location": "/tmp/docker-slim-state/.docker-slim-state/images/61d928be2cd2f225dc32623c4a737e071c860d1d1b3489c60a8685bc52d0e7b8/artifacts",
   "container_report_name": "creport.json",
   "seccomp_profile_name": "megabytelabs-updater-seccomp.json",
   "apparmor_profile_name": "megabytelabs-updater-apparmor-profile",
   "image_stack": [
     {
       "is_top_image": true,
-      "id": "sha256:3b0a2c27b2bd9b8670547db3403364c40763d82958f34b93fcd69c470aaf6379",
+      "id": "sha256:61d928be2cd2f225dc32623c4a737e071c860d1d1b3489c60a8685bc52d0e7b8",
       "full_name": "megabytelabs/updater:0.0.35",
       "repo_name": "megabytelabs/updater",
       "version_tag": "0.0.35",
       "raw_tags": ["megabytelabs/updater:0.0.35", "megabytelabs/updater:latest"],
-      "create_time": "2021-06-13T09:43:26Z",
-      "new_size": 136800062,
+      "create_time": "2021-06-13T10:20:31Z",
+      "new_size": 136921684,
       "new_size_human": "137 MB",
       "instructions": [
         {
@@ -100,7 +100,7 @@
         },
         {
           "type": "RUN",
-          "time": "2021-06-13T09:43:26Z",
+          "time": "2021-06-13T10:20:31Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -113,7 +113,7 @@
         },
         {
           "type": "RUN",
-          "time": "2021-06-13T09:43:26Z",
+          "time": "2021-06-13T10:20:31Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -126,23 +126,23 @@
         },
         {
           "type": "RUN",
-          "time": "2021-06-13T09:43:26Z",
+          "time": "2021-06-13T10:20:31Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
           "layer_index": 0,
-          "size": 131186904,
+          "size": 131308526,
           "size_human": "131 MB",
           "command_snippet": "RUN [\"RUN\",\"/bin/sh\",\"-c\",\"apk\",\"--no-cache\"...",
-          "command_all": "RUN [\"RUN\",\"/bin/sh\",\"-c\",\"apk\",\"--no-cache\",\"add\",\"--virtual\",\"build-dependencies\",\"perl~=5\",\"wget~=1\",\"\\u0026\\u0026\",\"apk\",\"--no-cache\",\"add\",\"bash~=5\",\"curl~=7\",\"git~=2\",\"jq~=1\",\"nodejs~=14\",\"npm~=14\",\"python3~=3\",\"py3-pip~=20\",\"\\u0026\\u0026\",\"npm\",\"install\",\"-g\",\"npm@latest\",\"\\u0026\\u0026\",\"apk\",\"del\",\"build-dependencies\",\"\\u0026\\u0026\",\"rm\",\"-Rf\",\"/var/cache/apk/*\"]",
+          "command_all": "RUN [\"RUN\",\"/bin/sh\",\"-c\",\"apk\",\"--no-cache\",\"add\",\"--virtual\",\"build-dependencies\",\"perl~=5\",\"wget~=1\",\"\\u0026\\u0026\",\"apk\",\"--no-cache\",\"add\",\"bash~=5\",\"curl~=7\",\"git~=2\",\"jq~=1\",\"nodejs~=14\",\"npm~=14\",\"python3~=3\",\"py3-pip~=20\",\"py3-wheel~=0\",\"\\u0026\\u0026\",\"npm\",\"install\",\"-g\",\"npm@latest\",\"\\u0026\\u0026\",\"apk\",\"del\",\"build-dependencies\",\"\\u0026\\u0026\",\"rm\",\"-Rf\",\"/var/cache/apk/*\"]",
           "system_commands": [
-            "[\"RUN\",\"/bin/sh\",\"-c\",\"apk\",\"--no-cache\",\"add\",\"--virtual\",\"build-dependencies\",\"perl~=5\",\"wget~=1\",\"u0026u0026\",\"apk\",\"--no-cache\",\"add\",\"bash~=5\",\"curl~=7\",\"git~=2\",\"jq~=1\",\"nodejs~=14\",\"npm~=14\",\"python3~=3\",\"py3-pip~=20\",\"u0026u0026\",\"npm\",\"install\",\"-g\",\"npm@latest\",\"u0026u0026\",\"apk\",\"del\",\"build-dependencies\",\"u0026u0026\",\"rm\",\"-Rf\",\"/var/cache/apk/*\"]"
+            "[\"RUN\",\"/bin/sh\",\"-c\",\"apk\",\"--no-cache\",\"add\",\"--virtual\",\"build-dependencies\",\"perl~=5\",\"wget~=1\",\"u0026u0026\",\"apk\",\"--no-cache\",\"add\",\"bash~=5\",\"curl~=7\",\"git~=2\",\"jq~=1\",\"nodejs~=14\",\"npm~=14\",\"python3~=3\",\"py3-pip~=20\",\"py3-wheel~=0\",\"u0026u0026\",\"npm\",\"install\",\"-g\",\"npm@latest\",\"u0026u0026\",\"apk\",\"del\",\"build-dependencies\",\"u0026u0026\",\"rm\",\"-Rf\",\"/var/cache/apk/*\"]"
           ],
           "comment": "buildkit.dockerfile.v0"
         },
         {
           "type": "RUN",
-          "time": "2021-06-13T09:43:26Z",
+          "time": "2021-06-13T10:20:31Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -155,7 +155,7 @@
         },
         {
           "type": "RUN",
-          "time": "2021-06-13T09:43:26Z",
+          "time": "2021-06-13T10:20:31Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -168,7 +168,7 @@
         },
         {
           "type": "RUN",
-          "time": "2021-06-13T09:43:26Z",
+          "time": "2021-06-13T10:20:31Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -181,7 +181,7 @@
         },
         {
           "type": "RUN",
-          "time": "2021-06-13T09:43:26Z",
+          "time": "2021-06-13T10:20:31Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -194,7 +194,7 @@
         },
         {
           "type": "RUN",
-          "time": "2021-06-13T09:43:26Z",
+          "time": "2021-06-13T10:20:31Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -207,7 +207,7 @@
         },
         {
           "type": "RUN",
-          "time": "2021-06-13T09:43:26Z",
+          "time": "2021-06-13T10:20:31Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -220,7 +220,7 @@
         },
         {
           "type": "RUN",
-          "time": "2021-06-13T09:43:26Z",
+          "time": "2021-06-13T10:20:31Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -233,7 +233,7 @@
         },
         {
           "type": "RUN",
-          "time": "2021-06-13T09:43:26Z",
+          "time": "2021-06-13T10:20:31Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -248,35 +248,35 @@
         },
         {
           "type": "RUN",
-          "time": "2021-06-13T09:43:26Z",
+          "time": "2021-06-13T10:20:31Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
           "layer_index": 0,
           "size": 0,
           "command_snippet": "RUN [\"LABEL\",\"org.opencontainers.image.creat...",
-          "command_all": "RUN [\"LABEL\",\"org.opencontainers.image.created=2021-06-13T05:44:34-04:00\"]",
-          "system_commands": ["[\"LABEL\",\"org.opencontainers.image.created=2021-06-13T05:44:34-04:00\"]"],
+          "command_all": "RUN [\"LABEL\",\"org.opencontainers.image.created=2021-06-13T05:45:12-04:00\"]",
+          "system_commands": ["[\"LABEL\",\"org.opencontainers.image.created=2021-06-13T05:45:12-04:00\"]"],
           "comment": "buildkit.dockerfile.v0"
         },
         {
           "type": "RUN",
-          "time": "2021-06-13T09:43:26Z",
+          "time": "2021-06-13T10:20:31Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
           "layer_index": 0,
           "size": 0,
           "command_snippet": "RUN [\"LABEL\",\"org.opencontainers.image.descr...",
-          "command_all": "RUN [\"LABEL\",\"org.opencontainers.image.description=A\",\"general-purpose,\",\"compact\",\"Dockerfile\",\"project\",\"that\",\"includes\",\"bash,\",\"curl,\",\"git,\",\"jq,\",\"and\",\"Node.js\",\"in\",\"a\",\"single\",\"container\",\"(only\",\"32.1585\",\"MB\",\"compressed!)\"]",
+          "command_all": "RUN [\"LABEL\",\"org.opencontainers.image.description=A\",\"general-purpose,\",\"compact\",\"Dockerfile\",\"project\",\"that\",\"includes\",\"bash,\",\"curl,\",\"git,\",\"jq,\",\"and\",\"Node.js\",\"in\",\"a\",\"single\",\"container\",\"(only\",\"30.5027\",\"MB\",\"compressed!)\"]",
           "system_commands": [
-            "[\"LABEL\",\"org.opencontainers.image.description=A\",\"general-purpose,\",\"compact\",\"Dockerfile\",\"project\",\"that\",\"includes\",\"bash,\",\"curl,\",\"git,\",\"jq,\",\"and\",\"Node.js\",\"in\",\"a\",\"single\",\"container\",\"(only\",\"32.1585\",\"MB\",\"compressed!)\"]"
+            "[\"LABEL\",\"org.opencontainers.image.description=A\",\"general-purpose,\",\"compact\",\"Dockerfile\",\"project\",\"that\",\"includes\",\"bash,\",\"curl,\",\"git,\",\"jq,\",\"and\",\"Node.js\",\"in\",\"a\",\"single\",\"container\",\"(only\",\"30.5027\",\"MB\",\"compressed!)\"]"
           ],
           "comment": "buildkit.dockerfile.v0"
         },
         {
           "type": "RUN",
-          "time": "2021-06-13T09:43:26Z",
+          "time": "2021-06-13T10:20:31Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -291,7 +291,7 @@
         },
         {
           "type": "RUN",
-          "time": "2021-06-13T09:43:26Z",
+          "time": "2021-06-13T10:20:31Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -304,22 +304,22 @@
         },
         {
           "type": "RUN",
-          "time": "2021-06-13T09:43:26Z",
+          "time": "2021-06-13T10:20:31Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
           "layer_index": 0,
           "size": 0,
           "command_snippet": "RUN [\"LABEL\",\"org.opencontainers.image.revis...",
-          "command_all": "RUN [\"LABEL\",\"org.opencontainers.image.revision=eddd0ccdaadc2bda96a0751d21ab0ab062df148f\"]",
+          "command_all": "RUN [\"LABEL\",\"org.opencontainers.image.revision=463b9af69a877f1c6abc853b9d11ba9ac784793a\"]",
           "system_commands": [
-            "[\"LABEL\",\"org.opencontainers.image.revision=eddd0ccdaadc2bda96a0751d21ab0ab062df148f\"]"
+            "[\"LABEL\",\"org.opencontainers.image.revision=463b9af69a877f1c6abc853b9d11ba9ac784793a\"]"
           ],
           "comment": "buildkit.dockerfile.v0"
         },
         {
           "type": "RUN",
-          "time": "2021-06-13T09:43:26Z",
+          "time": "2021-06-13T10:20:31Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -334,7 +334,7 @@
         },
         {
           "type": "RUN",
-          "time": "2021-06-13T09:43:26Z",
+          "time": "2021-06-13T10:20:31Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -347,7 +347,7 @@
         },
         {
           "type": "RUN",
-          "time": "2021-06-13T09:43:26Z",
+          "time": "2021-06-13T10:20:31Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -360,7 +360,7 @@
         },
         {
           "type": "RUN",
-          "time": "2021-06-13T09:43:26Z",
+          "time": "2021-06-13T10:20:31Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -373,7 +373,7 @@
         },
         {
           "type": "RUN",
-          "time": "2021-06-13T09:43:26Z",
+          "time": "2021-06-13T10:20:31Z",
           "is_last_instruction": true,
           "is_nop": false,
           "is_exec_form": true,

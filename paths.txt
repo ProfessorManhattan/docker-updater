@@ -10,6 +10,7 @@
 /usr/bin/pip3
 /usr/bin/python3
 /usr/bin/python3.8
+/usr/bin/wheel
 /usr/lib/libcurl.so.4
 /usr/lib/libcurl.so.4.7.0
 /usr/lib/libncursesw.so.6
