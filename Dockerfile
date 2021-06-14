@@ -2,9 +2,11 @@ FROM alpine:3
 
 ENV container docker
 ENV NODE_EXTRA_CA_CERTS /etc/ssl/certs/ca-certificates.crt
+ENV YQ_URL https://github.com/mikefarah/yq/releases/download/v4.9.6/yq_linux_amd64
 
 RUN apk --no-cache add --virtual build-dependencies \
       perl~=5 \
+      upx~=3 \
       wget~=1 \
   && apk --no-cache add \
       bash~=5 \
@@ -16,6 +18,9 @@ RUN apk --no-cache add --virtual build-dependencies \
       python3~=3 \
       py3-pip~=20 \
       py3-wheel~=0 \
+  && wget ${YQ_URL} -O /usr/bin/yq \
+  && chmod +x /usr/bin/yq \
+  && upx /usr/bin/yq \
   && npm install -g \
       npm@latest \
   && apk del build-dependencies
