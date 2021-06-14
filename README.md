@@ -70,7 +70,7 @@
   </p>
 </div>
 
-> </br><h3 align="center">**A general-purpose, compact Dockerfile project that includes bash, curl, git, jq, and Node.js in a single container (only 30.6525 MB compressed!)**</h3></br>
+> </br><h3 align="center">**A general-purpose, compact Dockerfile project that includes bash, curl, git, jq, and Node.js in a single container (only 30.6269 MB compressed!)**</h3></br>
 
 <!--TERMINALIZER![terminalizer_title](https://gitlab.com/megabyte-labs/ansible-roles/role_name/-/raw/master/.demo.gif)TERMINALIZER-->
 
