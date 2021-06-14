@@ -1,6 +1,6 @@
 {
   "name": "@megabytelabs/updater",
-  "description": "A general-purpose, compact Dockerfile project that includes bash, curl, git, jq, and Node.js in a single container (only 30.6269 MB compressed!)",
+  "description": "A general-purpose, compact Dockerfile project that includes bash, curl, git, jq, and Node.js in a single container (only 0 MB compressed!)",
   "license": "MIT",
   "author": "Brian Zalewski <brian@megabyte.space> (https://megabyte.space)",
   "homepage": "https://megabyte.space",
@@ -12,7 +12,7 @@
     "email": "help@megabyte.space",
     "url": "https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater/-/issues"
   },
-  "version": "0.0.38",
+  "version": "0.0.39",
   "scripts": {
     "_publish:noslim": "run-s publish:login && npx lint-staged && run-s build:latest update test build:latest update test version && git push --follow-tags origin master && run-s build publish:publish publish:readme publish:readme-description",
     "build": "run-s build:*",

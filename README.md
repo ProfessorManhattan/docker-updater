@@ -1,12 +1,13 @@
 <!-- ⚠️ This README has been generated from the file(s) "./.modules/docs/blueprint-readme-ci-slim.md" ⚠️--><div align="center">
   <center>
     <a href="https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater">
-      <img width="140" height="140" alt="role_pretty_name logo" src="https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater/-/raw/master/logo.png" />
+      <img width="140" height="140" alt="Updater logo" src="https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater/-/raw/master/logo.png" />
     </a>
   </center>
 </div>
 <div align="center">
-  <center><h1>Dockerfile: Updater (bash/curl/git/jq/Node.js)</h1></center>
+  <center><h1>Updater (bash/curl/git/jq/Node.js) (v0.0.38)</h1></center>
+  <center><h4 style="color: #18c3d1;">A <a href="https://megabyte.space">Megabyte Labs</a> Dockerfile Project / Latest build includes Updater v0.0.38</h4></center>
 </div>
 
 <div align="center">
@@ -70,7 +71,7 @@
   </p>
 </div>
 
-> </br><h3 align="center">**A general-purpose, compact Dockerfile project that includes bash, curl, git, jq, and Node.js in a single container (only 30.6269 MB compressed!)**</h3></br>
+> </br><h3 align="center">**A general-purpose, compact Dockerfile project that includes bash, curl, git, jq, and Node.js in a single container (only 0 MB compressed!)**</h3></br>
 
 <!--TERMINALIZER![terminalizer_title](https://gitlab.com/megabyte-labs/ansible-roles/role_name/-/raw/master/.demo.gif)TERMINALIZER-->
 
@@ -175,10 +176,12 @@ As a convenience feature, we include a command defined in `package.json` that sh
 To build and publish a slim Dockerfile to Docker Hub, you can use the following as a starting point:
 
 ```shell
-docker login -u "DOCKERHUB_USERNAME" -p "DOCKERHUB_PASSWORD" docker.io
-docker build -t "DOCKERHUB_USERNAME/updater:latest" .
-docker-slim build --tag DOCKERHUB_USERNAME/updater:slim --http-probe=false --exec 'pip3 install mod-ansible-autodoc' --preserve-path-file 'paths.txt' DOCKERHUB_USERNAME/updater:latest
-docker push "DOCKERHUB_USERNAME/updater:slim"
+export DOCKERHUB_USERNAME=Your_DockerHub_Username_Here
+export DOCKERHUB_PASSWORD=Your_DockerHub_Password_Here
+docker login -u "$DOCKERHUB_USERNAME" -p "$DOCKERHUB_PASSWORD" docker.io
+docker build -t "$DOCKERHUB_USERNAME/updater:latest" .
+docker-slim build --tag $DOCKERHUB_USERNAME/updater:slim --http-probe=false --exec 'pip3 install mod-ansible-autodoc' --preserve-path-file 'paths.txt' $DOCKERHUB_USERNAME/updater:latest
+docker push "$DOCKERHUB_USERNAME/updater:slim"
 ```
 
 It may be possible to modify the DockerSlim command above to fix an issue or reduce the footprint even more than our command. You can modify the slim build command inline in the `package.json` file. However, running `bash .start.sh` will overwrite your changes in the `package.json` file. We detail a better way of modifying the `npm run build:slim` configuration in [CONTRIBUTING.md](https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater/-/blob/master/CONTRIBUTING.md).
