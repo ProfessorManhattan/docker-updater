@@ -1,6 +1,6 @@
 {
   "name": "@megabytelabs/updater",
-  "description": "A general-purpose, compact Dockerfile project that includes bash, curl, git, jq, and Node.js in a single container (only 30.5027 MB compressed!)",
+  "description": "A general-purpose, compact Dockerfile project that includes bash, curl, git, jq, and Node.js in a single container (only 30.6525 MB compressed!)",
   "license": "MIT",
   "author": "Brian Zalewski <brian@megabyte.space> (https://megabyte.space)",
   "homepage": "https://megabyte.space",
@@ -12,7 +12,7 @@
     "email": "help@megabyte.space",
     "url": "https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater/-/issues"
   },
-  "version": "0.0.36",
+  "version": "0.0.37",
   "scripts": {
     "_publish:noslim": "run-s publish:login && npx lint-staged && run-s build:latest update test build:latest update test version && git push --follow-tags origin master && run-s build publish:publish publish:readme publish:readme-description",
     "build": "run-s build:*",
@@ -91,7 +91,7 @@
     }
   ],
   "lint-staged": {
-    "**/*.{json,sh,yml},Dockerfile": [
+    "**/*.{json,sh,yml}": [
       "prettier --write"
     ],
     "package.json": [
@@ -118,7 +118,9 @@
   },
   "standard-version": {
     "scripts": {
-      "prerelease": "git add --all"
+      "prebump": "if grep -q \"CMD.\\[\\\"--version\\\"\\]\" Dockerfile; then docker run --cap-drop=ALL -e PY_COLORS=0 --rm megabytelabs/updater:latest | perl -pe 'if(($v)=/([0-9]+([.][0-9]+)+)/){print\"$v\";exit}$_=\"\"'; fi",
+      "prerelease": "git add --all",
+      "pretag": "PACKAGE_VERSION=$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[\",]//g' | tr -d '[[:space:]]') && if git show-ref --tags v$PACKAGE_VERSION --quiet; then git tag -d v$PACKAGE_VERSION; fi"
     }
   }
 }

@@ -18,12 +18,9 @@ RUN apk --no-cache add --virtual build-dependencies \
       py3-wheel~=0 \
   && npm install -g \
       npm@latest \
-  && apk del build-dependencies \
-  && rm -Rf /var/cache/apk/*
+  && apk del build-dependencies
 
 WORKDIR /work
-ENTRYPOINT ["/bin/bash"]
-CMD ["node", "--version"]
 
 ARG BUILD_DATE
 ARG REVISION
@@ -32,7 +29,7 @@ ARG VERSION
 LABEL maintainer="Megabyte Labs <help@megabyte.space"
 LABEL org.opencontainers.image.authors="Brian Zalewski <brian@megabyte.space>"
 LABEL org.opencontainers.image.created=$BUILD_DATE
-LABEL org.opencontainers.image.description="A general-purpose, compact Dockerfile project that includes bash, curl, git, jq, and Node.js in a single container (only 30.5027 MB compressed!)"
+LABEL org.opencontainers.image.description="A general-purpose, compact Dockerfile project that includes bash, curl, git, jq, and Node.js in a single container (only 30.6525 MB compressed!)"
 LABEL org.opencontainers.image.documentation="https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater/-/blob/master/README.md"
 LABEL org.opencontainers.image.licenses="MIT"
 LABEL org.opencontainers.image.revision=$REVISION
