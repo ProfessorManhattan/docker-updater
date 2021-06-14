@@ -34,7 +34,7 @@ ARG VERSION
 LABEL maintainer="Megabyte Labs <help@megabyte.space"
 LABEL org.opencontainers.image.authors="Brian Zalewski <brian@megabyte.space>"
 LABEL org.opencontainers.image.created=$BUILD_DATE
-LABEL org.opencontainers.image.description="A general-purpose, compact Dockerfile project that includes bash, curl, git, jq, and Node.js in a single container (only 31.5432 MB compressed!)"
+LABEL org.opencontainers.image.description="Node.js files/configurations that support the creation of Dockerfiles"
 LABEL org.opencontainers.image.documentation="https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater/-/blob/master/README.md"
 LABEL org.opencontainers.image.licenses="MIT"
 LABEL org.opencontainers.image.revision=$REVISION
