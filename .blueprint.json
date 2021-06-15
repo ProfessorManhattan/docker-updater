@@ -4,7 +4,7 @@
   "docker_command": "bash .start.sh",
   "docker_command_alias": "updater",
   "dockerhub_description": "A general-purpose, compact Docker image that includes bash, curl, git, jq, yq, and Node.js",
-  "dockerslim_command": "--http-probe=false --exec 'pip3 install mod-ansible-autodoc' --preserve-path-file 'paths.txt'",
+  "dockerslim_command": "--http-probe=false --exec 'pip3 install virtualenv' --preserve-path-file 'paths.txt'",
   "preferred_tag": "slim",
   "pretty_name": "Updater",
   "project_title": "Updater (bash/curl/git/jq/yq/Node.js)",

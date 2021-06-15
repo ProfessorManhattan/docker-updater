@@ -23,6 +23,8 @@ RUN apk --no-cache add --virtual build-dependencies \
   && upx /usr/bin/yq \
   && npm install -g \
       npm@latest \
+  && pip3 install --no-cache-dir \
+      "virtualenv==20.*" \
   && apk del build-dependencies
 
 WORKDIR /work
