@@ -18,7 +18,7 @@ RUN apk --no-cache add --virtual build-dependencies \
       python3~=3 \
       py3-pip~=20 \
       py3-wheel~=0 \
-  && wget ${YQ_URL} -O /usr/bin/yq \
+  && wget -q ${YQ_URL} -O /usr/bin/yq \
   && chmod +x /usr/bin/yq \
   && upx /usr/bin/yq \
   && npm install -g \
@@ -34,7 +34,7 @@ ARG VERSION
 LABEL maintainer="Megabyte Labs <help@megabyte.space"
 LABEL org.opencontainers.image.authors="Brian Zalewski <brian@megabyte.space>"
 LABEL org.opencontainers.image.created=$BUILD_DATE
-LABEL org.opencontainers.image.description="Node.js files/configurations that support the creation of Dockerfiles"
+LABEL org.opencontainers.image.description="A general-purpose, compact Dockerfile project that includes bash, curl, git, jq, yq, and Node.js in a single container (only 31.6264 MB compressed!)"
 LABEL org.opencontainers.image.documentation="https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater/-/blob/master/README.md"
 LABEL org.opencontainers.image.licenses="MIT"
 LABEL org.opencontainers.image.revision=$REVISION
