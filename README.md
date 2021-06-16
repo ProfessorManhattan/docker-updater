@@ -71,7 +71,7 @@
   </p>
 </div>
 
-> </br><h3 align="center">**Node.js files/configurations that support the creation of Dockerfiles**</h3></br>
+> </br><h3 align="center">**A general-purpose, compact Dockerfile project that includes bash, curl, git, jq, yq, and Node.js in a single container (only 43.2951 MB compressed!)**</h3></br>
 
 <!--TERMINALIZER![terminalizer_title](https://gitlab.com/megabyte-labs/ansible-roles/role_name/-/raw/master/.demo.gif)TERMINALIZER-->
 
