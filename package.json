@@ -1,6 +1,6 @@
 {
   "name": "@megabytelabs/updater",
-  "description": "A general-purpose, compact Dockerfile project that includes bash, curl, git, jq, yq, and Node.js in a single container (only 34.3222 MB compressed!)",
+  "description": "Node.js files/configurations that support the creation of Dockerfiles",
   "license": "MIT",
   "author": "Brian Zalewski <brian@megabyte.space> (https://megabyte.space)",
   "homepage": "https://megabyte.space",
