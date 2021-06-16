@@ -71,7 +71,7 @@
   </p>
 </div>
 
-> </br><h3 align="center">**Node.js files/configurations that support the creation of Dockerfiles**</h3></br>
+> </br><h3 align="center">**A general-purpose, compact Dockerfile project that includes bash, curl, git, jq, yq, and Node.js in a single container (only 34.9217 MB compressed!)**</h3></br>
 
 <!--TERMINALIZER![terminalizer_title](https://gitlab.com/megabyte-labs/ansible-roles/role_name/-/raw/master/.demo.gif)TERMINALIZER-->
 
@@ -180,7 +180,7 @@ export DOCKERHUB_USERNAME=Your_DockerHub_Username_Here
 export DOCKERHUB_PASSWORD=Your_DockerHub_Password_Here
 docker login -u "$DOCKERHUB_USERNAME" -p "$DOCKERHUB_PASSWORD" docker.io
 docker build -t "$DOCKERHUB_USERNAME/updater:latest" .
-docker-slim build --tag $DOCKERHUB_USERNAME/updater:slim --http-probe=false --exec 'pip3 install mod-ansible-autodoc' --preserve-path-file 'paths.txt' $DOCKERHUB_USERNAME/updater:latest
+docker-slim build --tag $DOCKERHUB_USERNAME/updater:slim --http-probe=false --exec 'pip3 install virtualenv' --preserve-path-file 'paths.txt' $DOCKERHUB_USERNAME/updater:latest
 docker push "$DOCKERHUB_USERNAME/updater:slim"
 ```
 
