@@ -9,7 +9,7 @@
 /usr/bin/npx
 /usr/bin/pip3
 /usr/bin/python3
-/usr/bin/python3.8
+/usr/bin/python3.9
 /usr/bin/wheel
 /usr/bin/yq
 /usr/lib/libbrotlicommon.so.1
@@ -31,7 +31,7 @@
 /usr/lib/libonig.so.5.1.0
 /usr/lib/libpcre2-8.so.0
 /usr/lib/libpcre2-8.so.0.10.1
-/usr/lib/libpython3.8.so.1.0
+/usr/lib/libpython3.9.so.1.0
 /usr/lib/libpython3.so
 /usr/lib/libreadline.so.8
 /usr/lib/libreadline.so.8.1
