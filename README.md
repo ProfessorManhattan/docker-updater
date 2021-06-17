@@ -75,22 +75,23 @@
 
 <!--TERMINALIZER![terminalizer_title](https://gitlab.com/megabyte-labs/ansible-roles/role_name/-/raw/master/.demo.gif)TERMINALIZER-->
 
-<a href="#table-of-contents)" style="width:100%"><img style="width:100%" alt="-----------------------------------------------------" src="https://gitlab.com/megabyte-labs/assets/-/raw/master/png/aqua-divider.png"></div>
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#table-of-contents)
 
 ## ➤ Table of Contents
 
-- [➤ Overview](#-overview)
-- [➤ Requirements](#-requirements)
-  - [Optional Requirements](#optional-requirements)
-- [➤ Example Usage](#-example-usage)
-  - [Integrating with GitLab CI](#integrating-with-gitlab-ci)
-  - [Building the Docker Container](#building-the-docker-container)
-  - [Building a Slim Container](#building-a-slim-container)
-  - [Build Tools](#build-tools)
-- [➤ Contributing](#-contributing)
-- [➤ License](#-license)
+* [➤ Overview](#-overview)
+* [➤ Requirements](#-requirements)
+	* [Optional Requirements](#optional-requirements)
+* [➤ Example Usage](#-example-usage)
+	* [Integrating with GitLab CI](#integrating-with-gitlab-ci)
+	* [Building the Docker Container](#building-the-docker-container)
+	* [Building a Slim Container](#building-a-slim-container)
+	* [Build Tools](#build-tools)
+* [➤ Contributing](#-contributing)
+* [➤ License](#-license)
 
-<a href="#overview)" style="width:100%"><img style="width:100%" alt="-----------------------------------------------------" src="https://gitlab.com/megabyte-labs/assets/-/raw/master/png/aqua-divider.png"></div>
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#overview)
 
 ## ➤ Overview
 
@@ -102,7 +103,8 @@ Instead of using one of the countless Updater public Docker images available, we
 
 At first glance, you might notice that there are many files in this repository. Nearly all the files and folders that have a period prepended to them are development configurations. The tools that these files and folders configure are meant to make development easier and faster. They are also meant to improve team development by forcing developers to follow strict standards so that the same design patterns are used across all of our repositories.
 
-<a href="#requirements)" style="width:100%"><img style="width:100%" alt="-----------------------------------------------------" src="https://gitlab.com/megabyte-labs/assets/-/raw/master/png/aqua-divider.png"></div>
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#requirements)
 
 ## ➤ Requirements
 
@@ -116,7 +118,8 @@ At first glance, you might notice that there are many files in this repository. 
 
 If you choose to utilize the development tools provided by this project then at some point you will have to run `bash .start.sh` (or `npm i` which calls `bash .start.sh` after it is done). The `.start.sh` script will attempt to automatically install any requirements (without sudo) that are not already present on your build system to the user's `~/.local/bin` folder. The `.start.sh` script also takes care of other tasks such as generating the documentation. For more details on how the Optional Requirements are used and set up, check out the [CONTRIBUTING.md](https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater/-/blob/master/CONTRIBUTING.md) guide.
 
-<a href="#example-usage)" style="width:100%"><img style="width:100%" alt="-----------------------------------------------------" src="https://gitlab.com/megabyte-labs/assets/-/raw/master/png/aqua-divider.png"></div>
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#example-usage)
 
 ## ➤ Example Usage
 
@@ -132,7 +135,7 @@ You can also add a bash alias to your `~/.bashrc` file so that you can run the U
 
 ```shell
 updater() {
-  docker run -v ${PWD}:/work -w /work megabytelabs/updater:slim "$@"
+    docker run -v ${PWD}:/work -w /work megabytelabs/updater:slim "$@"
 }
 ```
 
@@ -230,7 +233,8 @@ start:
 
 For more details, check out the [CONTRIBUTING.md](https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater/-/blob/master/CONTRIBUTING.md) file.
 
-<a href="#contributing)" style="width:100%"><img style="width:100%" alt="-----------------------------------------------------" src="https://gitlab.com/megabyte-labs/assets/-/raw/master/png/aqua-divider.png"></div>
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#contributing)
 
 ## ➤ Contributing
 
@@ -254,8 +258,10 @@ I create open source projects out of love. Although I have a job, shelter, and a
 
 </details>
 
-<a href="#license)" style="width:100%"><img style="width:100%" alt="-----------------------------------------------------" src="https://gitlab.com/megabyte-labs/assets/-/raw/master/png/aqua-divider.png"></div>
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#license)
 
 ## ➤ License
 
 Copyright © 2021 [Megabyte LLC](https://megabyte.space). This project is [MIT](https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater/-/raw/master/LICENSE) licensed.
+
