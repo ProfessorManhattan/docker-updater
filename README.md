@@ -75,21 +75,20 @@
 
 <!--TERMINALIZER![terminalizer_title](https://gitlab.com/megabyte-labs/ansible-roles/role_name/-/raw/master/.demo.gif)TERMINALIZER-->
 
-
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#table-of-contents)
 
 ## ➤ Table of Contents
 
-* [➤ Overview](#-overview)
-* [➤ Requirements](#-requirements)
-	* [Optional Requirements](#optional-requirements)
-* [➤ Example Usage](#-example-usage)
-	* [Integrating with GitLab CI](#integrating-with-gitlab-ci)
-	* [Building the Docker Container](#building-the-docker-container)
-	* [Building a Slim Container](#building-a-slim-container)
-	* [Build Tools](#build-tools)
-* [➤ Contributing](#-contributing)
-* [➤ License](#-license)
+- [➤ Overview](#-overview)
+- [➤ Requirements](#-requirements)
+  - [Optional Requirements](#optional-requirements)
+- [➤ Example Usage](#-example-usage)
+  - [Integrating with GitLab CI](#integrating-with-gitlab-ci)
+  - [Building the Docker Container](#building-the-docker-container)
+  - [Building a Slim Container](#building-a-slim-container)
+  - [Build Tools](#build-tools)
+- [➤ Contributing](#-contributing)
+- [➤ License](#-license)
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#overview)
 
@@ -102,7 +101,6 @@ This repository is home to the build instructions for a Docker container that is
 Instead of using one of the countless Updater public Docker images available, we create it in-house so we know exactly what code is present in the container. We also ensure that all of our CI pipeline images are as small as possible so that our CI environment can download and run the specific task as quickly as possible. Using this repository as a base, you too can easily create your own in-house CI pipeline container image.
 
 At first glance, you might notice that there are many files in this repository. Nearly all the files and folders that have a period prepended to them are development configurations. The tools that these files and folders configure are meant to make development easier and faster. They are also meant to improve team development by forcing developers to follow strict standards so that the same design patterns are used across all of our repositories.
-
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#requirements)
 
@@ -117,7 +115,6 @@ At first glance, you might notice that there are many files in this repository. 
 - [Node.js](https://gitlab.com/megabyte-labs/ansible-roles/nodejs) (_Version >=10_) - Utilized to add development features like a pre-commit hook and maintenance tasks
 
 If you choose to utilize the development tools provided by this project then at some point you will have to run `bash .start.sh` (or `npm i` which calls `bash .start.sh` after it is done). The `.start.sh` script will attempt to automatically install any requirements (without sudo) that are not already present on your build system to the user's `~/.local/bin` folder. The `.start.sh` script also takes care of other tasks such as generating the documentation. For more details on how the Optional Requirements are used and set up, check out the [CONTRIBUTING.md](https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater/-/blob/master/CONTRIBUTING.md) guide.
-
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#example-usage)
 
@@ -135,7 +132,7 @@ You can also add a bash alias to your `~/.bashrc` file so that you can run the U
 
 ```shell
 updater() {
-    docker run -v ${PWD}:/work -w /work megabytelabs/updater:slim "$@"
+  docker run -v ${PWD}:/work -w /work megabytelabs/updater:slim "$@"
 }
 ```
 
@@ -233,7 +230,6 @@ start:
 
 For more details, check out the [CONTRIBUTING.md](https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater/-/blob/master/CONTRIBUTING.md) file.
 
-
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#contributing)
 
 ## ➤ Contributing
@@ -258,10 +254,8 @@ I create open source projects out of love. Although I have a job, shelter, and a
 
 </details>
 
-
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#license)
 
 ## ➤ License
 
 Copyright © 2021 [Megabyte LLC](https://megabyte.space). This project is [MIT](https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater/-/raw/master/LICENSE) licensed.
-

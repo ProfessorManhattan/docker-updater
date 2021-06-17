@@ -2,43 +2,41 @@
 
 First of all, thanks for visiting this page 😊 ❤️ ! We are totally ecstatic that you may be considering contributing to this project. You should read this guide if you are considering creating a pull request.
 
-
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#table-of-contents)
 
 ## ➤ Table of Contents
 
-* [➤ Code of Conduct](#-code-of-conduct)
-* [➤ Overview](#-overview)
-* [➤ Philosophy](#-philosophy)
-	* [Choosing a Base Image](#choosing-a-base-image)
-* [➤ Requirements](#-requirements)
-	* [Optional Requirements](#optional-requirements)
-* [➤ Getting Started](#-getting-started)
-	* [Descriptions of Build Scripts](#descriptions-of-build-scripts)
-	* [Creating DockerSlim Builds](#creating-dockerslim-builds)
-		* [How to Determine Which Paths to Include](#how-to-determine-which-paths-to-include)
-		* [Determining Binary Dependencies](#determining-binary-dependencies)
-	* [Using a `paths.txt` File](#using-a-pathstxt-file)
-	* [Updating the `.blueprint.json` File](#updating-the-blueprintjson-file)
-* [➤ Creating a New Dockerfile Project](#-creating-a-new-dockerfile-project)
-* [➤ Testing](#-testing)
-	* [Creating Test Cases](#creating-test-cases)
-	* [Testing DockerSlim Builds](#testing-dockerslim-builds)
-	* [Testing Web Apps](#testing-web-apps)
-* [➤ Linting](#-linting)
-* [➤ Updating Meta Files and Documentation](#-updating-meta-files-and-documentation)
-	* [`.blueprint.json` and @appnest/readme](#blueprintjson-and-appnestreadme)
-	* [`logo.png`](#logopng)
-* [➤ Pull Requests](#-pull-requests)
-	* [How to Commit Code](#how-to-commit-code)
-	* [Pre-Commit Hook](#pre-commit-hook)
+- [➤ Code of Conduct](#-code-of-conduct)
+- [➤ Overview](#-overview)
+- [➤ Philosophy](#-philosophy)
+  - [Choosing a Base Image](#choosing-a-base-image)
+- [➤ Requirements](#-requirements)
+  - [Optional Requirements](#optional-requirements)
+- [➤ Getting Started](#-getting-started)
+  - [Descriptions of Build Scripts](#descriptions-of-build-scripts)
+  - [Creating DockerSlim Builds](#creating-dockerslim-builds)
+    - [How to Determine Which Paths to Include](#how-to-determine-which-paths-to-include)
+    - [Determining Binary Dependencies](#determining-binary-dependencies)
+  - [Using a `paths.txt` File](#using-a-pathstxt-file)
+  - [Updating the `.blueprint.json` File](#updating-the-blueprintjson-file)
+- [➤ Creating a New Dockerfile Project](#-creating-a-new-dockerfile-project)
+- [➤ Testing](#-testing)
+  - [Creating Test Cases](#creating-test-cases)
+  - [Testing DockerSlim Builds](#testing-dockerslim-builds)
+  - [Testing Web Apps](#testing-web-apps)
+- [➤ Linting](#-linting)
+- [➤ Updating Meta Files and Documentation](#-updating-meta-files-and-documentation)
+  - [`.blueprint.json` and @appnest/readme](#blueprintjson-and-appnestreadme)
+  - [`logo.png`](#logopng)
+- [➤ Pull Requests](#-pull-requests)
+  - [How to Commit Code](#how-to-commit-code)
+  - [Pre-Commit Hook](#pre-commit-hook)
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#code-of-conduct)
 
 ## ➤ Code of Conduct
 
 This project and everyone participating in it is governed by the [Code of Conduct](https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater/-/blob/master/CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior to [help@megabyte.space](mailto:help@megabyte.space).
-
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#overview)
 
@@ -50,7 +48,6 @@ All our Dockerfiles are created for specific tasks. In many cases, this allows u
 - **[Apps](https://gitlab.com/megabyte-labs/dockerfile/apps)** - Full-fledged web applications
 - **[CI Pipeline](https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline)** - Projects that include tools used during deployments such as linters and auto-formatters
 - **[Software](https://gitlab.com/megabyte-labs/dockerfile/software)** - Docker containers that are meant to replace software that is traditionally installed directly on hosts
-
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#philosophy)
 
@@ -72,7 +69,6 @@ All of these improvements would be greatly appreciated by us and our community. 
 - When choosing a base image version, always choose the most recent update. There are often known vulnerabilities with older versions.
 - If all else fails, feel free to use other base images as long as they come from a trusted provider (i.e. using `ubuntu:latest` is fine but using `bobmighthackme:latest` is not).
 
-
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#requirements)
 
 ## ➤ Requirements
@@ -88,7 +84,6 @@ Before getting started with development, you should ensure that the following re
 - [Node.js](https://gitlab.com/megabyte-labs/ansible-roles/nodejs) (_Version >=10_) - Utilized to add development features like a pre-commit hook and other automations
 
 _Each of the requirements links to an Ansible Role that can install the dependency with a one-line bash script install._ Even if you do not have the optional dependencies installed, the `.start.sh` script (which is called by many of our build tool sequences) will attempt to install missing dependencies to the `~/.local/bin` folder.
-
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#getting-started)
 
@@ -235,25 +230,22 @@ In the above example, we use `--include-path` to specify each file we want to in
 
 The `.blueprint.json` file stores some of the information required to automatically generate, scaffold, and update this repository when `bash .start.sh` is run. When creating a new Dockerfile project, the `.blueprint.json` file must be filled out. The following chart details the possible data that you can populate `.blueprint.json` with:
 
-
-| Variable                | Description                                      |
-|-------------------------|--------------------------------------------------|
-| `badge_style`           | Badge style to use from shields.io when generating the documentation |
-| `description_template`  | This is used to populate the description in the `package.json` file which in turn gets used in the README and also may be used to describe the project on other websites. When you add the text `IMAGE_SIZE_PLACEHOLDER` to this variable, it will be replaced with container size information. |
+| Variable                | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `badge_style`           | Badge style to use from shields.io when generating the documentation                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| `description_template`  | This is used to populate the description in the `package.json` file which in turn gets used in the README and also may be used to describe the project on other websites. When you add the text `IMAGE_SIZE_PLACEHOLDER` to this variable, it will be replaced with container size information.                                                                                                                                                                                                                                                                                                           |
 | `docker_command`        | The command that you would normally run when using the Docker image as a one-liner. For Ansible Lint this command would just be `.` because the [Ansible Lint Docker project](https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/ansible-lint) has an entrypoint of `ENTRYPOINT ['ansible-lint'] in its Dockerfile. So, combining the two means that the command that will run is `ansible-lint .`. However, if the Ansible Lint project did not specify an entrypoint then this field would have to be `ansible-lint .` since that is the command that you would normally run when using this tool. |
-| `docker_command_alias`  | Used for generating the documentation for running the Docker container via a bash alias. This variable is the function name. For YAML Lint, this would be `yamllint`. If the user decided to add the bash alias listed in the README in the [YAML Lint repository](https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/yamllint), they would access the alias by running `yamllint`. To get a better idea, you should refer to any of our Dockerfile project's README files. |
-| `dockerhub_description` | The short description of the project. This is shown on DockerHub and has a limit of 100 characters. |
-| `dockerslim_command`    | The arguments passed to DockerSlim when generating a slim build. **Any \ included in this string must be added as \\\ due to multiple levels of escape character parsings.**. |
-| `preferred_tag`         | In general, this should either be `latest` or `slim`. This is the tag that is used to generate the parts of the documentation that refer to specific Docker image tags. |
-| `pretty_name`           | The full (pretty) name of the tool (used for generating documentation). This should be capitalized and/or use the same capitalization that the product officially uses (if applicable). |
-| `project_title`         | The title of the project - this controls the title of the README.md and sometimes may be the same as the `pretty_name`. |
-| `slug`                  | The slug is found by looking at the URL of the repository (e.g. for Ansible Lint, the slug would be `ansible-lint` since the last part of [this URL](https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/ansible-lint) is ansible-lint). |
-| `slug_full`             | This variable is populated by `.start.sh` by combining the `subgroup` and `slug` or simply using the `slug` depending on which subgroup the project belongs to. |
-| `subgroup`              | The subgroup is found by looking at the second to last part of the URL of the repository (e.g. for Ansible Lint the subgroup would be `ci-pipeline`). |
-
+| `docker_command_alias`  | Used for generating the documentation for running the Docker container via a bash alias. This variable is the function name. For YAML Lint, this would be `yamllint`. If the user decided to add the bash alias listed in the README in the [YAML Lint repository](https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/yamllint), they would access the alias by running `yamllint`. To get a better idea, you should refer to any of our Dockerfile project's README files.                                                                                                                          |
+| `dockerhub_description` | The short description of the project. This is shown on DockerHub and has a limit of 100 characters.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| `dockerslim_command`    | The arguments passed to DockerSlim when generating a slim build. **Any \ included in this string must be added as \\\ due to multiple levels of escape character parsings.**.                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `preferred_tag`         | In general, this should either be `latest` or `slim`. This is the tag that is used to generate the parts of the documentation that refer to specific Docker image tags.                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| `pretty_name`           | The full (pretty) name of the tool (used for generating documentation). This should be capitalized and/or use the same capitalization that the product officially uses (if applicable).                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| `project_title`         | The title of the project - this controls the title of the README.md and sometimes may be the same as the `pretty_name`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| `slug`                  | The slug is found by looking at the URL of the repository (e.g. for Ansible Lint, the slug would be `ansible-lint` since the last part of [this URL](https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/ansible-lint) is ansible-lint).                                                                                                                                                                                                                                                                                                                                                              |
+| `slug_full`             | This variable is populated by `.start.sh` by combining the `subgroup` and `slug` or simply using the `slug` depending on which subgroup the project belongs to.                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| `subgroup`              | The subgroup is found by looking at the second to last part of the URL of the repository (e.g. for Ansible Lint the subgroup would be `ci-pipeline`).                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 
 When populating the `.blueprint.json` file, it is a good idea to check out [repositories in the same group](https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline) to see what variables are being utilized.
-
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#creating-a-new-dockerfile-project)
 
@@ -267,7 +259,6 @@ If you are creating a new Dockerfile project, you should first populate the `.bl
 4. Test your Dockerfile by running `npm run test`
 5. Build your Dockerfile after you finish coding it using `npm run build`
 6. After everything is completely done, test the complete flow by running `npm run publish`
-
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#testing)
 
@@ -314,7 +305,6 @@ It is **important** to test all common use cases. Some people might be using the
 
 When testing Docker-based web applications, ensure that after you destroy the container along with its volumes you can bring the Docker container back up to its previous state using volumes and file mounts. This allows users to periodically update the Docker container while having their settings persist. This requirement is also for disaster recovery.
 
-
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#linting)
 
 ## ➤ Linting
@@ -328,7 +318,6 @@ We also incorporate other linters that are run automatically whenever you commit
 
 Some of the linters are also baked into the CI pipeline. The pipeline will trigger whenever you post a commit to a branch. All of these pipeline tasks must pass in order for merge requests to be accepted. You can check the status of recently triggered pipelines for this project by going to the [CI/CD pipeline page](https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater/-/pipelines).
 
-
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#updating-meta-files-and-documentation)
 
 ## ➤ Updating Meta Files and Documentation
@@ -341,22 +330,20 @@ In the root of all of our repositories, we include a file named `.blueprint.json
 
 For every project that is included in our eco-system, we require certain fields to be filled out in the `.blueprint.json` file. Some of the fields in the file are auto-generated. The fields that need to be filled out as well as descriptions of what they should contain are listed in the chart below:
 
-
-| Variable                | Description                                      |
-|-------------------------|--------------------------------------------------|
-| `badge_style`           | Badge style to use from shields.io when generating the documentation |
-| `description_template`  | This is used to populate the description in the `package.json` file which in turn gets used in the README and also may be used to describe the project on other websites. When you add the text `IMAGE_SIZE_PLACEHOLDER` to this variable, it will be replaced with container size information. |
+| Variable                | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `badge_style`           | Badge style to use from shields.io when generating the documentation                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| `description_template`  | This is used to populate the description in the `package.json` file which in turn gets used in the README and also may be used to describe the project on other websites. When you add the text `IMAGE_SIZE_PLACEHOLDER` to this variable, it will be replaced with container size information.                                                                                                                                                                                                                                                                                                           |
 | `docker_command`        | The command that you would normally run when using the Docker image as a one-liner. For Ansible Lint this command would just be `.` because the [Ansible Lint Docker project](https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/ansible-lint) has an entrypoint of `ENTRYPOINT ['ansible-lint'] in its Dockerfile. So, combining the two means that the command that will run is `ansible-lint .`. However, if the Ansible Lint project did not specify an entrypoint then this field would have to be `ansible-lint .` since that is the command that you would normally run when using this tool. |
-| `docker_command_alias`  | Used for generating the documentation for running the Docker container via a bash alias. This variable is the function name. For YAML Lint, this would be `yamllint`. If the user decided to add the bash alias listed in the README in the [YAML Lint repository](https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/yamllint), they would access the alias by running `yamllint`. To get a better idea, you should refer to any of our Dockerfile project's README files. |
-| `dockerhub_description` | The short description of the project. This is shown on DockerHub and has a limit of 100 characters. |
-| `dockerslim_command`    | The arguments passed to DockerSlim when generating a slim build. **Any \ included in this string must be added as \\\ due to multiple levels of escape character parsings.**. |
-| `preferred_tag`         | In general, this should either be `latest` or `slim`. This is the tag that is used to generate the parts of the documentation that refer to specific Docker image tags. |
-| `pretty_name`           | The full (pretty) name of the tool (used for generating documentation). This should be capitalized and/or use the same capitalization that the product officially uses (if applicable). |
-| `project_title`         | The title of the project - this controls the title of the README.md and sometimes may be the same as the `pretty_name`. |
-| `slug`                  | The slug is found by looking at the URL of the repository (e.g. for Ansible Lint, the slug would be `ansible-lint` since the last part of [this URL](https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/ansible-lint) is ansible-lint). |
-| `slug_full`             | This variable is populated by `.start.sh` by combining the `subgroup` and `slug` or simply using the `slug` depending on which subgroup the project belongs to. |
-| `subgroup`              | The subgroup is found by looking at the second to last part of the URL of the repository (e.g. for Ansible Lint the subgroup would be `ci-pipeline`). |
-
+| `docker_command_alias`  | Used for generating the documentation for running the Docker container via a bash alias. This variable is the function name. For YAML Lint, this would be `yamllint`. If the user decided to add the bash alias listed in the README in the [YAML Lint repository](https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/yamllint), they would access the alias by running `yamllint`. To get a better idea, you should refer to any of our Dockerfile project's README files.                                                                                                                          |
+| `dockerhub_description` | The short description of the project. This is shown on DockerHub and has a limit of 100 characters.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| `dockerslim_command`    | The arguments passed to DockerSlim when generating a slim build. **Any \ included in this string must be added as \\\ due to multiple levels of escape character parsings.**.                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `preferred_tag`         | In general, this should either be `latest` or `slim`. This is the tag that is used to generate the parts of the documentation that refer to specific Docker image tags.                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| `pretty_name`           | The full (pretty) name of the tool (used for generating documentation). This should be capitalized and/or use the same capitalization that the product officially uses (if applicable).                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| `project_title`         | The title of the project - this controls the title of the README.md and sometimes may be the same as the `pretty_name`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| `slug`                  | The slug is found by looking at the URL of the repository (e.g. for Ansible Lint, the slug would be `ansible-lint` since the last part of [this URL](https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/ansible-lint) is ansible-lint).                                                                                                                                                                                                                                                                                                                                                              |
+| `slug_full`             | This variable is populated by `.start.sh` by combining the `subgroup` and `slug` or simply using the `slug` depending on which subgroup the project belongs to.                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| `subgroup`              | The subgroup is found by looking at the second to last part of the URL of the repository (e.g. for Ansible Lint the subgroup would be `ci-pipeline`).                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 
 ### `logo.png`
 
@@ -367,7 +354,6 @@ We include a `logo.png` file in all of our projects. This image is automatically
 3. Resize the image to 200x200 pixels by running `sharp -i file_location.png -o logo.png resize 200 200`.
 4. Compress the resized image by dragging and dropping the resized image into the [TinyPNG web application](https://tinypng.com/).
 5. Download the compressed image and add it to the root of the repository. Make sure it is named `logo.png`.
-
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#pull-requests)
 
@@ -382,4 +368,3 @@ Instead of using `git commit`, we prefer that you use `npm run commit`. You will
 ### Pre-Commit Hook
 
 Even if you decide not to use `npm run commit`, you will see that `git commit` behaves differently because there is a pre-commit hook that installs automatically after you run `npm i` (or `bash .start.sh`). This pre-commit hook is there to test your code before committing and help you become a better coder. If you need to bypass the pre-commit hook, then you may add the `--no-verify` tag at the end of your `git commit` command (e.g. `git commit -m "Commit" --no-verify`).
-
