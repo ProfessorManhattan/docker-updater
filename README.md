@@ -6,8 +6,8 @@
   </center>
 </div>
 <div align="center">
-  <center><h1>Updater (bash/curl/git/jq/yq/Node.js) (v0.0.47)</h1></center>
-  <center><h4 style="color: #18c3d1;">A <a href="https://megabyte.space">Megabyte Labs</a> Dockerfile Project / Latest build includes Updater v0.0.47</h4></center>
+  <center><h1>Updater (bash/curl/git/jq/yq/Node.js)</h1></center>
+  <center><h4 style="color: #18c3d1;">A <a href="https://megabyte.space">Megabyte Labs</a> Dockerfile project / Latest build includes Updater v0.0.47</h4></center>
 </div>
 
 <div align="center">
