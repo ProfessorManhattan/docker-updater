@@ -2,12 +2,12 @@ FROM alpine:3
 
 ENV container docker
 ENV NODE_EXTRA_CA_CERTS /etc/ssl/certs/ca-certificates.crt
-ENV YQ_URL https://github.com/mikefarah/yq/releases/download/v4.9.6/yq_linux_amd64
+ENV TASK_RELEASE_URL https://github.com/go-task/task/releases/latest/download/task_linux_amd64.tar.gz
+ENV YQ_RELEASE_URL https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
 
 RUN apk --no-cache add --virtual build-dependencies \
       perl~=5 \
       upx~=3 \
-      wget~=1 \
   && apk --no-cache add \
       bash~=5 \
       curl~=7 \
@@ -18,7 +18,12 @@ RUN apk --no-cache add --virtual build-dependencies \
       python3~=3 \
       py3-pip~=20 \
       py3-wheel~=0 \
-  && wget -q "$YQ_URL" -O /usr/bin/yq \
+  && curl -OL "$TASK_RELEASE_URL" \
+  && tar -xzvf task_linux_amd64.tar.gz \
+  && mv task /usr/bin/task \
+  && chmod _x /usr/bin/task \
+  && upx /usr/bin/task \
+  && curl "$YQ_RELEASE_URL" -o /usr/bin/yq \
   && chmod +x /usr/bin/yq \
   && upx /usr/bin/yq \
   && npm install -g \
