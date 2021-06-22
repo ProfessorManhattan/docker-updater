@@ -2,7 +2,7 @@
 
 First of all, thanks for visiting this page 😊 ❤️ ! We are totally ecstatic that you may be considering contributing to this project. You should read this guide if you are considering creating a pull request.
 
-<a href="#table-of-contents)" style="width:100%"><img style="width:100%" alt="-----------------------------------------------------" src="https://gitlab.com/megabyte-labs/assets/-/raw/master/png/aqua-divider.png"></div>
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#table-of-contents)
 
 ## ➤ Table of Contents
 
@@ -32,13 +32,13 @@ First of all, thanks for visiting this page 😊 ❤️ ! We are totally ecstati
   - [How to Commit Code](#how-to-commit-code)
   - [Pre-Commit Hook](#pre-commit-hook)
 
-<a href="#code-of-conduct)" style="width:100%"><img style="width:100%" alt="-----------------------------------------------------" src="https://gitlab.com/megabyte-labs/assets/-/raw/master/png/aqua-divider.png"></div>
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#code-of-conduct)
 
 ## ➤ Code of Conduct
 
 This project and everyone participating in it is governed by the [Code of Conduct](https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater/-/blob/master/CODE_OF_CONDUCT.md). By participating, you are expected to uphold this code. Please report unacceptable behavior to [help@megabyte.space](mailto:help@megabyte.space).
 
-<a href="#overview)" style="width:100%"><img style="width:100%" alt="-----------------------------------------------------" src="https://gitlab.com/megabyte-labs/assets/-/raw/master/png/aqua-divider.png"></div>
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#overview)
 
 ## ➤ Overview
 
@@ -49,7 +49,7 @@ All our Dockerfiles are created for specific tasks. In many cases, this allows u
 - **[CI Pipeline](https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline)** - Projects that include tools used during deployments such as linters and auto-formatters
 - **[Software](https://gitlab.com/megabyte-labs/dockerfile/software)** - Docker containers that are meant to replace software that is traditionally installed directly on hosts
 
-<a href="#philosophy)" style="width:100%"><img style="width:100%" alt="-----------------------------------------------------" src="https://gitlab.com/megabyte-labs/assets/-/raw/master/png/aqua-divider.png"></div>
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#philosophy)
 
 ## ➤ Philosophy
 
@@ -69,7 +69,7 @@ All of these improvements would be greatly appreciated by us and our community. 
 - When choosing a base image version, always choose the most recent update. There are often known vulnerabilities with older versions.
 - If all else fails, feel free to use other base images as long as they come from a trusted provider (i.e. using `ubuntu:latest` is fine but using `bobmighthackme:latest` is not).
 
-<a href="#requirements)" style="width:100%"><img style="width:100%" alt="-----------------------------------------------------" src="https://gitlab.com/megabyte-labs/assets/-/raw/master/png/aqua-divider.png"></div>
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#requirements)
 
 ## ➤ Requirements
 
@@ -85,7 +85,7 @@ Before getting started with development, you should ensure that the following re
 
 _Each of the requirements links to an Ansible Role that can install the dependency with a one-line bash script install._ Even if you do not have the optional dependencies installed, the `.start.sh` script (which is called by many of our build tool sequences) will attempt to install missing dependencies to the `~/.local/bin` folder.
 
-<a href="#getting-started)" style="width:100%"><img style="width:100%" alt="-----------------------------------------------------" src="https://gitlab.com/megabyte-labs/assets/-/raw/master/png/aqua-divider.png"></div>
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#getting-started)
 
 ## ➤ Getting Started
 
@@ -247,7 +247,7 @@ The `.blueprint.json` file stores some of the information required to automatica
 
 When populating the `.blueprint.json` file, it is a good idea to check out [repositories in the same group](https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline) to see what variables are being utilized.
 
-<a href="#creating-a-new-dockerfile-project)" style="width:100%"><img style="width:100%" alt="-----------------------------------------------------" src="https://gitlab.com/megabyte-labs/assets/-/raw/master/png/aqua-divider.png"></div>
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#creating-a-new-dockerfile-project)
 
 ## ➤ Creating a New Dockerfile Project
 
@@ -260,7 +260,7 @@ If you are creating a new Dockerfile project, you should first populate the `.bl
 5. Build your Dockerfile after you finish coding it using `npm run build`
 6. After everything is completely done, test the complete flow by running `npm run publish`
 
-<a href="#testing)" style="width:100%"><img style="width:100%" alt="-----------------------------------------------------" src="https://gitlab.com/megabyte-labs/assets/-/raw/master/png/aqua-divider.png"></div>
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#testing)
 
 ## ➤ Testing
 
@@ -268,14 +268,14 @@ Testing is an **extremely important** part of contributing to this project. Befo
 
 ### Creating Test Cases
 
-`npm run test` will test several elements of the project. It will lint the Dockerfile, lint shell scripts, and run the file in `./test/test.sh`. The test case, defined in `test.sh`, is mainly for testing that slim builds work as expected but should also be utilized across all of our Dockerfile projects. In a standard test for a project with a slim build, you should compare the output of a command run against a regular build and a test build. You can accomplish this by using code similar to the following:
+`npm run test` will test several elements of the project. It will lint the Dockerfile, lint shell scripts, and run the file in `./slim_test/test.sh`. The test case, defined in `test.sh`, is mainly for testing that slim builds work as expected but should also be utilized across all of our Dockerfile projects. In a standard test for a project with a slim build, you should compare the output of a command run against a regular build and a test build. You can accomplish this by using code similar to the following:
 
-**`./test/test.sh`**
+**`./slim_test/test.sh`**
 
 ```bash
 #!/bin/bash
 
-cd ./test/example || exit 1
+cd ./slim_test/example || exit 1
 echo "Testing latest image"
 LATEST_OUTPUT=$(docker run -v "${PWD}:/work" -w /work megabytelabs/ansible-lint:latest ansible-lint)
 echo "Testing slim image"
@@ -289,9 +289,9 @@ else
 fi
 ```
 
-**Note: The test.sh file is now created from a template. To make sure it gets generated, you should create the `test/` folder in the root of the project and then run `bash .start.sh`. The template version of `test.sh` will recursively loop through all of the folders inside the `test/` folder unlike the example above which only tests the `test/example/` scenario.**
+**Note: The test.sh file is now created from a template. To make sure it gets generated, you should create the `slim_test/` folder in the root of the project and then run `bash .start.sh`. The template version of `test.sh` will recursively loop through all of the folders inside the `slim_test/` folder unlike the example above which only tests the `slim_test/example/` scenario.**
 
-The above script, combined with some dummy data in `test/example/`, will properly validate that the slim build is working the same way the regular build is working. If no `test/` folder exists in the root of the repository, then the test step will be removed from `package.json`. We prefer you create a test that validates that the container is working whenever possible but in some cases it might not be necessary especially when there is no slim version. For a full example of implementing a test, please see the [Ansible Lint repository](https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/ansible-lint).
+The above script, combined with some dummy data in `slim_test/example/`, will properly validate that the slim build is working the same way the regular build is working. If no `slim_test/` folder exists in the root of the repository, then the test step will be removed from `package.json`. We prefer you create a test that validates that the container is working whenever possible but in some cases it might not be necessary especially when there is no slim version. For a full example of implementing a test, please see the [Ansible Lint repository](https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/ansible-lint).
 
 ### Testing DockerSlim Builds
 
@@ -305,7 +305,7 @@ It is **important** to test all common use cases. Some people might be using the
 
 When testing Docker-based web applications, ensure that after you destroy the container along with its volumes you can bring the Docker container back up to its previous state using volumes and file mounts. This allows users to periodically update the Docker container while having their settings persist. This requirement is also for disaster recovery.
 
-<a href="#linting)" style="width:100%"><img style="width:100%" alt="-----------------------------------------------------" src="https://gitlab.com/megabyte-labs/assets/-/raw/master/png/aqua-divider.png"></div>
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#linting)
 
 ## ➤ Linting
 
@@ -318,7 +318,7 @@ We also incorporate other linters that are run automatically whenever you commit
 
 Some of the linters are also baked into the CI pipeline. The pipeline will trigger whenever you post a commit to a branch. All of these pipeline tasks must pass in order for merge requests to be accepted. You can check the status of recently triggered pipelines for this project by going to the [CI/CD pipeline page](https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater/-/pipelines).
 
-<a href="#updating-meta-files-and-documentation)" style="width:100%"><img style="width:100%" alt="-----------------------------------------------------" src="https://gitlab.com/megabyte-labs/assets/-/raw/master/png/aqua-divider.png"></div>
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#updating-meta-files-and-documentation)
 
 ## ➤ Updating Meta Files and Documentation
 
@@ -355,7 +355,7 @@ We include a `logo.png` file in all of our projects. This image is automatically
 4. Compress the resized image by dragging and dropping the resized image into the [TinyPNG web application](https://tinypng.com/).
 5. Download the compressed image and add it to the root of the repository. Make sure it is named `logo.png`.
 
-<a href="#pull-requests)" style="width:100%"><img style="width:100%" alt="-----------------------------------------------------" src="https://gitlab.com/megabyte-labs/assets/-/raw/master/png/aqua-divider.png"></div>
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/aqua.png)](#pull-requests)
 
 ## ➤ Pull Requests
 

@@ -1,7 +1,11 @@
 {
   "name": "@megabytelabs/updater",
+<<<<<<< HEAD
   "version": "0.0.47",
   "description": "A general-purpose, compact Dockerfile project that includes bash, curl, git, jq, yq, and Node.js in a single container (only 43.4835 MB compressed!)",
+=======
+  "description": "Node.js files/configurations that support the creation of Dockerfiles",
+>>>>>>> ba0ca3e20e36f461c4c03144ef20ba6b7007196d
   "license": "MIT",
   "author": "Brian Zalewski <brian@megabyte.space> (https://megabyte.space)",
   "homepage": "https://megabyte.space",
@@ -21,9 +25,10 @@
     "commit": "git-cz",
     "fix": "run-s fix:*",
     "fix:prettier": "prettier --write .",
-    "fix:shellcheck": "find . -type d \\( -name .cache -o -name .git -o -name .modules  -o -name node_modules -o -name .husky \\) -prune -o -type f \\( -name \\*.sh -o -name \\*.sh.j2 \\) -print0 | xargs -0 shellcheck -f diff | git apply",
+    "fix:shellcheck": "find . -type d \\( -name .cache -o -name .git -o -name .modules  -o -name node_modules -o -name .husky -o -name slim_test \\) -prune -o -type f \\( -name \\*.sh -o -name \\*.sh.j2 \\) -print0 | xargs -0 shellcheck -f diff | git apply",
     "info": "npm-scripts-info",
     "postinstall": "husky install && run-s update",
+    "misc:markdown-links": "find . -type d \\( -name .cache -o -name .git -o -name .github -o -name .gitlab -o -name .modules  -o -name node_modules \\) -prune -o -type f \\( -name \\*.md \\) -print0 | xargs -0 -r -n1 markdown-link-check",
     "prepare-release": "if [[ \"$(docker images -q megabytelabs/updater:latest 2> /dev/null)\" == '' ]] || [[ \"$(docker images -q megabytelabs/updater:slim 2> /dev/null)\" == '' ]]; then run-s build; fi && run-s update test build update test version",
     "publish": "run-s publish:*",
     "publish:login": "docker login",
@@ -44,7 +49,7 @@
     "test:docker": "docker run -v ${PWD}:/work -w /work hadolint/hadolint:latest hadolint Dockerfile",
     "test:preprettier": "if [ -f slim.report.json ]; then prettier --write slim.report.json; fi && if [ -f .blueprint.json ]; then prettier --write .blueprint.json; fi",
     "test:prettier": "prettier --list-different .",
-    "test:shellcheck": "find . -type d \\( -name .cache -o -name .git -o -name .modules  -o -name node_modules -o -name .husky \\) -prune -o -type f \\( -name \\*.sh -o -name \\*.sh.j2 \\) -print0 | xargs -0 -r -n1 shellcheck",
+    "test:shellcheck": "find . -type d \\( -name .cache -o -name .git -o -name .modules  -o -name node_modules -o -name .husky -o -name slim_test \\) -prune -o -type f \\( -name \\*.sh -o -name \\*.sh.j2 \\) -print0 | xargs -0 -r -n1 shellcheck",
     "update": "bash .start.sh && cp ./.modules/dockerfile/.start.sh .start.sh",
     "version": "standard-version -a --no-verify"
   },
@@ -59,7 +64,8 @@
     "cspell": "^5.3.3",
     "cz-conventional-changelog": "^3.3.0",
     "husky": "^5.1.1",
-    "lint-staged": "^10.5.4",
+    "lint-staged": "^11.0.0",
+    "markdown-link-check": "^3.8.7",
     "npm-run-all": "^4.1.5",
     "npm-scripts-info": "^0.3.9",
     "prettier": "^2.1.1",
@@ -106,6 +112,7 @@
     "commit": "The preferred way of running git commit (instead of git commit, we prefer you run 'npm run commit' in the root of this repository)",
     "fix": "Automatically fix formatting errors",
     "info": "Logs descriptions of all the npm tasks",
+    "misc:markdown-links": "Checks markdown files for broken links",
     "prepare-release": "Builds and updates the project and then updates the CHANGELOG with commits made using 'npm run commit'. Updates the project to be ready for release",
     "publish": "Creates a new release and uploads the release to DockerHub",
     "scan": "Scans images for vulnerabilities",
