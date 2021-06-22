@@ -21,24 +21,24 @@
   },
   "source_image": {
     "identity": {
-      "id": "sha256:605c9a5287101a55a813ebd1becb11b6bde5f7cbdc5d1b5db9ee314e05d35950",
+      "id": "sha256:77606dd0dfb130107a930aab251c4cf176ac07c6763cc1a75cf9c14d1bc5c37e",
       "tags": ["0.0.47", "latest"],
       "names": ["megabytelabs/updater:0.0.47", "megabytelabs/updater:latest"]
     },
-    "size": 198521988,
-    "size_human": "198 MB",
-    "create_time": "2021-06-22T07:24:57Z",
+    "size": 274920320,
+    "size_human": "275 MB",
+    "create_time": "2021-06-22T23:54:39Z",
     "docker_version": "",
     "architecture": "amd64",
     "os": "linux",
     "labels": {
       "maintainer": "Megabyte Labs <help@megabyte.space",
       "org.opencontainers.image.authors": "Brian Zalewski <brian@megabyte.space>",
-      "org.opencontainers.image.created": "2021-06-16T03:31:27-04:00",
-      "org.opencontainers.image.description": "A general-purpose, compact Dockerfile project that includes bash, curl, git, jq, yq, and Node.js in a single container (only 43.4835 MB compressed!)",
+      "org.opencontainers.image.created": "2021-06-22T19:49:13-04:00",
+      "org.opencontainers.image.description": "Node.js files/configurations that support the creation of Dockerfiles",
       "org.opencontainers.image.documentation": "https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater/-/blob/master/README.md",
       "org.opencontainers.image.licenses": "MIT",
-      "org.opencontainers.image.revision": "8827807c240484bdaadf63b7352217bb33ac1fde",
+      "org.opencontainers.image.revision": "f8fc15400b10af192b849fe1c360d4a27b7f1a19",
       "org.opencontainers.image.source": "https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater.git",
       "org.opencontainers.image.url": "https://megabyte.space",
       "org.opencontainers.image.vendor": "Megabyte Labs",
@@ -49,29 +49,30 @@
       "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
       "container=docker",
       "NODE_EXTRA_CA_CERTS=/etc/ssl/certs/ca-certificates.crt",
-      "YQ_URL=https://github.com/mikefarah/yq/releases/download/v4.9.6/yq_linux_amd64"
+      "TASK_RELEASE_URL=https://github.com/go-task/task/releases/latest",
+      "YQ_RELEASE_URL=https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64"
     ]
   },
-  "minified_image_size": 111148574,
-  "minified_image_size_human": "111 MB",
+  "minified_image_size": 107573195,
+  "minified_image_size_human": "108 MB",
   "minified_image": "megabytelabs/updater:slim",
   "minified_image_has_data": true,
-  "minified_by": 1.7860956812635311,
-  "artifact_location": "/tmp/docker-slim-state/.docker-slim-state/images/605c9a5287101a55a813ebd1becb11b6bde5f7cbdc5d1b5db9ee314e05d35950/artifacts",
+  "minified_by": 2.555658219503474,
+  "artifact_location": "/tmp/docker-slim-state/.docker-slim-state/images/77606dd0dfb130107a930aab251c4cf176ac07c6763cc1a75cf9c14d1bc5c37e/artifacts",
   "container_report_name": "creport.json",
   "seccomp_profile_name": "megabytelabs-updater-seccomp.json",
   "apparmor_profile_name": "megabytelabs-updater-apparmor-profile",
   "image_stack": [
     {
       "is_top_image": true,
-      "id": "sha256:605c9a5287101a55a813ebd1becb11b6bde5f7cbdc5d1b5db9ee314e05d35950",
+      "id": "sha256:77606dd0dfb130107a930aab251c4cf176ac07c6763cc1a75cf9c14d1bc5c37e",
       "full_name": "megabytelabs/updater:0.0.47",
       "repo_name": "megabytelabs/updater",
       "version_tag": "0.0.47",
       "raw_tags": ["megabytelabs/updater:0.0.47", "megabytelabs/updater:latest"],
-      "create_time": "2021-06-22T07:24:57Z",
-      "new_size": 198521988,
-      "new_size_human": "198 MB",
+      "create_time": "2021-06-22T23:54:39Z",
+      "new_size": 274920320,
+      "new_size_human": "275 MB",
       "instructions": [
         {
           "type": "ADD",
@@ -101,7 +102,7 @@
         },
         {
           "type": "RUN",
-          "time": "2021-06-22T07:24:57Z",
+          "time": "2021-06-22T23:54:39Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -114,7 +115,7 @@
         },
         {
           "type": "RUN",
-          "time": "2021-06-22T07:24:57Z",
+          "time": "2021-06-22T23:54:39Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -127,38 +128,51 @@
         },
         {
           "type": "RUN",
-          "time": "2021-06-22T07:24:57Z",
+          "time": "2021-06-22T23:54:39Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
           "layer_index": 0,
           "size": 0,
-          "command_snippet": "RUN [\"ENV\",\"YQ_URL=https://github.com/mikefa...",
-          "command_all": "RUN [\"ENV\",\"YQ_URL=https://github.com/mikefarah/yq/releases/download/v4.9.6/yq_linux_amd64\"]",
-          "system_commands": [
-            "[\"ENV\",\"YQ_URL=https://github.com/mikefarah/yq/releases/download/v4.9.6/yq_linux_amd64\"]"
-          ],
+          "command_snippet": "RUN [\"ENV\",\"TASK_RELEASE_URL=https://github....",
+          "command_all": "RUN [\"ENV\",\"TASK_RELEASE_URL=https://github.com/go-task/task/releases/latest\"]",
+          "system_commands": ["[\"ENV\",\"TASK_RELEASE_URL=https://github.com/go-task/task/releases/latest\"]"],
           "comment": "buildkit.dockerfile.v0"
         },
         {
           "type": "RUN",
-          "time": "2021-06-22T07:24:57Z",
+          "time": "2021-06-22T23:54:39Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
           "layer_index": 0,
-          "size": 192926975,
-          "size_human": "193 MB",
-          "command_snippet": "RUN [\"RUN\",\"/bin/sh\",\"-c\",\"apk\",\"--no-cache\"...",
-          "command_all": "RUN [\"RUN\",\"/bin/sh\",\"-c\",\"apk\",\"--no-cache\",\"add\",\"--virtual\",\"build-dependencies\",\"perl~=5\",\"upx~=3\",\"wget~=1\",\"\\u0026\\u0026\",\"apk\",\"--no-cache\",\"add\",\"bash~=5\",\"curl~=7\",\"git~=2\",\"jq~=1\",\"nodejs~=14\",\"npm~=7\",\"python3~=3\",\"py3-pip~=20\",\"py3-wheel~=0\",\"\\u0026\\u0026\",\"wget\",\"-q\",\"$YQ_URL\",\"-O\",\"/usr/bin/yq\",\"\\u0026\\u0026\",\"chmod\",\"+x\",\"/usr/bin/yq\",\"\\u0026\\u0026\",\"upx\",\"/usr/bin/yq\",\"\\u0026\\u0026\",\"npm\",\"install\",\"-g\",\"@megabytelabs/prettier-config@latest\",\"@megabytelabs/prettier-config-ansible@latest\",\"hbs-cli@latest\",\"npm@latest\",\"prettier@latest\",\"prettier-plugin-sh@latest\",\"prettier-package-json@latest\",\"\\u0026\\u0026\",\"pip3\",\"install\",\"--no-cache-dir\",\"virtualenv==20.*\",\"\\u0026\\u0026\",\"apk\",\"del\",\"build-dependencies\"]",
+          "size": 0,
+          "command_snippet": "RUN [\"ENV\",\"YQ_RELEASE_URL=https://github.co...",
+          "command_all": "RUN [\"ENV\",\"YQ_RELEASE_URL=https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64\"]",
           "system_commands": [
-            "[\"RUN\",\"/bin/sh\",\"-c\",\"apk\",\"--no-cache\",\"add\",\"--virtual\",\"build-dependencies\",\"perl~=5\",\"upx~=3\",\"wget~=1\",\"u0026u0026\",\"apk\",\"--no-cache\",\"add\",\"bash~=5\",\"curl~=7\",\"git~=2\",\"jq~=1\",\"nodejs~=14\",\"npm~=7\",\"python3~=3\",\"py3-pip~=20\",\"py3-wheel~=0\",\"u0026u0026\",\"wget\",\"-q\",\"$YQ_URL\",\"-O\",\"/usr/bin/yq\",\"u0026u0026\",\"chmod\",\"+x\",\"/usr/bin/yq\",\"u0026u0026\",\"upx\",\"/usr/bin/yq\",\"u0026u0026\",\"npm\",\"install\",\"-g\",\"@megabytelabs/prettier-config@latest\",\"@megabytelabs/prettier-config-ansible@latest\",\"hbs-cli@latest\",\"npm@latest\",\"prettier@latest\",\"prettier-plugin-sh@latest\",\"prettier-package-json@latest\",\"u0026u0026\",\"pip3\",\"install\",\"--no-cache-dir\",\"virtualenv==20.*\",\"u0026u0026\",\"apk\",\"del\",\"build-dependencies\"]"
+            "[\"ENV\",\"YQ_RELEASE_URL=https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64\"]"
           ],
           "comment": "buildkit.dockerfile.v0"
         },
         {
           "type": "RUN",
-          "time": "2021-06-22T07:24:57Z",
+          "time": "2021-06-22T23:54:39Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": false,
+          "layer_index": 0,
+          "size": 269325307,
+          "size_human": "269 MB",
+          "command_snippet": "RUN [\"RUN\",\"/bin/sh\",\"-c\",\"apk\",\"--no-cache\"...",
+          "command_all": "RUN [\"RUN\",\"/bin/sh\",\"-c\",\"apk\",\"--no-cache\",\"add\",\"--virtual\",\"build-dependencies\",\"perl~=5\",\"upx~=3\",\"\\u0026\\u0026\",\"apk\",\"--no-cache\",\"add\",\"bash~=5\",\"curl~=7\",\"git~=2\",\"jq~=1\",\"nodejs~=14\",\"npm~=7\",\"python3~=3\",\"py3-pip~=20\",\"py3-wheel~=0\",\"\\u0026\\u0026\",\"curl\",\"-OL\",\"$TASK_RELEASE_URL/download/task_linux_amd64.tar.gz\",\"\\u0026\\u0026\",\"tar\",\"-xzvf\",\"task_linux_amd64.tar.gz\",\"\\u0026\\u0026\",\"mv\",\"task\",\"/usr/local/bin/task\",\"\\u0026\\u0026\",\"chmod\",\"+x\",\"/usr/local/bin/task\",\"\\u0026\\u0026\",\"upx\",\"/usr/local/bin/task\",\"\\u0026\\u0026\",\"curl\",\"$YQ_RELEASE_URL/download/yq_linux_amd64\",\"-o\",\"/usr/local/bin/yq\",\"\\u0026\\u0026\",\"chmod\",\"+x\",\"/usr/local/bin/yq\",\"\\u0026\\u0026\",\"npm\",\"install\",\"-g\",\"@appnest/readme\",\"@megabytelabs/prettier-config@latest\",\"@megabytelabs/prettier-config-ansible@latest\",\"hbs-cli@latest\",\"npm@latest\",\"prettier@latest\",\"prettier-plugin-sh@latest\",\"prettier-package-json@latest\",\"\\u0026\\u0026\",\"pip3\",\"install\",\"--no-cache-dir\",\"virtualenv==20.*\",\"\\u0026\\u0026\",\"apk\",\"del\",\"build-dependencies\"]",
+          "system_commands": [
+            "[\"RUN\",\"/bin/sh\",\"-c\",\"apk\",\"--no-cache\",\"add\",\"--virtual\",\"build-dependencies\",\"perl~=5\",\"upx~=3\",\"u0026u0026\",\"apk\",\"--no-cache\",\"add\",\"bash~=5\",\"curl~=7\",\"git~=2\",\"jq~=1\",\"nodejs~=14\",\"npm~=7\",\"python3~=3\",\"py3-pip~=20\",\"py3-wheel~=0\",\"u0026u0026\",\"curl\",\"-OL\",\"$TASK_RELEASE_URL/download/task_linux_amd64.tar.gz\",\"u0026u0026\",\"tar\",\"-xzvf\",\"task_linux_amd64.tar.gz\",\"u0026u0026\",\"mv\",\"task\",\"/usr/local/bin/task\",\"u0026u0026\",\"chmod\",\"+x\",\"/usr/local/bin/task\",\"u0026u0026\",\"upx\",\"/usr/local/bin/task\",\"u0026u0026\",\"curl\",\"$YQ_RELEASE_URL/download/yq_linux_amd64\",\"-o\",\"/usr/local/bin/yq\",\"u0026u0026\",\"chmod\",\"+x\",\"/usr/local/bin/yq\",\"u0026u0026\",\"npm\",\"install\",\"-g\",\"@appnest/readme\",\"@megabytelabs/prettier-config@latest\",\"@megabytelabs/prettier-config-ansible@latest\",\"hbs-cli@latest\",\"npm@latest\",\"prettier@latest\",\"prettier-plugin-sh@latest\",\"prettier-package-json@latest\",\"u0026u0026\",\"pip3\",\"install\",\"--no-cache-dir\",\"virtualenv==20.*\",\"u0026u0026\",\"apk\",\"del\",\"build-dependencies\"]"
+          ],
+          "comment": "buildkit.dockerfile.v0"
+        },
+        {
+          "type": "RUN",
+          "time": "2021-06-22T23:54:39Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -171,7 +185,7 @@
         },
         {
           "type": "RUN",
-          "time": "2021-06-22T07:24:57Z",
+          "time": "2021-06-22T23:54:39Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -184,7 +198,7 @@
         },
         {
           "type": "RUN",
-          "time": "2021-06-22T07:24:57Z",
+          "time": "2021-06-22T23:54:39Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -197,7 +211,7 @@
         },
         {
           "type": "RUN",
-          "time": "2021-06-22T07:24:57Z",
+          "time": "2021-06-22T23:54:39Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -210,7 +224,7 @@
         },
         {
           "type": "RUN",
-          "time": "2021-06-22T07:24:57Z",
+          "time": "2021-06-22T23:54:39Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -223,7 +237,7 @@
         },
         {
           "type": "RUN",
-          "time": "2021-06-22T07:24:57Z",
+          "time": "2021-06-22T23:54:39Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -238,35 +252,35 @@
         },
         {
           "type": "RUN",
-          "time": "2021-06-22T07:24:57Z",
+          "time": "2021-06-22T23:54:39Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
           "layer_index": 0,
           "size": 0,
           "command_snippet": "RUN [\"LABEL\",\"org.opencontainers.image.creat...",
-          "command_all": "RUN [\"LABEL\",\"org.opencontainers.image.created=2021-06-16T03:31:27-04:00\"]",
-          "system_commands": ["[\"LABEL\",\"org.opencontainers.image.created=2021-06-16T03:31:27-04:00\"]"],
+          "command_all": "RUN [\"LABEL\",\"org.opencontainers.image.created=2021-06-22T19:49:13-04:00\"]",
+          "system_commands": ["[\"LABEL\",\"org.opencontainers.image.created=2021-06-22T19:49:13-04:00\"]"],
           "comment": "buildkit.dockerfile.v0"
         },
         {
           "type": "RUN",
-          "time": "2021-06-22T07:24:57Z",
+          "time": "2021-06-22T23:54:39Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
           "layer_index": 0,
           "size": 0,
           "command_snippet": "RUN [\"LABEL\",\"org.opencontainers.image.descr...",
-          "command_all": "RUN [\"LABEL\",\"org.opencontainers.image.description=A\",\"general-purpose,\",\"compact\",\"Dockerfile\",\"project\",\"that\",\"includes\",\"bash,\",\"curl,\",\"git,\",\"jq,\",\"yq,\",\"and\",\"Node.js\",\"in\",\"a\",\"single\",\"container\",\"(only\",\"43.4835\",\"MB\",\"compressed!)\"]",
+          "command_all": "RUN [\"LABEL\",\"org.opencontainers.image.description=Node.js\",\"files/configurations\",\"that\",\"support\",\"the\",\"creation\",\"of\",\"Dockerfiles\"]",
           "system_commands": [
-            "[\"LABEL\",\"org.opencontainers.image.description=A\",\"general-purpose,\",\"compact\",\"Dockerfile\",\"project\",\"that\",\"includes\",\"bash,\",\"curl,\",\"git,\",\"jq,\",\"yq,\",\"and\",\"Node.js\",\"in\",\"a\",\"single\",\"container\",\"(only\",\"43.4835\",\"MB\",\"compressed!)\"]"
+            "[\"LABEL\",\"org.opencontainers.image.description=Node.js\",\"files/configurations\",\"that\",\"support\",\"the\",\"creation\",\"of\",\"Dockerfiles\"]"
           ],
           "comment": "buildkit.dockerfile.v0"
         },
         {
           "type": "RUN",
-          "time": "2021-06-22T07:24:57Z",
+          "time": "2021-06-22T23:54:39Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -281,7 +295,7 @@
         },
         {
           "type": "RUN",
-          "time": "2021-06-22T07:24:57Z",
+          "time": "2021-06-22T23:54:39Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -294,22 +308,22 @@
         },
         {
           "type": "RUN",
-          "time": "2021-06-22T07:24:57Z",
+          "time": "2021-06-22T23:54:39Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
           "layer_index": 0,
           "size": 0,
           "command_snippet": "RUN [\"LABEL\",\"org.opencontainers.image.revis...",
-          "command_all": "RUN [\"LABEL\",\"org.opencontainers.image.revision=8827807c240484bdaadf63b7352217bb33ac1fde\"]",
+          "command_all": "RUN [\"LABEL\",\"org.opencontainers.image.revision=f8fc15400b10af192b849fe1c360d4a27b7f1a19\"]",
           "system_commands": [
-            "[\"LABEL\",\"org.opencontainers.image.revision=8827807c240484bdaadf63b7352217bb33ac1fde\"]"
+            "[\"LABEL\",\"org.opencontainers.image.revision=f8fc15400b10af192b849fe1c360d4a27b7f1a19\"]"
           ],
           "comment": "buildkit.dockerfile.v0"
         },
         {
           "type": "RUN",
-          "time": "2021-06-22T07:24:57Z",
+          "time": "2021-06-22T23:54:39Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -324,7 +338,7 @@
         },
         {
           "type": "RUN",
-          "time": "2021-06-22T07:24:57Z",
+          "time": "2021-06-22T23:54:39Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -337,7 +351,7 @@
         },
         {
           "type": "RUN",
-          "time": "2021-06-22T07:24:57Z",
+          "time": "2021-06-22T23:54:39Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -350,7 +364,7 @@
         },
         {
           "type": "RUN",
-          "time": "2021-06-22T07:24:57Z",
+          "time": "2021-06-22T23:54:39Z",
           "is_nop": false,
           "is_exec_form": true,
           "local_image_exists": false,
@@ -363,7 +377,7 @@
         },
         {
           "type": "RUN",
-          "time": "2021-06-22T07:24:57Z",
+          "time": "2021-06-22T23:54:39Z",
           "is_last_instruction": true,
           "is_nop": false,
           "is_exec_form": true,

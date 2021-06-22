@@ -3,7 +3,7 @@ FROM alpine:3
 ENV container docker
 ENV NODE_EXTRA_CA_CERTS /etc/ssl/certs/ca-certificates.crt
 ENV TASK_RELEASE_URL https://github.com/go-task/task/releases/latest
-ENV YQ_RELEASE_URL https://github.com/mikefarah/yq/releases
+ENV YQ_RELEASE_URL https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
 
 RUN apk --no-cache add --virtual build-dependencies \
       perl~=5 \
@@ -21,11 +21,10 @@ RUN apk --no-cache add --virtual build-dependencies \
   && curl -OL "$TASK_RELEASE_URL/download/task_linux_amd64.tar.gz" \
   && tar -xzvf task_linux_amd64.tar.gz \
   && mv task /usr/local/bin/task \
-  && chmod _x /usr/local/bin/task \
+  && chmod +x /usr/local/bin/task \
   && upx /usr/local/bin/task \
-  && curl "$YQ_RELEASE_URL/latest/download/yq_linux_amd64" -o /usr/bin/local/yq \
+  && curl "$YQ_RELEASE_URL/download/yq_linux_amd64" -o /usr/local/bin/yq \
   && chmod +x /usr/local/bin/yq \
-  && upx /usr/local/bin/yq \
   && npm install -g \
       @appnest/readme \
       @megabytelabs/prettier-config@latest \
