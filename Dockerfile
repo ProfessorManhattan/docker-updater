@@ -18,11 +18,18 @@ RUN apk --no-cache add --virtual build-dependencies \
       python3~=3 \
       py3-pip~=20 \
       py3-wheel~=0 \
-  && wget -q ${YQ_URL} -O /usr/bin/yq \
+  && wget -q "$YQ_URL" -O /usr/bin/yq \
   && chmod +x /usr/bin/yq \
   && upx /usr/bin/yq \
   && npm install -g \
+      @appnest/readme \
+      @megabytelabs/prettier-config@latest \
+      @megabytelabs/prettier-config-ansible@latest \
+      hbs-cli@latest \
       npm@latest \
+      prettier@latest \
+      prettier-plugin-sh@latest \
+      prettier-package-json@latest \
   && pip3 install --no-cache-dir \
       "virtualenv==20.*" \
   && apk del build-dependencies
