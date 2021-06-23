@@ -38,7 +38,6 @@
 /usr/lib/libreadline.so.8.1
 /usr/lib/libstdc++.so.6
 /usr/lib/libstdc++.so.6.0.28
-/usr/lib/node_modules
 /usr/libexec/git-core/git-remote-https
 /usr/libexec/git-core/git-sh-i18n
 /usr/libexec/git-core/git-sh-i18n--envsubst
@@ -48,4 +47,5 @@
 /usr/local/bin/prettier
 /usr/local/bin/prettier-package-json
 /usr/local/bin/readme
+/usr/local/lib/node_modules
 /usr/share/git-core/templates
