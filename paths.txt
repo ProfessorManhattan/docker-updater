@@ -5,14 +5,10 @@
 /usr/bin/git
 /usr/bin/jq
 /usr/bin/node
-/usr/bin/npm
-/usr/bin/npx
 /usr/bin/pip3
 /usr/bin/python3
 /usr/bin/python3.9
-/usr/bin/task
 /usr/bin/wheel
-/usr/bin/yq
 /usr/lib/libbrotlicommon.so.1
 /usr/lib/libbrotlicommon.so.1.0.9
 /usr/lib/libbrotlidec.so.1
@@ -44,8 +40,12 @@
 /usr/libexec/git-core/git-sh-setup
 /usr/libexec/git-core/git-submodule
 /usr/local/bin/hbs
+/usr/local/bin/npm
+/usr/local/bin/npx
 /usr/local/bin/prettier
 /usr/local/bin/prettier-package-json
 /usr/local/bin/readme
+/usr/local/bin/task
+/usr/local/bin/yq
 /usr/local/lib/node_modules
 /usr/share/git-core/templates
