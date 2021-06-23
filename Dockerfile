@@ -23,7 +23,8 @@ RUN apk --no-cache add --virtual build-dependencies \
   && mv task /usr/local/bin/task \
   && chmod +x /usr/local/bin/task \
   && upx /usr/local/bin/task \
-  && curl -OL "$YQ_RELEASE_URL/download/yq_linux_amd64" -o /usr/local/bin/yq \
+  && curl -OL "$YQ_RELEASE_URL/download/yq_linux_amd64" \
+  && mv yq_linux_amd64 /usr/local/bin/yq \
   && chmod +x /usr/local/bin/yq \
   && npm install -g \
       @appnest/readme \
