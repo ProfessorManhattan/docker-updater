@@ -3,7 +3,7 @@ FROM alpine:3
 ENV container docker
 ENV NODE_EXTRA_CA_CERTS /etc/ssl/certs/ca-certificates.crt
 ENV TASK_RELEASE_URL https://github.com/go-task/task/releases/latest
-ENV YQ_RELEASE_URL https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
+ENV YQ_RELEASE_URL https://github.com/mikefarah/yq/releases/latest
 
 RUN apk --no-cache add --virtual build-dependencies \
       perl~=5 \
@@ -23,8 +23,7 @@ RUN apk --no-cache add --virtual build-dependencies \
   && mv task /usr/local/bin/task \
   && chmod +x /usr/local/bin/task \
   && upx /usr/local/bin/task \
-  && curl -OL "$YQ_RELEASE_URL/download/yq_linux_amd64" \
-  && mv yq_linux_amd64 /usr/local/bin/yq \
+  && curl -OL "$YQ_RELEASE_URL/download/yq_linux_amd64" -o /usr/local/bin/yq \
   && chmod +x /usr/local/bin/yq \
   && npm install -g \
       @appnest/readme \
