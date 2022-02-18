@@ -99,8 +99,8 @@ vars:
   NPX_PACKAGE: pnpx
   PYTHON_HANDLE: 'poetry run '
   PYTHON_VIRTUALENV: true
-  REPOSITORY_SUBTYPE: config
-  REPOSITORY_TYPE: npm
+  REPOSITORY_SUBTYPE: ci-pipeline
+  REPOSITORY_TYPE: docker
   SEMANTIC_CONFIG: semantic-release-config
   TIMEZONE: America/New_York
 
