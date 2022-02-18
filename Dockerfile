@@ -1,43 +1,97 @@
-FROM alpine:3
+FROM ubuntu:20.04
 
 ENV container docker
-ENV NODE_EXTRA_CA_CERTS /etc/ssl/certs/ca-certificates.crt
-ENV TASK_RELEASE_URL https://github.com/go-task/task/releases/latest
-ENV YQ_RELEASE_URL https://github.com/mikefarah/yq/releases/latest
+ENV DEBIAN_FRONTEND noninteractive
 
-RUN apk --no-cache add --virtual build-dependencies \
-      perl~=5 \
-      upx~=3 \
-  && apk --no-cache add \
-      bash~=5 \
-      curl~=7 \
-      git~=2 \
-      jq~=1 \
-      nodejs~=14 \
-      npm~=7 \
-      python3~=3 \
-      py3-pip~=20 \
-      py3-wheel~=0 \
-  && curl -OL "$TASK_RELEASE_URL/download/task_linux_amd64.tar.gz" \
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends software-properties-common \
+    && add-apt-repository -y ppa:git-core/ppa \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends \
+      build-essential \
+      bzip2 \
+      ca-certificates \
+      curl \
+      file \
+      fonts-dejavu-core \
+      g++ \
+      gawk \
+      git \
+      less \
+      libz-dev \
+      locales \
+      make \
+      netbase \
+      openssh-client \
+      patch \
+      procps \
+      rsync \
+      snapd \
+      sudo \
+      tzdata \
+      uuid-runtime \
+  && localedef -i en_US -f UTF-8 en_US.UTF-8 \
+  && useradd -m -s /bin/bash megabyte \
+  && echo 'megabyte ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+
+USER megabyte
+COPY --chown=megabyte:megabyte .modules/homebrew /home/linuxbrew/.linuxbrew/Homebrew/
+ENV GOPATH "/home/megabyte/.local/go"
+ENV GOROOT "/home/linuxbrew/.linuxbrew/opt/go/libexec"
+ENV PATH "${GOPATH}/bin:${GOROOT}/bin:/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:${PATH}"
+WORKDIR /home/megabyte
+
+RUN sudo chown megabyte:megabyte /home/linuxbrew/.linuxbrew \
+    && mkdir -p \
+     ../linuxbrew/.linuxbrew/bin \
+     ../linuxbrew/.linuxbrew/etc \
+     ../linuxbrew/.linuxbrew/include \
+     ../linuxbrew/.linuxbrew/lib \
+     ../linuxbrew/.linuxbrew/opt \
+     ../linuxbrew/.linuxbrew/sbin \
+     ../linuxbrew/.linuxbrew/share \
+     ../linuxbrew/.linuxbrew/var/homebrew/linked \
+     ../linuxbrew/.linuxbrew/Cellar \
+  && ln -s ../Homebrew/bin/brew ../linuxbrew/.linuxbrew/bin/brew \
+  && HOMEBREW_NO_ANALYTICS=1 HOMEBREW_NO_AUTO_UPDATE=1 brew tap homebrew/core \
+  && brew install-bundler-gems \
+  && brew cleanup \
+  && { git -C ../linuxbrew/.linuxbrew/Homebrew config --unset gc.auto; true; } \
+  && { git -C ../linuxbrew/.linuxbrew/Homebrew config --unset homebrew.devcmdrun; true; } \
+  && rm -rf .cache \
+  && brew install go
+
+RUN brew install exiftool \
+  && brew install gh \
+  && brew install glab \
+  && brew install go \
+  && brew install jq \
+  && brew install node \
+  && brew install poetry \
+  && brew install python@3.10 \
+  && brew install hudochenkov/sshpass/sshpass \
+  && brew install yq \
+  && curl -OL https://github.com/go-task/task/releases/latest/download/task_linux_amd64.tar.gz \
   && tar -xzvf task_linux_amd64.tar.gz \
-  && mv task /usr/local/bin/task \
-  && chmod +x /usr/local/bin/task \
-  && upx /usr/local/bin/task \
-  && curl -OL "$YQ_RELEASE_URL/download/yq_linux_amd64" \
-  && mv yq_linux_amd64 /usr/local/bin/yq \
-  && chmod +x /usr/local/bin/yq \
+  && sudo mv task /usr/local/bin/task \
+  && sudo chmod +x /usr/local/bin/task \
   && npm install -g \
-      @appnest/readme \
-      @megabytelabs/prettier-config@latest \
-      @megabytelabs/prettier-config-ansible@latest \
+      @appnest/readme@latest \
+      cz-emoji \
+      esbuild@latest \
+      eslint@latest \
       hbs-cli@latest \
-      npm@latest \
+      leasot@latest \
+      liquidjs@latest \
+      pnpm@latest \
       prettier@latest \
-      prettier-plugin-sh@latest \
-      prettier-package-json@latest \
-  && pip3 install --no-cache-dir \
-      "virtualenv==20.*" \
-  && apk del build-dependencies
+      remark-cli
+
+RUN go install github.com/marcosnils/bin@latest \
+  && go install github.com/goreleaser/goreleaser@latest \
+  && go install github.com/goreleaser/nfpm/v2/cmd/nfpm@latest
+
+RUN brew install snapcraft
 
 WORKDIR /work
 

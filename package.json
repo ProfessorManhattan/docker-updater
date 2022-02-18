@@ -14,62 +14,30 @@
     "url": "https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater/-/issues"
   },
   "scripts": {
-    "_publish:noslim": "run-s publish:login && npx lint-staged && run-s build:latest update test build:latest update test version && git push --follow-tags origin master && run-s build publish:publish publish:readme publish:readme-description",
-    "build": "run-s build:*",
-    "build:latest": "docker build --build-arg BUILD_DATE=$(git show -s --format=%cI) --build-arg REVISION=$(git rev-parse HEAD) --build-arg VERSION=${npm_package_version} --tag megabytelabs/updater:latest --tag megabytelabs/updater:${npm_package_version} .",
-    "build:slim": "docker-slim build --tag megabytelabs/updater:slim --http-probe=false --exec 'pip3 install mod-ansible-autodoc && virtualenv venv' --preserve-path-file 'paths.txt' megabytelabs/updater:latest && prettier --write slim.report.json && docker tag megabytelabs/updater:slim megabytelabs/updater:${npm_package_version}-slim",
-    "commit": "git-cz",
-    "fix": "run-s fix:*",
-    "fix:prettier": "prettier --write .",
-    "fix:shellcheck": "find . -type d \\( -name .cache -o -name .git -o -name .modules  -o -name node_modules -o -name .husky -o -name slim_test \\) -prune -o -type f \\( -name \\*.sh -o -name \\*.sh.j2 \\) -print0 | xargs -0 shellcheck -f diff | git apply",
-    "info": "npm-scripts-info",
-    "postinstall": "husky install && run-s update",
-    "misc:markdown-links": "find . -type d \\( -name .cache -o -name .git -o -name .github -o -name .gitlab -o -name .modules  -o -name node_modules \\) -prune -o -type f \\( -name \\*.md \\) -print0 | xargs -0 -r -n1 markdown-link-check",
-    "prepare-release": "if [[ \"$(docker images -q megabytelabs/updater:latest 2> /dev/null)\" == '' ]] || [[ \"$(docker images -q megabytelabs/updater:slim 2> /dev/null)\" == '' ]]; then run-s build; fi && run-s update test build update test version",
-    "publish": "run-s publish:*",
-    "publish:login": "docker login",
-    "publish:prepare": "npx lint-staged && run-s prepare-release && git push --follow-tags origin master && run-s build && (if [ -f slim.report.json ]; then (git add slim.report.json && git commit -m 'chore(slim-report) Adding slim.report.json.' && git push origin master); fi)",
-    "publish:publish": "docker push megabytelabs/updater:latest && docker push megabytelabs/updater:${npm_package_version}",
-    "publish:publish-slim": "docker push megabytelabs/updater:slim && docker push megabytelabs/updater:${npm_package_version}-slim",
-    "publish:readme": "docker pushrm megabytelabs/updater",
-    "publish:readme-description": "SHORT_DESCRIPTION=$(jq -r '.dockerhub_description' .blueprint.json) && PACKAGE_SLUG=$(jq -r '.slug_full' .blueprint.json) && docker pushrm --short \"${SHORT_DESCRIPTION}\" megabytelabs/${PACKAGE_SLUG}",
-    "scan": "run-s build scan:*",
-    "scan:_login": "docker scan --accept-license --login",
-    "scan:latest": "docker scan --file Dockerfile megabytelabs/updater:latest",
-    "scan:slim": "docker scan --file Dockerfile megabytelabs/updater:slim",
-    "shell": "docker run --cap-drop=ALL -it -v \"${PWD}:/work\" -w /work --entrypoint /bin/sh --rm megabytelabs/updater:latest",
-    "shell:slim": "docker run --cap-drop=ALL -v \"${PWD}:/work\" -w /work -it --entrypoint /bin/sh --rm megabytelabs/updater:slim",
-    "sizes": "docker images",
-    "start": "run-s update",
-    "test": "run-s test:*",
-    "test:docker": "docker run -v ${PWD}:/work -w /work hadolint/hadolint:latest hadolint Dockerfile",
-    "test:preprettier": "if [ -f slim.report.json ]; then prettier --write slim.report.json; fi && if [ -f .blueprint.json ]; then prettier --write .blueprint.json; fi",
-    "test:prettier": "prettier --list-different .",
-    "test:shellcheck": "find . -type d \\( -name .cache -o -name .git -o -name .modules  -o -name node_modules -o -name .husky -o -name slim_test \\) -prune -o -type f \\( -name \\*.sh -o -name \\*.sh.j2 \\) -print0 | xargs -0 -r -n1 shellcheck",
-    "update": "bash .start.sh && cp ./.modules/dockerfile/.start.sh .start.sh",
-    "version": "standard-version -a --no-verify"
+    "build": "npm run build:latest && npm run build:slim",
+    "build:latest": "task docker:build:fat",
+    "build:slim": "task docker:build:slim"
+  },
+  "blueprint": {
+    "description": "A general-purpose, compact Dockerfile project that includes various programs required for synchronizing project's with upstream repositories",
+    "dockerSlimCommand": "--http-probe=false --exec 'bash start.sh && task start' --include-exe-file 'exe.txt' --mount \"$PWD/test-output:/work\" --workdir '/work'",
+    "title": "Megabyte Labs Updater Image",
+    "overview": "This project is home to a Dockerfile configuration for building a slim image that is capable of running a wide array of tasks defined in Megabyte Labs' [Bodega](https://github.com/ProfessorManhattan/Bodega) tasks (defined in Taskfile.yml). Bodega is used as a task runner that automatically installs dependencies. In each project in the Megabyte Labs ecosystem, a Taskfile.yml is included that defines standard build, test, compile, and publish commands. This image includes a lot of the software that Bodega would automatically install when running repository update operations to reduce CI time. This repository comes in two variants, a standard image and an image slimmed down with [DockerSlim](https://github.com/docker-slim/docker-slim). Both of the images include standard software that is used when running update operations like:\n\n* jq\n* yq\n* Go\n* Various global NPM packages (like ESLint)\n*Python 3\n*A whole lot more (our update / upstream repository synchronization process is quite thorough)",
+    "repository": {
+      "github": "https://github.com/ProfessorManhattan/docker-updater",
+      "gitlab": "https://gitlab.com/megabyte-labs/docker/ci-pipeline/updater"
+    },
+    "name": "Updater",
+    "slug": "updater",
+    "group": "docker",
+    "subgroup": "ci-pipeline"
   },
   "config": {
     "commitizen": {
-      "path": "cz-conventional-changelog"
+      "path": "git-cz-emoji"
     }
   },
-  "devDependencies": {
-    "@megabytelabs/prettier-config": "^1.2.17",
-    "consola": "^2.15.3",
-    "cspell": "^5.3.3",
-    "cz-conventional-changelog": "^3.3.0",
-    "husky": "^5.1.1",
-    "lint-staged": "^11.0.0",
-    "markdown-link-check": "^3.8.7",
-    "npm-run-all": "^4.1.5",
-    "npm-scripts-info": "^0.3.9",
-    "prettier": "^2.1.1",
-    "prettier-package-json": "^2.1.3",
-    "prettier-plugin-sh": "^0.6.0",
-    "shellcheck": "^1.0.0",
-    "standard-version": "^9.0.0"
-  },
+  "devDependencies": {},
   "keywords": [
     "alias",
     "docker",
@@ -102,22 +70,6 @@
   },
   "prettier": "@megabytelabs/prettier-config",
   "scripts-info": {
-    "build": "Build the regular Docker image and then build the slim image (if the project supports it)",
-    "build:latest": "Build the regular Docker image",
-    "build:slim": "Build a compact Docker image with DockerSlim",
-    "commit": "The preferred way of running git commit (instead of git commit, we prefer you run 'npm run commit' in the root of this repository)",
-    "fix": "Automatically fix formatting errors",
-    "info": "Logs descriptions of all the npm tasks",
-    "misc:markdown-links": "Checks markdown files for broken links",
-    "prepare-release": "Builds and updates the project and then updates the CHANGELOG with commits made using 'npm run commit'. Updates the project to be ready for release",
-    "publish": "Creates a new release and uploads the release to DockerHub",
-    "scan": "Scans images for vulnerabilities",
-    "shell": "Run the Docker container and open a shell",
-    "shell:slim": "Runs the Docker slim image container and open a shell",
-    "sizes": "List the sizes of the Docker images on the system",
-    "test": "Validates the Dockerfile, tests the Docker image, and performs project linting",
-    "update": "Runs .start.sh to automatically update meta files and documentation",
-    "version": "Used by 'npm run prepare-release' to update the CHANGELOG and app version"
   },
   "standard-version": {
     "scripts": {

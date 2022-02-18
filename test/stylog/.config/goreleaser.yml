@@ -1,0 +1,147 @@
+---
+announce:
+  linkedin:
+    enabled: false
+    message_template: 'Styled Logger {{ .Tag }} is out! Check it out at {{ .ReleaseURL }}.'
+  reddit:
+    application_id: O3UxD7HlPpcN88gpEkPIXQ
+    enabled: false
+    title_template: 'Styled Logger {{ .Tag }} was just released!'
+    url_template: 'https://github.com/ProfessorManhattan/styled-logger/releases/tag/{{ .Tag }}'
+    username: tsgangster
+  skip: '{{gt .Patch 0}}'
+  slack:
+    channel: '#go-lang'
+    enabled: true
+    icon_url: 'https://gitlab.com/megabyte-labs/misc/assets/-/raw/master/logo/megabytelabs-color-icon-350x350.png'
+    message_template: '**[Styled Logger](https://github.com/ProfessorManhattan/styled-logger)** {{.Tag}} is out! Check it out at {{.ReleaseURL}}.'
+    username: Megabyte Labs Release Notification Bot
+  teams:
+    color: '#1DA1F2'
+    enabled: false
+    icon_url: 'https://gitlab.com/megabyte-labs/misc/assets/-/raw/master/logo/megabytelabs-color-icon-350x350.png'
+    message_template: 'Styled Logger {{ .Tag }} is out! Check it out at {{ .ReleaseURL }}.'
+    title_template: 'Styled Logger {{ .Tag }} has been released!'
+  twitter:
+    enabled: false
+    message_template: 'Styled Logger {{ .Tag }} is out with new features! Check it out at {{ .ReleaseURL }}.'
+
+archives:
+  - files:
+      - README.md
+      - LICENSE
+      - completion/**/*
+    format_overrides:
+      - format: zip
+        goos: windows
+    replacements:
+      darwin: macos
+
+before:
+  hooks:
+    - go mod tidy
+
+brews:
+  - description: A CLI logger that outputs emojified log messages and also acts as a CLI for Glamour (gorgeous terminal markdown rendering library)
+    folder: Formula
+    homepage: 'https://megabyte.space'
+    install: |-
+      bin.install "stylog"
+      bash_completion.install "completion/bash/stylog.bash" => "stylog"
+      zsh_completion.install "completion/zsh/_stylog" => "_stylog"
+      fish_completion.install "completion/fish/stylog.fish"
+    license: MIT
+    name: stylog
+    tap:
+      name: homebrew-tap
+      owner: installdoc
+    test: ''
+
+build:
+  binary: stylog
+  env:
+    - CGO_ENABLED=0
+  goarch:
+    - 386
+    - amd64
+    - arm
+    - arm64
+  goarm:
+    - 6
+  goos:
+    - windows
+    - darwin
+    - linux
+  ignore:
+    - goarch: 386
+      goos: darwin
+  ldflags:
+    # yamllint disable-line rule:line-length
+    - '-s -w -X "main.version={{.Version}}" -X "main.commit={{.Commit}}" -X "main.date={{.Date}}" -X "main.builtBy=Megabyte Labs" -X "main.goversion={{.Env.GOVERSION}}"'
+  main: main.go
+
+checksum:
+  name_template: CHECKSUMS.txt
+
+dist: build
+
+dockers:
+  - build_flag_templates:
+      - --platform=linux/amd64
+    dockerfile: .config/Dockerfile
+    goarch: amd64
+    goos: linux
+    image_templates:
+      - 'megabytelabs/{{.ProjectName}}'
+      - 'megabytelabs/{{.ProjectName}}:{{.Tag}}'
+      - 'megabytelabs/{{.ProjectName}}:v{{ .Major }}'
+    use: buildx
+
+gomod:
+  proxy: true
+
+nfpms:
+  - description: A CLI logger that outputs emojified log messages and also acts as a CLI for Glamour (gorgeous terminal markdown rendering library)
+    formats:
+      - apk
+      - deb
+      - rpm
+    homepage: 'https://megabyte.space'
+    id: default
+    license: MIT
+    maintainer: Megabyte Labs <help@megabyte.space>
+    recommends:
+      - git
+    replacements:
+      darwin: macos
+    suggests:
+      - docker
+      - jq
+      - yq
+    vendor: Megabyte LLC
+
+project_name: Styled-Logger
+
+release:
+  disable: true
+
+snapcrafts:
+  - confinement: classic
+    # yamllint disable-line rule:line-length
+    description: 'This project was built to provide styled terminal log messages from within shell scripts (mainly housed in a [Task](https://github.com/go-task/task) project). It supports basic log message types that are prepended with an emoji and also provides the capability of logging markdown files styled by [Glamour](https://github.com/charmbracelet/glamour).'
+    extra_files:
+      - destination: completion
+        mode: 0755
+        source: completion
+    id: default
+    license: MIT
+    publish: true
+    replacements:
+      darwin: macos
+    summary: A CLI logger that outputs emojified log messages and also acts as a CLI for Glamour (gorgeous terminal markdown rendering library)
+
+snapshot:
+  name_template: '{{.Tag}}'
+
+universal_binaries:
+  - replace: true

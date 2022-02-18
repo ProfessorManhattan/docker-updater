@@ -1,12 +1,4 @@
-[submodule ".modules/dockerfile"]
-	path = .modules/dockerfile
-	url = https://gitlab.com/megabyte-space/common/dockerfile.git
+[submodule ".modules/homebrew"]
 	branch = master
-[submodule ".modules/shared"]
-	path = .modules/shared
-	url = https://gitlab.com/megabyte-space/common/shared.git
-	branch = master
-[submodule ".modules/docs"]
-	path = .modules/docs
-	url = https://gitlab.com/megabyte-labs/documentation/dockerfile.git
-	branch = master
+	path = .modules/homebrew
+	url = https://github.com/Homebrew/brew.git
