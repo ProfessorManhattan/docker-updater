@@ -1,4 +1,0 @@
-[submodule ".modules/homebrew"]
-	branch = master
-	path = .modules/homebrew
-	url = https://github.com/Homebrew/brew.git
