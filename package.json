@@ -177,8 +177,6 @@
   },
   "scripts": {
     "build": "task docker:build",
-    "build:latest": "task docker:build:fat",
-    "build:slim": "task docker:build:slim",
     "bump": "npm run build && npm version patch --no-commit-hooks --no-git-tag-version --force && npm publish",
     "help": "task --menu",
     "prepare": "task common:husky",
