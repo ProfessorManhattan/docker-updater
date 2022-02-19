@@ -8,7 +8,7 @@ readme = "README.md"
 homepage = "https://megabyte.space"
 documentation = "https://megabyte.space/docs/docker/ci"
 repository = "https://github.com/ProfessorManhattan/docker-updater"
-keywords = ["alias", "docker", "dockerfile", "documentation", "megabytelabs", "professormanhattan", "updater"]
+keywords = ["alias", "ci", "container", "docker", "dockerfile", "documentation", "github", "github-actions", "gitlab", "gitlab-ci", "mblabs", "megabytelabs", "pipeline", "professormanhattan", "updater", "virtualization", "washingtondc"]
 include = ["docs/CHANGELOG.md", "LICENSE"]
 classifiers = [
   "Development Status :: 4 - Beta",

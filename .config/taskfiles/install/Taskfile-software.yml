@@ -343,6 +343,15 @@ tasks:
     cmds:
       - task: common:windows
 
+  docker-slim:
+    run: once
+    cmds:
+      - task: brew:formulae
+        vars:
+          FORMULAE: docker-slim
+    status:
+      - type docker-slim > /dev/null
+
   dockle:
     run: once
     cmds:
@@ -709,6 +718,15 @@ tasks:
       - task: :install:install-doctor
         vars:
           SOFTWARE: vmware
+
+  yarn:
+    run: once
+    cmds:
+      - task: brew:formulae
+        vars:
+          FORMULAE: yarn
+    status:
+      - type yarn > /dev/null
 
   yq:
     run: once

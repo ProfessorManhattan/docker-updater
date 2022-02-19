@@ -121,6 +121,9 @@ tasks:
   docker:
     deps:
       - :install:software:docker
+    vars:
+      PWD:
+        sh: echo "${PWD}/"
     desc: Lint Dockerfiles using Hadolint (requires Docker)
     hide:
       sh: '[ ! -f Dockerfile ]'
@@ -159,7 +162,7 @@ tasks:
       - |
         .config/log info 'Linting {{if .CLI_ARGS}}{{.CLI_ARGS}}{{else}}all Dockerfiles{{end}} with a Hadolint Docker image'
         {{if .CLI_ARGS}}
-          docker run -v "$PWD:/work" -w /work megabytelabs/hadolint:slim {{.CLI_ARGS}}
+          docker run -v "$PWD:/work" -w /work megabytelabs/hadolint:slim {{.CLI_ARGS | replace .PWD ""}}
         {{else}}
           find . -type d \( {{.IGNORE_FOLDERS}} \) -prune -o -type f \( -name Dockerfile -o \
             -name Dockerfile.j2 \) -print0 | xargs -0 -r -n1 docker run -v "$PWD:/work" -w /work \
@@ -224,11 +227,60 @@ tasks:
         while read LINE; do
           TMP="$(mktemp)";
           ESLINT_RULE="$(echo "$LINE" | grep 'errors ' | sed 's/.*rule:\ //')";
-          if [ -n "$ESLINT_RULE" ]; then
+          if [ -n "$ESLINT_RULE" ] && [ "$ESLINT_RULE" != 'syntax error' ]; then
             jq --arg rule "$ESLINT_RULE" '.eslintConfig.rules[$rule] = "warn"' package.json > "$TMP";
             mv "$TMP" package.json;
           fi;
         done < "$ESLINT_TMP"
+
+  go:
+    desc: Lint Go with all available Go linters
+    summary: |
+      # Lint Go Files
+
+      This task will lint Go files with the following linters:
+
+      * [go]()
+
+      If you would like to skip linting the whole project and instead lint an
+      individual file, then you can do so by passing the file path as a CLI
+      parameter like so:
+
+      **Example linting individual file:**
+      `task lint:go -- path/filename.go`
+    cmds:
+      - task: go:vet
+
+  go:vet:
+    deps:
+      - :install:software:go
+    vars:
+      GO_VET_FLAGS:
+        sh: |
+          if [ -f .variables.json ]; then
+            echo " $(jq -r '.goVetFlags' .variables.json)"
+          else
+            echo " $(jq -r '.blueprint.goVetFlags' package.json | sed 's/null//')"
+          fi
+    summary: |
+      # Inspect with Go Vet
+
+      This task inspects the source code with `go vet`.
+
+      If you need to add flags to the command, you can specify them in
+      `blueprint.goVetFlags`. `goVetFlags` can also be set in upstream variable
+      sources but this lint command does not force the generation of the
+      `.variables.json` file. If it cannot read `goVetFlags` in the `.variables.json` file
+      (perhaps because it was not generated yet), it will read `.blueprint.goVetFlags`
+      from `package.json`.
+
+      If you would like to run `go vet` on a specific path then you can pass the path
+      in as a CLI argument.
+
+      **Example of running `go vet` on a specific path:**
+      `task lint:go:vet -- path/to/file.go`
+    cmds:
+      - go vet{{.GO_VET_FLAGS}}{{if .CLI_ARGS}} {{.CLI_ARGS}}{{end}}
 
   js:
     deps:
@@ -289,6 +341,24 @@ tasks:
             packer validate "$TEMPLATE"
           done
         {{end}}
+
+  php:
+    desc: Lint PHP with all available PHP linters
+    summary: |
+      # Lint PHP Files
+
+      This task will lint PHP files with the following linters:
+
+      * [go]()
+
+      If you would like to skip linting the whole project and instead lint an
+      individual file, then you can do so by passing the file path as a CLI
+      parameter like so:
+
+      **Example linting individual file:**
+      `task lint:php -- path/filename.php`
+    cmds:
+      - task: :donothing
 
   prettier:
     deps:
