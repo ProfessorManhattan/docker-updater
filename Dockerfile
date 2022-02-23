@@ -61,7 +61,8 @@ RUN sudo chown megabyte:megabyte /home/linuxbrew/.linuxbrew \
   && rm -rf .cache \
   && brew install go
 
-RUN brew install exiftool \
+RUN brew install dasel \
+  && brew install exiftool \
   && brew install gh \
   && brew install glab \
   && brew install go \
