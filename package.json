@@ -211,10 +211,8 @@
     ],
     "peerDependencyRules": {
       "ignoreMissing": [
-        "@typescript-eslint/eslint-plugin",
         "eslint",
-        "prettier",
-        "typescript"
+        "prettier"
       ]
     }
   },
