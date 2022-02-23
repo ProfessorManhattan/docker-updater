@@ -45,7 +45,7 @@ tasks:
         cd ./{{.SHARED_FOLDER}}/common/.config/docs
         rm -rf .git .config .github .gitlab .vscode .editorconfig .gitignore .gitlab-ci.yml
         rm -rf LICENSE Taskfile.yml package-lock.json package.json poetry.lock pyproject.toml
-        rm -rf docs common.json pnpm-lock.yaml start.sh logo.png
+        rm -rf docs common.json pnpm-lock.yaml start.sh logo.png yarn.lock local/yarn.lock local/package-lock.json
 
   combine:
     log:
@@ -63,22 +63,18 @@ tasks:
         done
 
   copy:
+    deps:
+      - :install:software:yq
     log:
       error: Error removing `.config/`
       start: Removing `.config/`
       success: Removed `.config/`
     cmds:
-      - mv .config .config-old
+      - mv .gitlab-ci.yml old.gitlab-ci.yml
       - task: copy:begin
       - |
-        if [ -f .config-old/package-lock.json ]; then
-          cp .config-old/package-lock.json .config/package-lock.json
-        fi
-      - |
-        if [ -f .config-old/yarn.lock ]; then
-          cp .config-old/yarn.lock .config/yarn.lock
-        fi
-      - rm -rf .config-old
+        yq eval-all -i 'select(fileIndex == 0) * select(fileIndex == 1)' old.gitlab-ci.yml .gitlab-ci.yml
+        mv old.gitlab-ci.yml .gitlab-ci.yml
 
   copy:begin:
     deps:

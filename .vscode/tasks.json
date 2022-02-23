@@ -102,7 +102,7 @@
       "command": "bash .config/scripts/start.sh && task docker:build:slim"
     },
     {
-      "label": "(docker:publish): Publish the Docker images (using `Dockerfile*.test.yml` files)",
+      "label": "(docker:publish): Publish the Docker images (using `Docker*.test.yml` files)",
       "type": "shell",
       "command": "bash .config/scripts/start.sh && task docker:publish"
     },
@@ -170,6 +170,11 @@
       "label": "(fix:shellcheck): Automatically apply fixes to `.sh` and `.sh.j2` files using Shellcheck",
       "type": "shell",
       "command": "bash .config/scripts/start.sh && task fix:shellcheck"
+    },
+    {
+      "label": "(fix:toml): Format `.toml` files by alphabetizing and flattening",
+      "type": "shell",
+      "command": "bash .config/scripts/start.sh && task fix:toml"
     },
     {
       "label": "(fix:yaml): Auto-format and sort YML files",
@@ -430,6 +435,11 @@
       "label": "(prepare): Prepares the project for the normal start command",
       "type": "shell",
       "command": "bash .config/scripts/start.sh && task prepare"
+    },
+    {
+      "label": "(publish): Publish a semantic release via `semantic-release`",
+      "type": "shell",
+      "command": "bash .config/scripts/start.sh && task publish"
     },
     {
       "label": "(publish:android:beta): Publishes Android app to Firebase beta channel",

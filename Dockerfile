@@ -103,7 +103,7 @@ ARG VERSION
 LABEL maintainer="Megabyte Labs <help@megabyte.space"
 LABEL org.opencontainers.image.authors="Brian Zalewski <brian@megabyte.space>"
 LABEL org.opencontainers.image.created=$BUILD_DATE
-LABEL org.opencontainers.image.description="A general-purpose, compact Dockerfile project that includes various programs required for synchronizing projectLABEL org.opencontainers.image.description="A general-purpose, compact Dockerfile project that includes various programs required for synchronizing projectLABEL org.opencontainers.image.description="A general-purpose, compact Dockerfile project that includes various programs required for synchronizing projectLABEL org.opencontainers.image.description="Node.js files/configurations that support the creation of Dockerfiles"#x27;s with upstream repositories"#x27;s with upstream repositories"#x27;s with upstream repositories"
+LABEL org.opencontainers.image.description="A general-purpose, compact Dockerfile project that includes various programs required for synchronizing projects with upstream repositories"
 LABEL org.opencontainers.image.documentation="https://github.com/ProfessorManhattan/docker-updater/blob/master/README.md"
 LABEL org.opencontainers.image.licenses="MIT"
 LABEL org.opencontainers.image.revision=$REVISION

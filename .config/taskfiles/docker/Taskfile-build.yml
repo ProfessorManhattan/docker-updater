@@ -35,7 +35,8 @@ tasks:
           {{else}}
           echo "codeclimate-$(jq -r '.blueprint.slug' package.json)"
           {{end}}
-      VERSION: latest
+      VERSION:
+        sh: jq -r '.version' package.json
     log:
       error: Error building `{{.DOCKER_IMAGE}}:{{.VERSION}}`
       start: Building Docker container `{{.DOCKER_IMAGE}}:{{.VERSION}}` (also tagged as latest)
@@ -47,9 +48,6 @@ tasks:
       - docker build --build-arg BUILD_DATE={{.BUILD_DATE}} --build-arg REVISION={{.REVISION}} --build-arg VERSION={{.VERSION}}
         --tag {{.DOCKER_IMAGE}}:latest --tag {{.DOCKER_IMAGE}}:{{.VERSION}}{{if eq .REPOSITORY_SUBTYPE "codeclimate"}}{{if ne .SLUG "false"}}
         --tag codeclimate/{{.SLUG}}:latest{{end}}{{end}}{{if .CLI_ARGS}} --target {{.CLI_ARGS}}{{end}} .
-    sources:
-      - Dockerfile
-      - package.json
 
   slim:
     deps:
@@ -71,9 +69,6 @@ tasks:
       - task: fat
       - task: slim:command
       - task: slim:finish
-    sources:
-      - Dockerfile
-      - package.json
 
   slim:command:
     vars:
@@ -104,9 +99,6 @@ tasks:
         docker-slim build --tag {{.DOCKER_IMAGE}}:slim
         {{if eq .REPOSITORY_SUBTYPE "codeclimate"}}--tag codeclimate/codeclimate-{{.SLUG}}:slim {{end}}
         {{.SLIM_COMMAND | replace "'" "\""}} {{.DOCKER_IMAGE}}:latest
-    sources:
-      - Dockerfile
-      - package.json
 
   slim:finish:
     deps:
@@ -122,13 +114,13 @@ tasks:
       success: Formatted `slim.report.json` with Prettier
     cmds:
       - '{{.NPX_HANDLE}}prettier --write slim.report.json > /dev/null'
-    sources:
-      - slim.report.json
+      - mv slim.report.json docs/slim.report.json
 
   slim:sizes:
     cmds:
       - task: slim:sizes:assets
       - task: slim:sizes:calculate
+      - task: slim:sizes:clean
 
   slim:sizes:assets:
     deps:
@@ -143,7 +135,7 @@ tasks:
       - |
         function zipUp() {
           docker save "{{.DOCKER_IMAGE}}:$1" > "{{.SLUG}}-$1.tar"
-          gzip "{{.SLUG}}-$1.tar"
+          gzip -f "{{.SLUG}}-$1.tar"
         }
         zipUp "latest" &
         zipUp "slim" &
@@ -155,6 +147,8 @@ tasks:
     vars:
       DOCKER_IMAGE_SLUG:
         sh: echo "{{if .CLI_ARGS}}{{.CLI_ARGS}}{{else}}$(jq -r '.blueprint.slug' package.json){{end}}"
+      PREVIOUS_REGULAR_SIZE:
+        sh: jq --arg slug '{{.DOCKER_IMAGE_SLUG}}' -r '.blueprint.dockerLatestSize[$slug]' package.json
       PREVIOUS_SLIM_SIZE:
         sh: jq --arg slug '{{.DOCKER_IMAGE_SLUG}}' -r '.blueprint.dockerSlimSize[$slug]' package.json
       REGULAR_SIZE:
@@ -170,14 +164,18 @@ tasks:
         jq --arg a '{{.SLIM_SIZE}}' --arg b '{{.REGULAR_SIZE}}' --arg slug '{{.DOCKER_IMAGE_SLUG}}' \
         '.blueprint.dockerSlimSize[$slug] = $a | .blueprint.dockerLatestSize[$slug] = $b' package.json > "$TMP"
         mv "$TMP" package.json
-      - |
-        if [ -f "{{.DOCKER_IMAGE_SLUG}}-latest.tar.gz" ]; then
-          rm "{{.DOCKER_IMAGE_SLUG}}-latest.tar.gz"
-        fi
-      - |
-        if [ -f "{{.DOCKER_IMAGE_SLUG}}-slim.tar.gz" ]; then
-          rm "{{.DOCKER_IMAGE_SLUG}}-slim.tar.gz"
-        fi
+      - task: slim:sizes:clean
       - task: :common:update:update
     status:
       - '[[ "{{.PREVIOUS_SLIM_SIZE}}" == "{{.SLIM_SIZE}}" ]]'
+      - '[[ "{{.PREVIOUS_REGULAR_SIZE}}" == "{{.REGULAR_SIZE}}" ]]'
+
+  slim:sizes:clean:
+    cmds:
+      - rm -f *-latest.tar.gz
+      - rm -f *-latest.tar
+      - rm -f *-slim.tar.gz
+      - rm -f *-slim.tar
+    status:
+      - >
+        ! test -n "$(find . -maxdepth 1 -name '*.tar.gz' -print -quit)"
