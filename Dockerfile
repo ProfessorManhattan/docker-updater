@@ -2,6 +2,9 @@ FROM ubuntu:20.04
 
 ENV container docker
 ENV DEBIAN_FRONTEND noninteractive
+ENV HOMEBREW_NO_ANALYTICS=1
+ENV HOMEBREW_NO_AUTO_UPDATE=1
+ENV USERNAME="megabyte"
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends software-properties-common \
@@ -31,17 +34,17 @@ RUN apt-get update \
       tzdata \
       uuid-runtime \
   && localedef -i en_US -f UTF-8 en_US.UTF-8 \
-  && useradd -m -s /bin/bash megabyte \
-  && echo 'megabyte ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+  && useradd -m -s /bin/bash "${USERNAME}" \
+  && echo "${USERNAME}"' ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
-USER megabyte
-COPY --chown=megabyte:megabyte .modules/homebrew /home/linuxbrew/.linuxbrew/Homebrew/
-ENV GOPATH "/home/megabyte/.local/go"
+USER ${USERNAME}
+COPY --chown=${USERNAME}:${USERNAME} .modules/homebrew /home/linuxbrew/.linuxbrew/Homebrew/
+ENV GOPATH "/home/${USERNAME}/.local/go"
 ENV GOROOT "/home/linuxbrew/.linuxbrew/opt/go/libexec"
 ENV PATH "${GOPATH}/bin:${GOROOT}/bin:/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:${PATH}"
-WORKDIR /home/megabyte
+WORKDIR /home/${USERNAME}
 
-RUN sudo chown megabyte:megabyte /home/linuxbrew/.linuxbrew \
+RUN sudo chown ${USERNAME}:${USERNAME} /home/linuxbrew/.linuxbrew \
     && mkdir -p \
      ../linuxbrew/.linuxbrew/bin \
      ../linuxbrew/.linuxbrew/etc \
@@ -53,32 +56,32 @@ RUN sudo chown megabyte:megabyte /home/linuxbrew/.linuxbrew \
      ../linuxbrew/.linuxbrew/var/homebrew/linked \
      ../linuxbrew/.linuxbrew/Cellar \
   && ln -s ../Homebrew/bin/brew ../linuxbrew/.linuxbrew/bin/brew \
-  && HOMEBREW_NO_ANALYTICS=1 HOMEBREW_NO_AUTO_UPDATE=1 brew tap homebrew/core \
+  && brew tap homebrew/core \
   && brew install-bundler-gems \
   && brew cleanup \
   && { git -C ../linuxbrew/.linuxbrew/Homebrew config --unset gc.auto; true; } \
   && { git -C ../linuxbrew/.linuxbrew/Homebrew config --unset homebrew.devcmdrun; true; } \
-  && rm -rf .cache \
-  && brew install go
+  && rm -rf .cache
 
-RUN brew install dasel \
-  && brew install exiftool \
-  && brew install gh \
-  && brew install glab \
-  && brew install go \
-  && brew install jq \
-  && brew install node \
-  && brew install poetry \
-  && brew install python@3.10 \
-  && brew install hudochenkov/sshpass/sshpass \
-  && brew install yq \
+RUN brew install \
+    dasel \
+    exiftool \
+    gh \
+    glab \
+    go \
+    jq \
+    node \
+    poetry \
+    python@3.10 \
+    hudochenkov/sshpass/sshpass \
+    yq \
   && curl -OL https://github.com/go-task/task/releases/latest/download/task_linux_amd64.tar.gz \
   && tar -xzvf task_linux_amd64.tar.gz \
   && sudo mv task /usr/local/bin/task \
   && sudo chmod +x /usr/local/bin/task \
   && npm install -g \
       @appnest/readme@latest \
-      cz-emoji \
+      cz-emoji@latest \
       esbuild@latest \
       eslint@latest \
       hbs-cli@latest \
@@ -86,7 +89,7 @@ RUN brew install dasel \
       liquidjs@latest \
       pnpm@latest \
       prettier@latest \
-      remark-cli
+      remark-cli@latest
 
 RUN go install github.com/marcosnils/bin@latest \
   && go install github.com/goreleaser/goreleaser@latest \
