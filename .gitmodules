@@ -1,3 +1,0 @@
-[submodule ".modules/homebrew"]
-	path = .modules/homebrew
-	url = https://github.com/Homebrew/brew

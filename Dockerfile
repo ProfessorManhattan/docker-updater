@@ -2,9 +2,11 @@ FROM ubuntu:20.04
 
 ENV container docker
 ENV DEBIAN_FRONTEND noninteractive
+ENV GOPATH="/home/megabyte/.local/go"
+ENV GOROOT="/home/linuxbrew/.linuxbrew/opt/go/libexec"
 ENV HOMEBREW_NO_ANALYTICS=1
 ENV HOMEBREW_NO_AUTO_UPDATE=1
-ENV USERNAME="megabyte"
+ENV PATH="${GOPATH}/bin:${GOROOT}/bin:/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:${PATH}"
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends software-properties-common \
@@ -20,6 +22,7 @@ RUN apt-get update \
       g++ \
       gawk \
       git \
+      jq \
       less \
       libz-dev \
       locales \
@@ -34,45 +37,43 @@ RUN apt-get update \
       tzdata \
       uuid-runtime \
   && localedef -i en_US -f UTF-8 en_US.UTF-8 \
-  && useradd -m -s /bin/bash "${USERNAME}" \
-  && echo "${USERNAME}"' ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+  && useradd -m -s /bin/bash megabyte \
+  && echo 'megabyte ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
-USER ${USERNAME}
-COPY --chown=${USERNAME}:${USERNAME} .modules/homebrew /home/linuxbrew/.linuxbrew/Homebrew/
-ENV GOPATH "/home/${USERNAME}/.local/go"
-ENV GOROOT "/home/linuxbrew/.linuxbrew/opt/go/libexec"
-ENV PATH "${GOPATH}/bin:${GOROOT}/bin:/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:${PATH}"
-WORKDIR /home/${USERNAME}
+USER megabyte
 
-RUN sudo chown ${USERNAME}:${USERNAME} /home/linuxbrew/.linuxbrew \
-    && mkdir -p \
-     ../linuxbrew/.linuxbrew/bin \
-     ../linuxbrew/.linuxbrew/etc \
-     ../linuxbrew/.linuxbrew/include \
-     ../linuxbrew/.linuxbrew/lib \
-     ../linuxbrew/.linuxbrew/opt \
-     ../linuxbrew/.linuxbrew/sbin \
-     ../linuxbrew/.linuxbrew/share \
-     ../linuxbrew/.linuxbrew/var/homebrew/linked \
-     ../linuxbrew/.linuxbrew/Cellar \
+COPY --chown=megabyte:megabyte .modules/homebrew /home/linuxbrew/.linuxbrew/Homebrew/
+
+WORKDIR /home/megabyte
+
+RUN sudo chown megabyte:megabyte /home/linuxbrew/.linuxbrew \
+  && mkdir -p \
+    ../linuxbrew/.linuxbrew/bin \
+    ../linuxbrew/.linuxbrew/etc \
+    ../linuxbrew/.linuxbrew/include \
+    ../linuxbrew/.linuxbrew/lib \
+    ../linuxbrew/.linuxbrew/opt \
+    ../linuxbrew/.linuxbrew/sbin \
+    ../linuxbrew/.linuxbrew/share \
+    ../linuxbrew/.linuxbrew/var/homebrew/linked \
+    ../linuxbrew/.linuxbrew/Cellar \
   && ln -s ../Homebrew/bin/brew ../linuxbrew/.linuxbrew/bin/brew \
   && brew tap homebrew/core \
   && brew install-bundler-gems \
   && brew cleanup \
   && { git -C ../linuxbrew/.linuxbrew/Homebrew config --unset gc.auto; true; } \
   && { git -C ../linuxbrew/.linuxbrew/Homebrew config --unset homebrew.devcmdrun; true; } \
-  && rm -rf .cache
-
-RUN brew install \
+  && rm -rf .cache \
+  && brew install \
     dasel \
     exiftool \
     gh \
     glab \
     go \
-    jq \
     node \
     poetry \
     python@3.10 \
+    snapcraft \
     hudochenkov/sshpass/sshpass \
     yq \
   && curl -OL https://github.com/go-task/task/releases/latest/download/task_linux_amd64.tar.gz \
@@ -80,22 +81,26 @@ RUN brew install \
   && sudo mv task /usr/local/bin/task \
   && sudo chmod +x /usr/local/bin/task \
   && npm install -g \
-      @appnest/readme@latest \
-      cz-emoji@latest \
-      esbuild@latest \
-      eslint@latest \
-      hbs-cli@latest \
-      leasot@latest \
-      liquidjs@latest \
-      pnpm@latest \
-      prettier@latest \
-      remark-cli@latest
-
-RUN go install github.com/marcosnils/bin@latest \
+    @appnest/readme@latest \
+    cz-emoji@latest \
+    esbuild@latest \
+    eslint@latest \
+    hbs-cli@latest \
+    leasot@latest \
+    liquidjs@latest \
+    pnpm@latest \
+    prettier@latest \
+    remark-cli@latest \
+  && go install github.com/marcosnils/bin@latest \
   && go install github.com/goreleaser/goreleaser@latest \
-  && go install github.com/goreleaser/nfpm/v2/cmd/nfpm@latest
-
-RUN brew install snapcraft
+  && go install github.com/goreleaser/nfpm/v2/cmd/nfpm@latest \
+  && mkdir -p "$HOME/.config/bin" \
+  && echo '{}' > "$HOME/.config/bin/config.json" \
+  && TMP="$(mktemp)" \
+  && jq '. | .default_path = "./.bin" | .bins = {}' "$HOME/.config/bin/config.json" > "$TMP" \
+  && mv "$TMP" "$HOME/.config/bin/config.json" \
+  && bin install -f github.com/edgelaboratories/fusion "$PWD/fusion" \
+  && sudo mv "$PWD/fusion" /usr/local/bin/fusion
 
 WORKDIR /work
 

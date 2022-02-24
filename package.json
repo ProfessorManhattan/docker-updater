@@ -77,7 +77,7 @@
   },
   "blueprint": {
     "description": "A general-purpose, compact Dockerfile project that includes various programs required for synchronizing projects with upstream repositories",
-    "dockerSlimCommand": "--http-probe=false --exec 'bash start.sh && task start' --include-exe-file 'local/exe.txt' --mount \"$PWD/test/androidstudio:/work\" --workdir '/work'",
+    "dockerSlimCommand": "--http-probe=false --exec 'echo $HOME && bash start.sh && task start' --include-exe-file 'local/exe.txt' --mount \"$PWD/test/androidstudio:/work\" --workdir '/work'",
     "github_id": "R_kgDOG3t0_w",
     "gitlab_group_id": "11679983",
     "gitlab_project_id": "26438163",
