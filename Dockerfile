@@ -112,7 +112,6 @@ RUN curl -sSL https://github.com/go-task/task/releases/latest/download/task_linu
   && sudo chmod +x /usr/local/bin/task \
   && npm install -g \
     @appnest/readme@latest \
-    cz-emoji@latest \
     esbuild@latest \
     eslint@latest \
     hbs-cli@latest \

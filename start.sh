@@ -10,7 +10,7 @@
 #   properly generated with them, and that all the development dependencies are installed.
 
 set -eo pipefail
-
+echo "$0"
 echo "$PATH"
 echo "$HOME"
 
