@@ -5,12 +5,11 @@ tasks:
   bin:
     run: once
     cmds:
-      - task: install
+      - task: install:go
         vars:
-          BIN: bin
+          BIN_NAME: bin
+          INSTALL_TASK: '{{.TASK}}'
           PACKAGE: github.com/marcosnils/bin@latest
-    status:
-      - type bin &> /dev/null
 
   bundle:
     deps:
@@ -19,49 +18,54 @@ tasks:
       - goreleaser
       - nfpm
 
-  get:
-    run: when_changed
-    log:
-      error: Failed to acquire Go package named `{{.PACKAGE}}`
-      start: Getting Go package named `{{.PACKAGE}}`
-      success: Retrieved Go packaged named `{{.PACKAGE}}`
+  goconvey:
+    run: once
     cmds:
-      - task: :install:software:go
-      - go get {{.PACKAGE}}
-    status:
-      - type {{.BIN}} > /dev/null
+      - task: install:go
+        vars:
+          BIN_NAME: goconvey
+          INSTALL_TASK: '{{.TASK}}'
+          PACKAGE: github.com/smartystreets/goconvey@latest
 
   goofys:
     run: once
     cmds:
-      - task: install
+      - task: install:go
         vars:
-          BIN: goofys
+          BIN_NAME: goofys
+          INSTALL_TASK: '{{.TASK}}'
           PACKAGE: github.com/kahing/goofys@latest
-    status:
-      - type goofys > /dev/null
 
   goreleaser:
     run: once
+    tags:
+      - semantic
     cmds:
-      - task: install
+      - task: install:go
         vars:
-          BIN: goreleaser
+          BIN_NAME: goreleaser
+          INSTALL_TASK: '{{.TASK}}'
           PACKAGE: github.com/goreleaser/goreleaser@latest
-    status:
-      - type goreleaser > /dev/null
 
   gotestsum:
     run: once
     cmds:
-      - task: install
+      - task: install:go
         vars:
-          BIN: gotestsum
+          BIN_NAME: gotestsum
+          INSTALL_TASK: '{{.TASK}}'
           PACKAGE: gotest.tools/gotestsum@latest
-    status:
-      - type gotestsum > /dev/null
 
-  install:
+  install:go:
+    vars:
+      BIN: '{{.BIN_NAME}}'
+      INSTALL_RECORD:
+        sh: |
+          if [ -n "$RECORD_INSTALL" ]; then
+            mkdir -p local/slim
+            echo '{{.BIN}}' >> local/slim/exe.txt
+            echo '{{.INSTALL_TASK}}' >> local/slim/install.txt
+          fi
     run: when_changed
     log:
       error: Failed to install `{{.PACKAGE}}` with Go
@@ -73,12 +77,33 @@ tasks:
     status:
       - type {{.BIN}} > /dev/null
 
-  nfpm:
+  misspell:
     run: once
     cmds:
-      - task: install
+      - task: install:go
         vars:
-          BIN: nfpm
+          BIN_NAME: misspell
+          INSTALL_TASK: '{{.TASK}}'
+          PACKAGE: github.com/client9/misspell/cmd/misspell@latest
+
+  nfpm:
+    run: once
+    tags:
+      - semantic
+    cmds:
+      - task: install:go
+        vars:
+          BIN_NAME: nfpm
+          INSTALL_TASK: '{{.TASK}}'
           PACKAGE: github.com/goreleaser/nfpm/v2/cmd/nfpm@latest
-    status:
-      - type nfpm > /dev/null
+
+  node-prune:
+    run: once
+    tags:
+      - semantic
+    cmds:
+      - task: install:go
+        vars:
+          BIN_NAME: node-prune
+          INSTALL_TASK: '{{.TASK}}'
+          PACKAGE: go install github.com/tj/node-prune@latest

@@ -66,6 +66,23 @@ tasks:
           glab api projects/:fullpath/protected_branches -X POST -f name=test/windows \
             -f code_owner_approval_required=true -f allow_force_push=true &> /dev/null &
         fi
+        if [[ '{{.REPOSITORY_TYPE}}' == 'packer' ]]; then
+          glab api projects/:fullpath/repository/branches -X POST -f id={{.REPO_ID}} -f branch=hyperv -f ref=master &> /dev/null &
+          glab api projects/:fullpath/protected_branches -X POST -f name=hyperv \
+            -f code_owner_approval_required=true -f allow_force_push=true &> /dev/null &
+          glab api projects/:fullpath/repository/branches -X POST -f id={{.REPO_ID}} -f branch=kvm -f ref=master &> /dev/null &
+          glab api projects/:fullpath/protected_branches -X POST -f name=kvm \
+            -f code_owner_approval_required=true -f allow_force_push=true &> /dev/null &
+          glab api projects/:fullpath/repository/branches -X POST -f id={{.REPO_ID}} -f branch=parallels -f ref=master &> /dev/null &
+          glab api projects/:fullpath/protected_branches -X POST -f name=parallels \
+            -f code_owner_approval_required=true -f allow_force_push=true &> /dev/null &
+          glab api projects/:fullpath/repository/branches -X POST -f id={{.REPO_ID}} -f branch=virtualbox -f ref=master &> /dev/null &
+          glab api projects/:fullpath/protected_branches -X POST -f name=virtualbox \
+            -f code_owner_approval_required=true -f allow_force_push=true &> /dev/null &
+          glab api projects/:fullpath/repository/branches -X POST -f id={{.REPO_ID}} -f branch=vmware -f ref=master &> /dev/null &
+          glab api projects/:fullpath/protected_branches -X POST -f name=vmware \
+            -f code_owner_approval_required=true -f allow_force_push=true &> /dev/null &
+        fi
         wait
 
   create:
@@ -96,9 +113,10 @@ tasks:
           NO_PROMPT=1 glab repo create '{{.GITLAB_PATH}}' --group '{{.GITLAB_GROUP}}' \
           --description '{{.EMOJI_START}}{{.DESCRIPTION}}{{.EMOJI_END}}' --name '{{.NAME}}' \
           {{.PROJECT_TYPE}} --tag "$(jq -r '.keywords | tostring' package.json | sed 's/\[//' | sed 's/\]//')"
+          task --list > /dev/null || (echo "ERROR: Invalid Taskfiles!" && exit 1)
           git add --all
           HUSKY=0 git commit --quiet -m "🎂 Birth" -n || true
-          git push --quiet -u --no-progress gitlab master
+          git push gitlab master
         ignore_error: true
     status:
       - '[ -z "$GITLAB_TOKEN" ] || (test -d .git && glab repo view "{{.GITLAB_PATH}}" > /dev/null)'
@@ -323,6 +341,7 @@ tasks:
       - update:meta
       - wiki
 
+    run: once
   update:meta:
     deps:
       - :install:software:glab
