@@ -69,12 +69,18 @@ RUN set -ex \
       /lib/systemd/system/getty.target
 
 COPY --chown=megabyte:megabyte .modules/homebrew /home/linuxbrew/.linuxbrew/Homebrew/
+WORKDIR /home/linuxbrew/.linuxbrew/Homebrew/
 
+RUN rm .git \
+  && git init \
+  && git remote add origin https://github.com/Homebrew/brew.git \
+  && chown megabyte:megabyte /home/linuxbrew/.linuxbrew
+
+WORKDIR /work
 USER megabyte
 
 # hadolint ignore=DL3004
-RUN sudo chown megabyte:megabyte /home/linuxbrew/.linuxbrew \
-  && mkdir -p \
+RUN mkdir -p \
     /home/linuxbrew/.linuxbrew/bin \
     /home/linuxbrew/.linuxbrew/etc \
     /home/linuxbrew/.linuxbrew/include \
@@ -90,8 +96,9 @@ RUN sudo chown megabyte:megabyte /home/linuxbrew/.linuxbrew \
   && brew cleanup \
   && { git -C /home/linuxbrew/.linuxbrew/Homebrew config --unset gc.auto; true; } \
   && { git -C /home/linuxbrew/.linuxbrew/Homebrew config --unset homebrew.devcmdrun; true; } \
-  && rm -rf .cache \
-  && brew install \
+  && rm -rf .cache
+
+RUN brew install \
     dasel \
     exiftool \
     gh \
@@ -104,34 +111,11 @@ RUN sudo chown megabyte:megabyte /home/linuxbrew/.linuxbrew \
     hudochenkov/sshpass/sshpass \
     yq
 
-# hadolint ignore=DL3004
-RUN curl -sSL https://github.com/go-task/task/releases/latest/download/task_linux_amd64.tar.gz \
-  && tar -xzvf task_linux_amd64.tar.gz \
-  && sudo mv task /usr/local/bin/task \
-  && sudo chmod +x /usr/local/bin/task \
-  && npm install -g \
-    @appnest/readme@latest \
-    esbuild@latest \
-    eslint@latest \
-    hbs-cli@latest \
-    leasot@latest \
-    liquidjs@latest \
-    pnpm@latest \
-    prettier@latest \
-    remark-cli@latest \
-  && go install github.com/marcosnils/bin@latest \
-  && go install github.com/goreleaser/goreleaser@latest \
-  && go install github.com/goreleaser/nfpm/v2/cmd/nfpm@latest \
-  && mkdir -p "$HOME/.config/bin" \
-  && echo '{}' > "$HOME/.config/bin/config.json" \
-  && TMP="$(mktemp)" \
-  && jq '. | .default_path = "./.bin" | .bins = {}' "$HOME/.config/bin/config.json" > "$TMP" \
-  && mv "$TMP" "$HOME/.config/bin/config.json" \
-  && bin install -f github.com/edgelaboratories/fusion "$PWD/fusion" \
-  && sudo mv "$PWD/fusion" /usr/local/bin/fusion \
-  && echo "export PATH=$PATH" > "$HOME/.profile" \
-  && source "$HOME/.profile" \
+RUN source "$HOME/.profile" \
   && bash start.sh
+
+# hadolint ignore=DL3004
+RUN bash start.sh
 
 VOLUME ["/sys/fs/cgroup", "/tmp", "/run"]
 
