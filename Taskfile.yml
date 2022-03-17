@@ -27,6 +27,7 @@ includes:
   git: ./.config/taskfiles/git/Taskfile.yml
   git:github: ./.config/taskfiles/git/Taskfile-github.yml
   git:gitlab: ./.config/taskfiles/git/Taskfile-gitlab.yml
+  git:gitomatic: ./.config/taskfiles/git/Taskfile-gitomatic.yml
   git:hook: ./.config/taskfiles/git/Taskfile-hook.yml
   go: ./.config/taskfiles/go/Taskfile.yml
   go:goreleaser: ./.config/taskfiles/go/Taskfile-goreleaser.yml

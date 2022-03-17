@@ -14,32 +14,52 @@ COPY bin/ /usr/local/bin/
 
 SHELL ["/bin/bash", "-eo", "pipefail", "-c"]
 # hadolint ignore=DL3003,SC2010
-RUN set -ex \
-    && chmod +x /usr/local/bin/* \
-    && apt-get update \
-    && apt-get install -y --no-install-recommends software-properties-common \
-    && add-apt-repository -y ppa:git-core/ppa \
-    && apt-get update \
-    && apt-get upgrade -y \
-    && apt-get install -y --no-install-recommends \
-      build-essential \
-      ca-certificates \
-      curl \
-      exiftool \
-      expect \
-      file \
-      g++ \
-      gawk \
-      git \
-      jq \
-      procps \
-      rsync \
-      sudo \
-  && apt-get clean \
-  && rm -Rf /usr/share/doc /usr/share/man /tmp/* /var/tmp/* \
-  && useradd -m -s /bin/bash megabyte \
-  && echo 'megabyte ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers \
-  && chown -R megabyte:megabyte ./
+RUN set -ex && \
+  chmod +x /usr/local/bin/* && \
+  apt-get update && \
+  apt-get install -y --no-install-recommends software-properties-common && \
+  add-apt-repository -y ppa:git-core/ppa && \
+  add-apt-repository -y ppa:deadsnakes/ppa && \
+  apt-get update && \
+  apt-get upgrade -y && \
+  apt-get install -y --no-install-recommends \
+  build-essential \
+  ca-certificates \
+  curl \
+  exiftool \
+  expect \
+  file \
+  g++ \
+  gawk \
+  git \
+  jq \
+  procps \
+  python3.10 \
+  rsync \
+  sudo && \
+  apt-get clean \
+  rm -Rf /usr/share/doc /usr/share/man /tmp/* /var/tmp/* && \
+  useradd -m -s /bin/bash megabyte && \
+  echo 'megabyte ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && \
+  chown -R megabyte:megabyte ./ && \
+  curl -sL https://deb.nodesource.com/setup_16.x -o /tmp/node_setup.sh && \
+  bash /tmp/node_setup.sh && \
+  curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python - && \
+  npm install -g \
+  eslint \
+  leasot \
+  liquidjs \
+  pnpm \
+  prettier \
+  readme \
+  remark \
+  synp && \
+  pip3 install \
+  ansible \
+  ansibler \
+  black \
+  mod-ansible-autodoc \
+  toml-sort
 
 USER megabyte
 
@@ -85,15 +105,15 @@ WORKDIR /work
 
 # hadolint ignore=DL3004
 RUN mkdir -p \
-    /home/linuxbrew/.linuxbrew/bin \
-    /home/linuxbrew/.linuxbrew/etc \
-    /home/linuxbrew/.linuxbrew/include \
-    /home/linuxbrew/.linuxbrew/lib \
-    /home/linuxbrew/.linuxbrew/opt \
-    /home/linuxbrew/.linuxbrew/sbin \
-    /home/linuxbrew/.linuxbrew/share \
-    /home/linuxbrew/.linuxbrew/var/homebrew/linked \
-    /home/linuxbrew/.linuxbrew/Cellar \
+  /home/linuxbrew/.linuxbrew/bin \
+  /home/linuxbrew/.linuxbrew/etc \
+  /home/linuxbrew/.linuxbrew/include \
+  /home/linuxbrew/.linuxbrew/lib \
+  /home/linuxbrew/.linuxbrew/opt \
+  /home/linuxbrew/.linuxbrew/sbin \
+  /home/linuxbrew/.linuxbrew/share \
+  /home/linuxbrew/.linuxbrew/var/homebrew/linked \
+  /home/linuxbrew/.linuxbrew/Cellar \
   && ln -s ../Homebrew/bin/brew /home/linuxbrew/.linuxbrew/bin/brew \
   && brew tap homebrew/core \
   && brew install-bundler-gems \
@@ -101,8 +121,3 @@ RUN mkdir -p \
   && { git -C /home/linuxbrew/.linuxbrew/Homebrew config --unset gc.auto; true; } \
   && { git -C /home/linuxbrew/.linuxbrew/Homebrew config --unset homebrew.devcmdrun; true; } \
   && rm -rf .cache
-
-    poetry \
-    python@3.10 \
-    hudochenkov/sshpass/sshpass \
-    yq
