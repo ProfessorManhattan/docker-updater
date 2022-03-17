@@ -16,36 +16,36 @@ SHELL ["/bin/bash", "-eo", "pipefail", "-c"]
 # hadolint ignore=DL3003,SC2010
 RUN set -ex \
     && apt-get update \
-    && apt-get install -y --no-install-recommends software-properties-common=0.99.9.8 \
+    && apt-get install -y --no-install-recommends software-properties-common \
     && add-apt-repository -y ppa:git-core/ppa \
     && apt-get update \
     && apt-get upgrade -y \
     && apt-get install -y --no-install-recommends \
-      build-essential=12.8ubuntu1.1 \
-      bzip2=1.0.8-2 \
-      ca-certificates=20210119~20.04.2 \
-      curl=7.68.0-1ubuntu2.7 \
-      file=1:5.38-4 \
-      fonts-dejavu-core=2.37-1 \
-      g++=4:9.3.0-1ubuntu2 \
-      gawk=1:5.0.1+dfsg-1 \
-      git=1:2.25.1-1ubuntu3.2 \
-      jq=1.6-1ubuntu0.20.04.1 \
-      less=551-1ubuntu0.1 \
+      build-essential \
+      bzip2 \
+      ca-certificates \
+      curl \
+      file \
+      fonts-dejavu-core \
+      g++ \
+      gawk \
+      git \
+      jq\
+      less \
       locales \
-      make=4.2.1-1.2 \
-      netbase=6.1 \
-      openssh-client=1:8.2p1-4ubuntu0.4 \
-      patch=2.7.6-6 \
-      procps=2:3.3.16-1ubuntu2.3 \
+      make \
+      netbase \
+      openssh-client \
+      patch \
+      procps \
       rsync \
-      snapd=2.54.3+20.04.1ubuntu0.2 \
-      sudo=1.8.31-1ubuntu1.2 \
-      systemd=245.4-4ubuntu3.15 \
-      systemd-cron=1.5.14-2 \
-      systemd-sysv=245.4-4ubuntu3.15 \
-      tzdata=2021e-0ubuntu0.20.04 \
-      uuid-runtime=2.34-0.1ubuntu9.3 \
+      snapd \
+      sudo \
+      systemd \
+      systemd-cron \
+      systemd-sysv \
+      tzdata \
+      uuid-runtime \
   && apt-get clean \
   && rm -Rf /usr/share/doc /usr/share/man /tmp/* /var/tmp/* \
   && localedef -i en_US -f UTF-8 en_US.UTF-8 \
