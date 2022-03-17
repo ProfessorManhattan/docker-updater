@@ -46,11 +46,8 @@
   "description": "A general-purpose, compact Dockerfile project that includes various programs required for synchronizing projects with upstream repositories",
   "devDependencies": {
     "@commitlint/config-conventional": "latest",
-    "@washingtondc/development": "latest",
-    "cz-emoji-conventional": "^1.0.1",
     "eslint-config-strict-mode": "latest",
     "git-cz-emoji": "latest",
-    "glob": "^7.2.0",
     "handlebars-helpers": "latest",
     "prettier-config-sexy-mode": "latest",
     "semantic-release-config": "latest",
@@ -122,9 +119,6 @@
     "**/*.(cjs|js|jsx|mjs|ts|tsx)": [
       "task fix:js --",
       "task lint:js --"
-    ],
-    "**/*.(json|webapp|webmanifest)": [
-      "task fix:json --"
     ],
     "**/*.(yml|yaml)": [
       "task fix:yaml --",
@@ -254,13 +248,6 @@
     "test": "bash start.sh && task docker:test",
     "unpack": "bash start.sh && task npm:bundle:unpack",
     "update": "bash start.sh && task update"
-  },
-  "standard-version": {
-    "scripts": {
-      "prebump": "task docker:standard-version:prebump",
-      "prerelease": "task docker:standard-version:prelease",
-      "pretag": "task docker:standard-version:pretag"
-    }
   },
   "type": "commonjs",
   "typings": "dist/main.d.ts",
