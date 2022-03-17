@@ -32,13 +32,13 @@ RUN set -ex \
       git=1:2.25.1-1ubuntu3.2 \
       jq=1.6-1ubuntu0.20.04.1 \
       less=551-1ubuntu0.1 \
-      locales=2 \
+      locales \
       make=4.2.1-1.2 \
       netbase=6.1 \
       openssh-client=1:8.2p1-4ubuntu0.4 \
       patch=2.7.6-6 \
       procps=2:3.3.16-1ubuntu2.3 \
-      rsync=3 \
+      rsync \
       snapd=2.54.3+20.04.1ubuntu0.2 \
       sudo=1.8.31-1ubuntu1.2 \
       systemd=245.4-4ubuntu3.15 \
