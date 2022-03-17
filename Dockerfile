@@ -116,8 +116,6 @@ RUN brew install \
     hudochenkov/sshpass/sshpass \
     yq
 
-RUN brew install snapcraft
-
 RUN echo "$BUILD_DATE"
 
 RUN source "$HOME/.profile" \
