@@ -8,6 +8,10 @@ ENV HOMEBREW_NO_ANALYTICS=1
 ENV HOMEBREW_NO_AUTO_UPDATE=1
 ENV PATH="${GOPATH}/bin:${GOROOT}/bin:/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:${PATH}"
 
+ARG BUILD_DATE
+ARG REVISION
+ARG VERSION
+
 WORKDIR /work
 
 COPY local/initctl start.sh Taskfile.yml ./
@@ -114,16 +118,14 @@ RUN brew install \
 
 RUN brew install snapcraft
 
+RUN echo "$BUILD_DATE"
+
 RUN source "$HOME/.profile" \
   && bash start.sh
 
 VOLUME ["/sys/fs/cgroup", "/tmp", "/run"]
 
 CMD ["/lib/systemd/systemd"]
-
-ARG BUILD_DATE
-ARG REVISION
-ARG VERSION
 
 LABEL maintainer="Megabyte Labs <help@megabyte.space"
 LABEL org.opencontainers.image.authors="Brian Zalewski <brian@megabyte.space>"
