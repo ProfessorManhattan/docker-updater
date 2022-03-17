@@ -72,12 +72,14 @@ COPY --chown=megabyte:megabyte .modules/homebrew /home/linuxbrew/.linuxbrew/Home
 WORKDIR /home/linuxbrew/.linuxbrew/Homebrew/
 
 RUN rm .git \
-  && git init \
-  && git remote add origin https://github.com/Homebrew/brew.git \
-  && chown megabyte:megabyte /home/linuxbrew/.linuxbrew
+  && chown -R megabyte:megabyte /home/linuxbrew/.linuxbrew
+
+USER megabyte
+
+RUN git init \
+  && git remote add origin https://github.com/Homebrew/brew.git
 
 WORKDIR /work
-USER megabyte
 
 # hadolint ignore=DL3004
 RUN mkdir -p \
@@ -107,15 +109,13 @@ RUN brew install \
     node \
     poetry \
     python@3.10 \
-    snapcraft \
     hudochenkov/sshpass/sshpass \
     yq
 
+RUN brew install snapcraft
+
 RUN source "$HOME/.profile" \
   && bash start.sh
-
-# hadolint ignore=DL3004
-RUN bash start.sh
 
 VOLUME ["/sys/fs/cgroup", "/tmp", "/run"]
 
