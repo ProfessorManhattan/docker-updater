@@ -1,49 +1,50 @@
 {
+  "private": false,
+  "name": "@megabytelabs/docker-ci-updater",
+  "version": "0.0.47",
+  "description": "A general-purpose, compact Dockerfile project that includes various programs required for synchronizing projects with upstream repositories",
+  "license": "MIT",
   "author": "Brian Zalewski <brian@megabyte.space> (https://megabyte.space)",
-  "blueprint": {
-    "description": "A general-purpose, compact Dockerfile project that includes various programs required for synchronizing projects with upstream repositories",
-    "dockerSlimCommand": "--http-probe=false --exec 'echo $HOME && bash start.sh && task start' --include-exe-file 'local/exe.txt' --mount \"$PWD/test/androidstudio:/work\" --workdir '/work'",
-    "github_id": "R_kgDOG3t0_w",
-    "gitlab_group_id": "11679983",
-    "gitlab_project_id": "26438163",
-    "group": "docker",
-    "name": "Updater",
-    "overview": "This project is home to a Dockerfile configuration for building a slim image that is capable of running a wide array of tasks defined in a **[Bodega](https://github.com/ProfessorManhattan/Bodega)-friendly** `Taskfile.yml` file. Bodega is used as a task runner that automatically installs dependencies. In each project in the Megabyte Labs ecosystem, a Taskfile.yml is included that defines standard build, test, compile, and publish commands. This image includes a lot of the software that Bodega would automatically install when running repository update operations to reduce CI time. This repository comes in two variants, a standard image and an image slimmed down with [DockerSlim](https://github.com/docker-slim/docker-slim). Both of the images include standard software that is used when running update operations like:\n\n* jq\n* yq\n* Go\n* Various global NPM packages (like ESLint)\n*Python 3\n*A whole lot more (our update / upstream repository synchronization process is quite thorough)",
-    "repository": {
-      "github": "https://github.com/ProfessorManhattan/docker-updater",
-      "gitlab": "https://gitlab.com/megabyte-labs/docker/ci-pipeline/updater"
-    },
-    "slug": "updater",
-    "subgroup": "ci-pipeline",
-    "title": "Megabyte Labs Updater Image"
+  "homepage": "https://megabyte.space",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ProfessorManhattan/docker-updater.git"
   },
   "bugs": {
     "email": "help@megabyte.space",
     "url": "https://gitlab.com/megabyte-labs/docker/ci-pipeline/updater/-/issues"
   },
-  "changelog": {
-    "displayTypes": [
-      "feat",
-      "fix",
-      "perf",
-      "refactor",
-      "revert"
-    ],
-    "showAuthor": true
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ],
-    "helpUrl": "https://megabyte.space/docs/contributing/commits"
+  "type": "commonjs",
+  "main": "dist/main.js",
+  "files": [
+    "bin/",
+    "dist/"
+  ],
+  "scripts": {
+    "build": "bash start.sh && task docker:build",
+    "bump": "npm run build && npm version patch --no-commit-hooks --no-git-tag-version --force && npm publish",
+    "commit": "bash start.sh && task commit",
+    "fix": "bash start.sh && task fix",
+    "help": "bash start.sh && task --menu",
+    "lint": "bash start.sh && task lint",
+    "preload": "bash start.sh && task preload",
+    "prepare": "bash start.sh && (test -f Taskfile.yml && task npm:prepare) || true",
+    "prepublishOnly": "test -z $SKIP_PREPUB && bash start.sh && task npm:bundle:create || true",
+    "release": "bash start.sh && task publish:semantic-release",
+    "repair": "bash <(curl -sS https://install.doctor/repair)",
+    "start": "test -z $SKIP_NPM_START && bash start.sh || true",
+    "test": "bash start.sh && task docker:test",
+    "unpack": "bash start.sh && task npm:bundle:unpack",
+    "update": "bash start.sh && task update"
   },
   "config": {
     "commitizen": {
       "path": "node_modules/git-cz-emoji"
     }
   },
+  "typings": "dist/main.d.ts",
   "dependencies": {},
-  "description": "A general-purpose, compact Dockerfile project that includes various programs required for synchronizing projects with upstream repositories",
+  "optionalDependencies": {},
   "devDependencies": {
     "@commitlint/config-conventional": "latest",
     "eslint-config-strict-mode": "latest",
@@ -53,33 +54,6 @@
     "semantic-release-config": "latest",
     "typescript": "^4.5.5"
   },
-  "engines": {
-    "node": ">=14.18.0"
-  },
-  "eslintConfig": {
-    "extends": "eslint-config-strict-mode",
-    "ignorePatterns": [
-      "test/"
-    ]
-  },
-  "files": [
-    "bin/",
-    "dist/",
-    "CHANGELOG.md",
-    "LICENSE",
-    "README.md"
-  ],
-  "funding": [
-    {
-      "type": "opencollective",
-      "url": "https://opencollective.com/megabytelabs"
-    },
-    {
-      "type": "patreon",
-      "url": "https://www.patreon.com/ProfessorManhattan"
-    }
-  ],
-  "homepage": "https://megabyte.space",
   "keywords": [
     "alias",
     "ci",
@@ -99,7 +73,63 @@
     "virtualization",
     "washingtondc"
   ],
-  "license": "MIT",
+  "engines": {
+    "node": ">=14.18.0"
+  },
+  "publishConfig": {
+    "@megabyte:registry": "https://gitlab.com/api/v4/projects/26438163/packages/npm/",
+    "access": "public"
+  },
+  "blueprint": {
+    "description": "A general-purpose, compact Dockerfile project that includes various programs required for synchronizing projects with upstream repositories",
+    "dockerTasksTag": "update",
+    "dockerSlimCommand": "--http-probe=false --exec 'echo $HOME && bash start.sh && task start' --include-exe-file 'local/exe.txt' --mount \"$PWD/test/androidstudio:/work\" --workdir '/work'",
+    "github_id": "R_kgDOG3t0_w",
+    "gitlab_group_id": "11679983",
+    "gitlab_project_id": "26438163",
+    "group": "docker",
+    "name": "Updater",
+    "overview": "This project is home to a Dockerfile configuration for building a slim image that is capable of running a wide array of tasks defined in a **[Bodega](https://github.com/ProfessorManhattan/Bodega)-friendly** `Taskfile.yml` file. Bodega is used as a task runner that automatically installs dependencies. In each project in the Megabyte Labs ecosystem, a Taskfile.yml is included that defines standard build, test, compile, and publish commands. This image includes a lot of the software that Bodega would automatically install when running repository update operations to reduce CI time. This repository comes in two variants, a standard image and an image slimmed down with [DockerSlim](https://github.com/docker-slim/docker-slim). Both of the images include standard software that is used when running update operations like:\n\n* jq\n* yq\n* Go\n* Various global NPM packages (like ESLint)\n*Python 3\n*A whole lot more (our update / upstream repository synchronization process is quite thorough)",
+    "repository": {
+      "github": "https://github.com/ProfessorManhattan/docker-updater",
+      "gitlab": "https://gitlab.com/megabyte-labs/docker/ci-pipeline/updater"
+    },
+    "slug": "updater",
+    "subgroup": "ci-pipeline",
+    "title": "Megabyte Labs Updater Image"
+  },
+  "changelog": {
+    "displayTypes": [
+      "feat",
+      "fix",
+      "perf",
+      "refactor",
+      "revert"
+    ],
+    "showAuthor": true
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ],
+    "helpUrl": "https://megabyte.space/docs/contributing/commits"
+  },
+  "eslintConfig": {
+    "extends": "eslint-config-strict-mode",
+    "ignorePatterns": [
+      "test/"
+    ]
+  },
+  "funding": [
+    {
+      "type": "opencollective",
+      "url": "https://opencollective.com/megabytelabs"
+    },
+    {
+      "type": "patreon",
+      "url": "https://www.patreon.com/ProfessorManhattan"
+    }
+  ],
   "lint-staged": {
     "(Brewfile|composer.lock|Gemfile|Gopkg.lock|Pipfile.lock)": [
       "task fix:prettier --"
@@ -167,8 +197,6 @@
       "task image:compress --"
     ]
   },
-  "main": "dist/main.js",
-  "name": "@megabytelabs/docker-ci-updater",
   "ntl": {
     "descriptions": {
       "build": "Builds the project using the build command specified under scripts in package.json",
@@ -187,7 +215,6 @@
       "update": "Update and refresh the repository with upstream changes and templated parts"
     }
   },
-  "optionalDependencies": {},
   "pnpm": {
     "allowedVersions": {
       "@typescript-eslint/eslint-plugin": "5",
@@ -207,11 +234,6 @@
     }
   },
   "prettier": "prettier-config-sexy-mode",
-  "private": false,
-  "publishConfig": {
-    "@megabyte:registry": "https://gitlab.com/api/v4/projects/26438163/packages/npm/",
-    "access": "public"
-  },
   "release": {
     "branches": [
       "main",
@@ -227,29 +249,5 @@
       }
     ],
     "extends": "semantic-release-config"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ProfessorManhattan/docker-updater.git"
-  },
-  "scripts": {
-    "build": "bash start.sh && task docker:build",
-    "bump": "npm run build && npm version patch --no-commit-hooks --no-git-tag-version --force && npm publish",
-    "commit": "bash start.sh && task commit",
-    "fix": "bash start.sh && task fix",
-    "help": "bash start.sh && task --menu",
-    "lint": "bash start.sh && task lint",
-    "preload": "bash start.sh && task preload",
-    "prepare": "bash start.sh && (test -f Taskfile.yml && task npm:prepare) || true",
-    "prepublishOnly": "test -z $SKIP_PREPUB && bash start.sh && task npm:bundle:create || true",
-    "release": "bash start.sh && task publish:semantic-release",
-    "repair": "bash <(curl -sS https://install.doctor/repair)",
-    "start": "test -z $SKIP_NPM_START && bash start.sh || true",
-    "test": "bash start.sh && task docker:test",
-    "unpack": "bash start.sh && task npm:bundle:unpack",
-    "update": "bash start.sh && task update"
-  },
-  "type": "commonjs",
-  "typings": "dist/main.d.ts",
-  "version": "0.0.47"
+  }
 }
