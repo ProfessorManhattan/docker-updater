@@ -34,6 +34,7 @@ includes:
   install: ./.config/taskfiles/install/Taskfile.yml
   install:ansible: ./.config/taskfiles/install/Taskfile-ansible.yml
   install:apt: ./.config/taskfiles/install/Taskfile-apt.yml
+  install:gh: ./.config/taskfiles/install/Taskfile-gh.yml
   install:github: ./.config/taskfiles/install/Taskfile-github.yml
   install:go: ./.config/taskfiles/install/Taskfile-go.yml
   install:npm: ./.config/taskfiles/install/Taskfile-npm.yml
