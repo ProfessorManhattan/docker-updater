@@ -21,6 +21,7 @@
     "dist/"
   ],
   "scripts": {
+    "prebuild": "task install:gh:dasl && task install:gh:fusion && task install:gh:gh && task install:gh:glab && task install:gh:yq",
     "build": "bash start.sh && task docker:build",
     "bump": "npm run build && npm version patch --no-commit-hooks --no-git-tag-version --force && npm publish",
     "commit": "bash start.sh && task commit",
