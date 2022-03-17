@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:20.04 AS updater
 
 ENV container=docker
 ENV DEBIAN_FRONTEND=noninteractive
@@ -8,10 +8,9 @@ ENV HOMEBREW_NO_ANALYTICS=1
 ENV HOMEBREW_NO_AUTO_UPDATE=1
 ENV PATH="${GOPATH}/bin:${GOROOT}/bin:/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:${PATH}"
 
-VOLUME ["/work"]
 WORKDIR /work
 
-COPY local/initctl ./
+COPY local/initctl start.sh Taskfile.yml ./
 
 SHELL ["/bin/bash", "-eo", "pipefail", "-c"]
 # hadolint ignore=DL3003,SC2010
@@ -130,7 +129,9 @@ RUN curl -sSL https://github.com/go-task/task/releases/latest/download/task_linu
   && mv "$TMP" "$HOME/.config/bin/config.json" \
   && bin install -f github.com/edgelaboratories/fusion "$PWD/fusion" \
   && sudo mv "$PWD/fusion" /usr/local/bin/fusion \
-  && echo "export PATH=$PATH" > "$HOME/.profile"
+  && echo "export PATH=$PATH" > "$HOME/.profile" \
+  && source "$HOME/.profile" \
+  && bash start.sh
 
 VOLUME ["/sys/fs/cgroup", "/tmp", "/run"]
 
