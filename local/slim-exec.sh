@@ -1,5 +1,6 @@
 #!/bin/bash
-
+useradd -m -s /bin/bash hawkwood
+sudo chown -Rf hawkwood:hawkwood ./
 curl --version
 expect --version
 gawk --version
@@ -26,4 +27,5 @@ if type go >/dev/null; then
 fi
 
 curl -sSL https://gitlab.com/megabyte-labs/common/shared/-/raw/master/common/start.sh > slim-start.sh
+alias poetry="true"
 bash slim-start.sh
