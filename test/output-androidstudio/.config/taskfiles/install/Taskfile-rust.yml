@@ -1,0 +1,29 @@
+---
+version: '3'
+
+tasks:
+  bundle:
+    deps:
+      - catfs
+
+  catfs:
+    run: once
+    cmds:
+      - task: install:rust
+        vars:
+          BIN_NAME: catfs
+          PACKAGE: catfs
+
+  install:rust:
+    vars:
+      BIN: '{{if .BIN_NAME}}{{.BIN_NAME}}{{else}}{{.PACKAGE}}{{end}}'
+    run: when_changed
+    log:
+      error: Failed to install Cargo crate `{{.PACKAGE}}`
+      start: Installing Cargo crate `{{.PACKAGE}}`
+      success: Installed Cargo crate `{{.PACKAGE}}`
+    cmds:
+      - task: :install:software:rust
+      - cargo install {{.PACKAGE}}
+    status:
+      - type {{.BIN}} > /dev/null

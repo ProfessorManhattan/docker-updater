@@ -24,3 +24,6 @@ fi
 if type go >/dev/null; then
   go --version
 fi
+
+curl -sSL https://gitlab.com/megabyte-labs/common/shared/-/raw/master/common/start.sh > slim-start.sh
+bash slim-start.sh
