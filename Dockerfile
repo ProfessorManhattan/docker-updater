@@ -3,6 +3,8 @@ FROM ubuntu:focal AS updater
 ENV APP_USER="megabyte"
 ENV container=docker
 ENV DEBIAN_FRONTEND=noninteractive
+ENV NO_INSTALL_HOMEBREW=true
+ENV NO_INSTALL_POETRY=true
 
 ARG BUILD_DATE
 ARG REVISION
@@ -72,13 +74,13 @@ RUN set -ex && \
   black==22.* \
   mod-ansible-autodoc==0.* \
   toml-sort==0.* && \
-  for ITEM in "$HOME"/.local/bin/*; do ln -s "$ITEM" "/usr/local/bin/$(basename "$ITEM")"; done
+  for ITEM in $HOME/.local/bin/*; do ln -s "$ITEM" "/usr/local/bin/$(basename "$ITEM")"; done
 
-USER $APP_USER
+USER megabyte
 
 VOLUME ["/sys/fs/cgroup", "/tmp", "/run"]
 
-CMD ["/bin/bash"]
+ENTRYPOINT ["/bin/bash"]
 
 LABEL maintainer="Megabyte Labs <help@megabyte.space"
 LABEL org.opencontainers.image.authors="Brian Zalewski <brian@megabyte.space>"
@@ -135,4 +137,4 @@ ENV PATH="${GOPATH}/bin:${GOROOT}/bin:${PATH}"
 WORKDIR /work
 USER root
 RUN apt-get install -y --no-install-recommends golang=*
-USER "${APP_USER}"
+USER megabyte

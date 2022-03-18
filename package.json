@@ -83,7 +83,13 @@
   },
   "blueprint": {
     "description": "A general-purpose, compact Dockerfile project that includes various programs required for synchronizing projects with upstream repositories",
-    "dockerSlimCommand": "--http-probe=false --exec 'su megabyte && bash start.sh && task update' --include-exe-file './local/exe.txt' --mount \"$PWD/test/output-stylog:/work\" --workdir '/work' --preserve-path-file './local/paths.txt'",
+    "dockerLatestSize": {
+      "updater": "303M"
+    },
+    "dockerSlimCommand": "--http-probe=false --exec-file './local/slim-exec.sh' --include-exe-file './local/exe.txt' --mount \"$PWD/test/output-stylog:/work\" --workdir '/work' --preserve-path-file './local/paths.txt'",
+    "dockerSlimSize": {
+      "updater": "106M"
+    },
     "dockerTasksTag": "update",
     "github_id": "R_kgDOG3t0_w",
     "gitlab_group_id": "11679983",
