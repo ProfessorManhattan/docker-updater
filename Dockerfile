@@ -1,4 +1,4 @@
-FROM ubuntu:20.04 AS updater
+FROM ubuntu:focal AS updater
 
 ENV container=docker
 ENV DEBIAN_FRONTEND=noninteractive
@@ -17,49 +17,54 @@ SHELL ["/bin/bash", "-eo", "pipefail", "-c"]
 RUN set -ex && \
   chmod +x /usr/local/bin/* && \
   apt-get update && \
-  apt-get install -y --no-install-recommends software-properties-common && \
+  apt-get install -y --no-install-recommends software-properties-common=0.* && \
   add-apt-repository -y ppa:git-core/ppa && \
   add-apt-repository -y ppa:deadsnakes/ppa && \
   apt-get update && \
   apt-get upgrade -y && \
   apt-get install -y --no-install-recommends \
-  build-essential \
-  ca-certificates \
-  curl \
-  exiftool \
-  expect \
-  file \
-  g++ \
-  gawk \
-  git \
-  jq \
-  procps \
-  python3.10 \
-  rsync \
+  build-essential=12.* \
+  ca-certificates=* \
+  curl=7.* \
+  exiftool=11.* \
+  expect=5.* \
+  file=* \
+  g++=* \
+  gawk=* \
+  gcc=* \
+  git=* \
+  jq=1.* \
+  make=4.* \
+  procps=* \
+  python3.10=* \
+  rsync=3.* \
   sudo && \
-  apt-get clean \
-  rm -Rf /usr/share/doc /usr/share/man /tmp/* /var/tmp/* && \
-  useradd -m -s /bin/bash megabyte && \
+  apt-get clean && \
+  rm -rf /var/lib/apt/lists/* && \
+  rm -rf /usr/share/doc /usr/share/man /tmp/* /var/tmp/* && \
+  useradd -m -s "$(which bash)" --gecos "" --disabled-login -c "Megabyte Labs" megabyte && \
   echo 'megabyte ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && \
   chown -R megabyte:megabyte ./ && \
   curl -sL https://deb.nodesource.com/setup_16.x -o /tmp/node_setup.sh && \
   bash /tmp/node_setup.sh && \
+  rm /tmp/node_setup.sh && \
+  ln -s "$(which python3)" /usr/local/bin/python \
   curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python - && \
   npm install -g \
-  eslint \
-  leasot \
-  liquidjs \
-  pnpm \
-  prettier \
-  readme \
-  remark \
-  synp && \
-  pip3 install \
-  ansible \
-  ansibler \
-  black \
-  mod-ansible-autodoc \
-  toml-sort
+  @appnest/readme@1 \
+  eslint@8 \
+  leasot@12 \
+  liquidjs@9 \
+  pnpm@latest \
+  prettier@2 \
+  remark@10 \
+  synp@1 && \
+  pip3 install --no-cache-dir \
+  ansible-base==2.* \
+  ansibler==0.* \
+  black==22.* \
+  mod-ansible-autodoc==0.* \
+  toml-sort==0.*
 
 USER megabyte
 
@@ -67,7 +72,7 @@ RUN bash start.sh
 
 VOLUME ["/sys/fs/cgroup", "/tmp", "/run"]
 
-CMD ["/lib/systemd/systemd"]
+CMD ["/bin/bash"]
 
 LABEL maintainer="Megabyte Labs <help@megabyte.space"
 LABEL org.opencontainers.image.authors="Brian Zalewski <brian@megabyte.space>"
