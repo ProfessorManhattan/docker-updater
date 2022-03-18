@@ -1,0 +1,116 @@
+---
+schemaVersion: 2.0.0
+
+commandTests:
+  - name: Test bin version
+    command: bin --version
+    exitCode: 0
+  - name: Test Homebrew version
+    command: brew --version
+    exitCode: 0
+  - name: Test curl version
+    command: curl --version
+    exitCode: 0
+  - name: Test esbuild version
+    command: esbuild --version
+    exitCode: 0
+  - name: Test eslint version
+    command: eslint --version
+    exitCode: 0
+  - name: Test exiftool version
+    command: exiftool --version
+    exitCode: 0
+  - name: Test hbs-cli version
+    command: hbs --version
+    exitCode: 0
+  - name: Test gawk version
+    command: gawk --version
+    exitCode: 0
+  - name: Test gh version
+    command: gh --version
+    exitCode: 0
+  - name: Test git version
+    command: git --version
+    exitCode: 0
+  - name: Test glab version
+    command: glab --version
+    exitCode: 0
+  - name: Test Go version
+    command: go version
+    exitCode: 0
+  - name: Test goreleaser version
+    command: goreleaser --version
+    exitCode: 0
+  - name: Test jq version
+    command: jq --version
+    exitCode: 0
+  - name: Test leasot version
+    command: leasot --version
+    exitCode: 0
+  - name: Test liquidjs version
+    command: liquidjs --version
+    exitCode: 0
+  - name: Test make version
+    command: make --version
+    exitCode: 0
+  - name: Test nfpm version
+    command: nfpm --version
+    exitCode: 0
+  - name: Test node version
+    command: node --version
+    exitCode: 0
+  - name: Test npm version
+    command: npm --version
+    exitCode: 0
+  - name: Test poetry version
+    command: poetry --version
+    exitCode: 0
+  - name: Test pnpm version
+    command: pnpm --version
+    exitCode: 0
+  - name: Test prettier version
+    command: prettier --version
+    exitCode: 0
+  - name: Test python version
+    command: python --version
+    exitCode: 0
+  - name: Test python3 version
+    command: python3 --version
+    exitCode: 0
+  - name: Test python3.10 version
+    command: python3.10 --version
+    exitCode: 0
+  - name: Test readme version
+    command: readme --version
+    exitCode: 0
+  - name: Test remark version
+    command: remark --version
+    exitCode: 0
+  - name: Test rsync version
+    command: rsync --version
+    exitCode: 0
+  - name: Test snapcraft version
+    command: snapcraft --version
+    exitCode: 0
+  - name: Test SSH version
+    command: ssh --version
+    exitCode: 0
+  - name: Test sshpass version
+    command: sshpass -V
+    exitCode: 0
+  - name: Test task version
+    command: task --version
+    exitCode: 0
+  - name: Test yq version
+    command: yq --version
+    exitCode: 0
+
+metadataTest:
+  labels:
+    - key: maintainer
+      value: Megabyte Labs <help@megabyte.space>
+    - key: space.megabyte.type
+      value: ci-pipeline
+  volumes: [/work]
+  workdir: /work
+  user: megabyte

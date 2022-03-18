@@ -113,6 +113,7 @@ function logger() {
 function ensureRootPackageInstalled() {
   if ! type "$1" &> /dev/null; then
     if [[ "$OSTYPE" == 'linux'* ]]; then
+    echo "here"
       if [ -f "/etc/redhat-release" ]; then
         if type dnf &> /dev/null; then
           dnf install -y "$1"
