@@ -86,7 +86,7 @@
     "dockerLatestSize": {
       "updater": "303M"
     },
-    "dockerSlimCommand": "--http-probe=false --exec-file './local/slim-exec.sh' --include-exe-file './local/exe.txt' --mount \"$PWD/test/output-stylog:/work\" --workdir '/work' --preserve-path-file './local/paths.txt'",
+    "dockerSlimCommand": "--http-probe=false --exec-file './local/slim-exec.sh' --include-exe-file './local/exe.txt' --mount \"$PWD/test/output-androidstudio:/work\" --workdir '/work' --preserve-path-file './local/paths.txt'",
     "dockerSlimSize": {
       "updater": "106M"
     },
