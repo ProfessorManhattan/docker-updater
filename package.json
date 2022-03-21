@@ -21,7 +21,7 @@
     "dist/"
   ],
   "scripts": {
-    "prebuild": "task install:gh:dasel:linux && task install:gh:fusion:linux && task install:gh:gh:linux && task install:gh:glab:linux && task install:gh:yq:linux",
+    "prebuild": "task install:gh:dasel && task install:gh:fusion && task install:gh:gh && task install:gh:glab && task install:gh:yq",
     "build": "bash start.sh && task docker:build",
     "bump": "npm run build && npm version patch --no-commit-hooks --no-git-tag-version --force && npm publish",
     "commit": "bash start.sh && task commit",
@@ -88,7 +88,7 @@
       "dind": "",
       "golang": "",
       "poetry": "",
-      "updater": "309M"
+      "updater": ""
     },
     "dockerSlimCommand": "--http-probe=false --exec-file './local/slim-exec.sh' --include-exe-file './local/exe.txt' --preserve-path-file './local/paths.txt'",
     "dockerSlimSize": {
@@ -96,7 +96,7 @@
       "dind": "",
       "golang": "",
       "poetry": "",
-      "updater": "283M"
+      "updater": ""
     },
     "dockerTasksTag": "update",
     "github_id": "R_kgDOG3t0_w",
