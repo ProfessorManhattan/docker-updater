@@ -31,7 +31,6 @@ rsync
 snapcraft
 ssh
 sshpass
-sudo
 task
 whoami
 yq

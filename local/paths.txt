@@ -1,3 +1,4 @@
 /usr/local/bin
 /usr/lib/node_modules
 /usr/pnpm-global
+/usr/bin/sudo

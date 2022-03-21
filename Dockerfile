@@ -6,10 +6,6 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV NO_INSTALL_HOMEBREW=true
 ENV NO_INSTALL_POETRY=true
 
-ARG BUILD_DATE
-ARG REVISION
-ARG VERSION
-
 WORKDIR /work
 
 COPY local/initctl start.sh Taskfile.yml ./
@@ -37,6 +33,7 @@ RUN set -ex \
   procps=* \
   rsync=3.* \
   software-properties-common=0.* \
+  ssh-client \
   sudo \
   && add-apt-repository -y ppa:git-core/ppa \
   && add-apt-repository -y ppa:deadsnakes/ppa \
@@ -90,7 +87,11 @@ RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-
   && python /tmp/get-poetry.py \
   && rm /tmp/get-poetry.py
 
-ENTRYPOINT ["/bin/bash"]
+CMD ["/bin/bash"]
+
+ARG BUILD_DATE
+ARG REVISION
+ARG VERSION
 
 LABEL maintainer="Megabyte Labs <help@megabyte.space"
 LABEL org.opencontainers.image.authors="Brian Zalewski <brian@megabyte.space>"

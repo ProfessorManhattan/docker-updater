@@ -47,13 +47,13 @@
   "dependencies": {},
   "optionalDependencies": {},
   "devDependencies": {
+    "@commitlint/config-conventional": "latest",
     "eslint-config-strict-mode": "latest",
     "git-cz-emoji": "latest",
+    "handlebars-helpers": "latest",
     "prettier-config-sexy-mode": "latest",
     "semantic-release-config": "latest",
-    "typescript": "^4.5.5",
-    "@commitlint/config-conventional": "latest",
-    "handlebars-helpers": "latest"
+    "typescript": "^4.5.5"
   },
   "keywords": [
     "alias",
@@ -85,21 +85,13 @@
     "description": "A general-purpose, compact Dockerfile project that includes various programs required for CI/CD",
     "dockerBaseTag": "updater",
     "dockerLatestSize": {
-      "brew": "",
-      "dind": "",
-      "golang": "",
-      "poetry": "",
-      "updater": "683M",
+      "updater": "685M",
       "extended": "1.5G"
     },
-    "dockerSlimCommand": "--http-probe=false --exec-file './local/slim-exec.sh' --include-exe-file './local/exe.txt' --preserve-path-file './local/paths.txt' --include-shell",
+    "dockerSlimCommand": "--http-probe=false --exec 'NO_INSTALL_HOMEBREW=true bash /work/start.sh' --mount \"$PWD:/work\" --workdir '/work' --include-exe-file './local/exe.txt' --preserve-path-file './local/paths.txt'",
     "dockerSlimSize": {
-      "brew": "",
-      "dind": "",
-      "golang": "",
-      "poetry": "",
       "updater": "304M",
-      "extended": "872M"
+      "extended": "871M"
     },
     "dockerTasksTag": "update",
     "github_id": "R_kgDOG3t0_w",
