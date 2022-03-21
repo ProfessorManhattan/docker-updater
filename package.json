@@ -21,7 +21,7 @@
     "dist/"
   ],
   "scripts": {
-    "prebuild": "task install:gh:dasel && task install:gh:fusion && task install:gh:gh && task install:gh:glab && task install:gh:yq",
+    "prebuild": "task install:gh:dasel:linux && task install:gh:fusion:linux && task install:gh:gh:linux && task install:gh:glab:linux && task install:gh:yq:linux",
     "build": "bash start.sh && task docker:build",
     "bump": "npm run build && npm version patch --no-commit-hooks --no-git-tag-version --force && npm publish",
     "commit": "bash start.sh && task commit",
@@ -86,13 +86,17 @@
     "dockerLatestSize": {
       "brew": "",
       "poetry": "",
-      "updater": "303M"
+      "updater": "309M",
+      "golang": "",
+      "dind": ""
     },
     "dockerSlimCommand": "--http-probe=false --exec-file './local/slim-exec.sh' --include-exe-file './local/exe.txt' --preserve-path-file './local/paths.txt'",
     "dockerSlimSize": {
       "brew": "",
       "poetry": "",
-      "updater": "280M"
+      "updater": "283M",
+      "golang": "",
+      "dind": ""
     },
     "dockerTasksTag": "update",
     "github_id": "R_kgDOG3t0_w",
@@ -216,6 +220,7 @@
       "fix": "Run auto-fixing with all available auto-fixers",
       "help": "Display the Bodega Taskfile.yml interactive help menu",
       "lint": "Lint the project with all available linters",
+      "prebuild": "Downloads Linux binaries that are added to the image",
       "preload": "Preload the operating system with commonly used libraries and tools",
       "prepare": "A hook triggered by running npm install that runs logic such as installing pre-commit hooks",
       "release": "Publish the software to all supported channels using semantic-release",

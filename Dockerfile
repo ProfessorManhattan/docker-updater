@@ -136,9 +136,17 @@ FROM updater AS golang
 ENV GOPATH="${HOME}/.local/go"
 ENV GOROOT="/home/linuxbrew/.linuxbrew/opt/go/libexec"
 ENV PATH="${GOPATH}/bin:${GOROOT}/bin:${PATH}"
+
 WORKDIR /work
+
 USER root
-RUN apt-get install -y --no-install-recommends golang=*
+
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends \
+  golang=* \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/*
+
 USER megabyte
 
 FROM brew AS dind
@@ -152,9 +160,17 @@ RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-
 ENV GOPATH="${HOME}/.local/go"
 ENV GOROOT="/home/linuxbrew/.linuxbrew/opt/go/libexec"
 ENV PATH="${GOPATH}/bin:${GOROOT}/bin:${PATH}"
+
 WORKDIR /work
+
 USER root
-RUN apt-get install -y --no-install-recommends golang=*
+
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends \
+  golang=* \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/*
+
 USER megabyte
 
 # Semantic ********************
@@ -165,8 +181,12 @@ ARG USERNAME="megabyte"
 
 COPY local/dind.sh dind.sh
 
+USER root
+
 RUN npm install -g semantic-release@19 \
   && bash dind.sh "${ENABLE_NONROOT_DOCKER}" "${USERNAME}" "${USE_MOBY}" "${DOCKER_VERSION}"
+
+USER megabyte
 
 VOLUME ["/var/lib/docker"]
 VOLUME ["/sys/fs/cgroup", "/tmp", "/run"]

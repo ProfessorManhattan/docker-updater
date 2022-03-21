@@ -9,7 +9,7 @@
   },
   "type": "build",
   "state": "done",
-  "target_reference": "megabytelabs/updater:latest",
+  "target_reference": "megabytelabs/updater:latestgolang",
   "system": {
     "type": "Linux",
     "release": "5.15.11-200.fc35.x86_64",
@@ -21,18 +21,18 @@
   },
   "source_image": {
     "identity": {
-      "id": "sha256:499179ac216dfc96d6323bd12e196d33d611cfc7be145f5650d9e02c83d09df7",
-      "tags": ["latest"],
-      "names": ["megabytelabs/updater:latest"]
+      "id": "sha256:569451cb9fc5d904fee4e0738a7db9a2b426af1e90bac349a344cf0b558502b4",
+      "tags": ["latestgolang"],
+      "names": ["megabytelabs/updater:latestgolang"]
     },
-    "size": 941976241,
-    "size_human": "942 MB",
-    "create_time": "2022-03-21T02:29:24Z",
+    "size": 1256471753,
+    "size_human": "1.3 GB",
+    "create_time": "2022-03-21T03:12:00Z",
     "docker_version": "20.10.12",
     "architecture": "amd64",
     "user": "megabyte",
     "os": "linux",
-    "volumes": ["/tmp", "/run", "/sys/fs/cgroup"],
+    "volumes": ["/run", "/sys/fs/cgroup", "/tmp"],
     "labels": {
       "maintainer": "Megabyte Labs <help@megabyte.space",
       "org.opencontainers.image.authors": "Brian Zalewski <brian@megabyte.space>",
@@ -48,23 +48,25 @@
       "space.megabyte.type": "ci-pipeline"
     },
     "env_vars": [
-      "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+      "PATH=/.local/go/bin:/home/linuxbrew/.linuxbrew/opt/go/libexec/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
       "APP_USER=megabyte",
       "container=docker",
       "DEBIAN_FRONTEND=noninteractive",
       "NO_INSTALL_HOMEBREW=true",
-      "NO_INSTALL_POETRY=true"
+      "NO_INSTALL_POETRY=true",
+      "GOPATH=/.local/go",
+      "GOROOT=/home/linuxbrew/.linuxbrew/opt/go/libexec"
     ],
     "container_entry": {
       "exe_path": ""
     }
   },
-  "minified_image_size": 863092176,
-  "minified_image_size_human": "863 MB",
-  "minified_image": "megabytelabs/updater:slim",
+  "minified_image_size": 873744695,
+  "minified_image_size_human": "874 MB",
+  "minified_image": "megabytelabs/updater:slimgolang",
   "minified_image_has_data": true,
-  "minified_by": 1.0913970340521313,
-  "artifact_location": "/tmp/docker-slim-state/.docker-slim-state/images/499179ac216dfc96d6323bd12e196d33d611cfc7be145f5650d9e02c83d09df7/artifacts",
+  "minified_by": 1.4380307659550369,
+  "artifact_location": "/tmp/docker-slim-state/.docker-slim-state/images/569451cb9fc5d904fee4e0738a7db9a2b426af1e90bac349a344cf0b558502b4/artifacts",
   "container_report_name": "creport.json",
   "seccomp_profile_name": "megabytelabs-updater-seccomp.json",
   "apparmor_profile_name": "megabytelabs-updater-apparmor-profile",
@@ -111,7 +113,7 @@
       ]
     },
     {
-      "is_top_image": true,
+      "is_top_image": false,
       "id": "sha256:499179ac216dfc96d6323bd12e196d33d611cfc7be145f5650d9e02c83d09df7",
       "full_name": "megabytelabs/updater:latest",
       "repo_name": "megabytelabs/updater",
@@ -487,6 +489,115 @@
           "command_all": "RUN [\"/bin/bash\",\"-eo\",\"pipefail\",\"-c\"]",
           "system_commands": ["[\"/bin/bash\",\"-eo\",\"pipefail\",\"-c\"]"],
           "raw_tags": ["megabytelabs/updater:latest"]
+        }
+      ]
+    },
+    {
+      "is_top_image": true,
+      "id": "sha256:569451cb9fc5d904fee4e0738a7db9a2b426af1e90bac349a344cf0b558502b4",
+      "full_name": "megabytelabs/updater:latestgolang",
+      "repo_name": "megabytelabs/updater",
+      "version_tag": "latestgolang",
+      "raw_tags": ["megabytelabs/updater:latestgolang"],
+      "create_time": "2022-03-21T03:12:00Z",
+      "new_size": 314495512,
+      "new_size_human": "314 MB",
+      "base_image_id": "sha256:499179ac216dfc96d6323bd12e196d33d611cfc7be145f5650d9e02c83d09df7",
+      "instructions": [
+        {
+          "type": "RUN",
+          "time": "2022-03-21T02:42:28Z",
+          "is_nop": true,
+          "is_exec_form": true,
+          "local_image_exists": true,
+          "intermediate_image_id": "sha256:4fb5e11ca790a801a6fcb41044619628dc95e9e3b185f558bda88330cb56ad47",
+          "layer_index": 0,
+          "size": 0,
+          "command_snippet": "RUN [\"/bin/bash\",\"-eo\",\"pipefail\",\"-c\"]",
+          "command_all": "RUN [\"/bin/bash\",\"-eo\",\"pipefail\",\"-c\"]",
+          "system_commands": ["[\"/bin/bash\",\"-eo\",\"pipefail\",\"-c\"]"]
+        },
+        {
+          "type": "RUN",
+          "time": "2022-03-21T02:42:30Z",
+          "is_nop": true,
+          "is_exec_form": true,
+          "local_image_exists": true,
+          "intermediate_image_id": "sha256:23c416c8167648795fc9d2d1100f682bb1d3cbeba9027a8e6f33d2c925b59b10",
+          "layer_index": 0,
+          "size": 0,
+          "command_snippet": "RUN [\"/bin/bash\",\"-eo\",\"pipefail\",\"-c\"]",
+          "command_all": "RUN [\"/bin/bash\",\"-eo\",\"pipefail\",\"-c\"]",
+          "system_commands": ["[\"/bin/bash\",\"-eo\",\"pipefail\",\"-c\"]"]
+        },
+        {
+          "type": "RUN",
+          "time": "2022-03-21T02:42:32Z",
+          "is_nop": true,
+          "is_exec_form": true,
+          "local_image_exists": true,
+          "intermediate_image_id": "sha256:b172a1f6e9668558c26798b144447d4640cb5f4940e1aa468f0b66de29e0f1ff",
+          "layer_index": 0,
+          "size": 0,
+          "command_snippet": "RUN [\"/bin/bash\",\"-eo\",\"pipefail\",\"-c\"]",
+          "command_all": "RUN [\"/bin/bash\",\"-eo\",\"pipefail\",\"-c\"]",
+          "system_commands": ["[\"/bin/bash\",\"-eo\",\"pipefail\",\"-c\"]"]
+        },
+        {
+          "type": "RUN",
+          "time": "2022-03-21T02:42:35Z",
+          "is_nop": true,
+          "is_exec_form": true,
+          "local_image_exists": true,
+          "intermediate_image_id": "sha256:8d69e7452f4bab47b5ac1055e61e11f45200d9822e9f97e0d6330e230720cbb6",
+          "layer_index": 0,
+          "size": 0,
+          "command_snippet": "RUN [\"/bin/bash\",\"-eo\",\"pipefail\",\"-c\"]",
+          "command_all": "RUN [\"/bin/bash\",\"-eo\",\"pipefail\",\"-c\"]",
+          "system_commands": ["[\"/bin/bash\",\"-eo\",\"pipefail\",\"-c\"]"]
+        },
+        {
+          "type": "RUN",
+          "time": "2022-03-21T02:42:37Z",
+          "is_nop": true,
+          "is_exec_form": true,
+          "local_image_exists": true,
+          "intermediate_image_id": "sha256:dca155934c0a90ae07131b2eed38d0098fa3b1f6f3ceb02f1a0221c82963a2d4",
+          "layer_index": 0,
+          "size": 0,
+          "command_snippet": "RUN [\"/bin/bash\",\"-eo\",\"pipefail\",\"-c\"]",
+          "command_all": "RUN [\"/bin/bash\",\"-eo\",\"pipefail\",\"-c\"]",
+          "system_commands": ["[\"/bin/bash\",\"-eo\",\"pipefail\",\"-c\"]"]
+        },
+        {
+          "type": "RUN",
+          "time": "2022-03-21T03:11:57Z",
+          "is_nop": false,
+          "is_exec_form": true,
+          "local_image_exists": true,
+          "intermediate_image_id": "sha256:d4eb5943d024225087d2ecf6569c5d9151e66ec22a357b2e56bac51f9411e534",
+          "layer_index": 0,
+          "size": 314495512,
+          "size_human": "314 MB",
+          "command_snippet": "RUN [\"/bin/bash\",\"-eo\",\"pipefail\",\"-c\",\"apt-...",
+          "command_all": "RUN [\"/bin/bash\",\"-eo\",\"pipefail\",\"-c\",\"apt-get\",\"update\",\"\\u0026\\u0026\",\"apt-get\",\"install\",\"-y\",\"--no-install-recommends\",\"golang=*\",\"\\u0026\\u0026\",\"apt-get\",\"clean\",\"\\u0026\\u0026\",\"rm\",\"-rf\",\"/var/lib/apt/lists/*\"]",
+          "system_commands": [
+            "[\"/bin/bash\",\"-eo\",\"pipefail\",\"-c\",\"apt-get\",\"update\",\"u0026u0026\",\"apt-get\",\"install\",\"-y\",\"--no-install-recommends\",\"golang=*\",\"u0026u0026\",\"apt-get\",\"clean\",\"u0026u0026\",\"rm\",\"-rf\",\"/var/lib/apt/lists/*\"]"
+          ]
+        },
+        {
+          "type": "RUN",
+          "time": "2022-03-21T03:12:00Z",
+          "is_last_instruction": true,
+          "is_nop": true,
+          "is_exec_form": true,
+          "local_image_exists": true,
+          "layer_index": 0,
+          "size": 0,
+          "command_snippet": "RUN [\"/bin/bash\",\"-eo\",\"pipefail\",\"-c\"]",
+          "command_all": "RUN [\"/bin/bash\",\"-eo\",\"pipefail\",\"-c\"]",
+          "system_commands": ["[\"/bin/bash\",\"-eo\",\"pipefail\",\"-c\"]"],
+          "raw_tags": ["megabytelabs/updater:latestgolang"]
         }
       ]
     }
