@@ -149,13 +149,7 @@ vars:
       elif type npm &> /dev/null; then
         echo 'npm'
       fi
-  NPM_PROGRAM_LOCAL:
-    sh: |
-      if type pnpm &> /dev/null; then
-        echo 'pnpm'
-      elif type npm &> /dev/null; then
-        echo 'npm'
-      fi
+  NPM_PROGRAM_LOCAL: pnpm
   NPX_HANDLE:
     sh: |
       if type pnpx &> /dev/null; then
@@ -194,34 +188,12 @@ vars:
         echo 'poetry run '
       fi
   PYTHON_VIRTUALENV: true
-  REPOSITORY_SUBTYPE:
-    sh: |
-      if [ -n "$REPOSITORY_TYPE" ]; then REPO_SUBTYPE="$REPOSITORY_TYPE"; fi
-      if type jq &> /dev/null && [ -f package.json ]; then
-        VER="$(jq -r '.blueprint.subgroup' package.json)"
-        if [ "$VER" == 'null' ]; then
-          if [ -n "$REPO_SUBTYPE" ]; then echo "$REPO_SUBTYPE"; else echo "misc"; fi
-        else
-          echo "$VER"
-        fi
-      else
-        if [ -n "$REPO_SUBTYPE" ]; then echo "$REPO_SUBTYPE"; else echo "misc"; fi
-      fi
-  REPOSITORY_TYPE:
-    sh: |
-      if [ -n "$GROUP_TYPE" ]; then REPO_TYPE="$GROUP_TYPE"; fi
-      if type jq &> /dev/null && [ -f package.json ]; then
-        VER="$(jq -r '.blueprint.group' package.json)"
-        if [ "$VER" == 'null' ]; then
-          if [ -n "$REPO_TYPE" ]; then echo "$REPO_TYPE"; else echo "misc"; fi
-        else
-          echo "$VER"
-        fi
-      else
-        if [ -n "$REPO_TYPE" ]; then echo "$REPO_TYPE"; else echo "misc"; fi
-      fi
+  REPOSITORY_SUBTYPE: ci-pipeline
+  REPOSITORY_TYPE: docker
   SEMANTIC_CONFIG: semantic-release-config
   TIMEZONE: America/New_York
+  includes:
+    common:start: ./.config/taskfiles/common/Taskfile-start.yml
 env:
   OSTYPE:
     sh: |
@@ -760,7 +732,7 @@ tasks:
       start: Starting the project..
       success: Project started!
     cmds:
-      - task: common:start
+      - task: upstream:project
   synchronize:
     desc: Set up the project and refresh it with the latest changes
     summary: |
@@ -876,7 +848,7 @@ tasks:
     cmds:
       - task: common:start
         env:
-          UPDATE_PROJECT: 'true'
+          UPDATE_PROJECT: "true"
   deps:run:parallel:
     cmds:
       - task: install:github:docker-pushrm

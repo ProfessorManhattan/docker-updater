@@ -1,6 +1,9 @@
 #!/bin/bash
-useradd -m -s /bin/bash hawkwood
-sudo chown -Rf hawkwood:hawkwood ./
+
+# Prevent permissions from messing up
+git clone https://gitlab.com/megabyte-labs/ansible-roles/androidstudio.git
+cd androidstudio || exit
+
 curl --version
 expect --version
 gawk --version
@@ -27,5 +30,4 @@ if type go >/dev/null; then
 fi
 
 curl -sSL https://gitlab.com/megabyte-labs/common/shared/-/raw/master/common/start.sh > slim-start.sh
-alias poetry="true"
-bash slim-start.sh
+bash slim-start.sh || echo "Error occurred while running start script"

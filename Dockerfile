@@ -17,10 +17,11 @@ COPY bin/ /usr/local/bin/
 
 SHELL ["/bin/bash", "-eo", "pipefail", "-c"]
 # hadolint ignore=DL3008
-RUN set -ex && \
-  chmod +x /usr/local/bin/* && \
-  apt-get update && \
-  apt-get install -y --no-install-recommends \
+RUN set -ex \
+  && chmod +x /usr/local/bin/* \
+  && apt-get update \
+  && apt-get upgrade -y \
+  && apt-get install -y --no-install-recommends \
   build-essential=12.* \
   ca-certificates=* \
   curl=7.* \
@@ -36,29 +37,28 @@ RUN set -ex && \
   procps=* \
   rsync=3.* \
   software-properties-common=0.* \
-  sudo && \
-  add-apt-repository -y ppa:git-core/ppa && \
-  add-apt-repository -y ppa:deadsnakes/ppa && \
-  curl -sL https://deb.nodesource.com/setup_16.x -o /tmp/node_setup.sh && \
-  bash /tmp/node_setup.sh && \
-  rm /tmp/node_setup.sh && \
-  curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | tee /usr/share/keyrings/yarnkey.gpg >/dev/null && \
-  echo "deb [signed-by=/usr/share/keyrings/yarnkey.gpg] https://dl.yarnpkg.com/debian stable main" | tee /etc/apt/sources.list.d/yarn.list && \
-  apt-get update && \
-  apt-get upgrade -y && \
-  apt-get install -y --no-install-recommends \
+  sudo \
+  && add-apt-repository -y ppa:git-core/ppa \
+  && add-apt-repository -y ppa:deadsnakes/ppa \
+  && curl -sL https://deb.nodesource.com/setup_16.x -o /tmp/node_setup.sh \
+  && bash /tmp/node_setup.sh \
+  && rm /tmp/node_setup.sh \
+  && curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | tee /usr/share/keyrings/yarnkey.gpg >/dev/null \
+  && echo "deb [signed-by=/usr/share/keyrings/yarnkey.gpg] https://dl.yarnpkg.com/debian stable main" | tee /etc/apt/sources.list.d/yarn.list \
+  && apt-get update \
+  && apt-get install -y --no-install-recommends \
   nodejs=16.* \
   python3.10=* \
   python3-pip=20.* \
-  yarn=1.* && \
-  apt-get clean && \
-  rm -rf /var/lib/apt/lists/* && \
-  rm -rf /usr/share/doc /usr/share/man /tmp/* /var/tmp/* && \
-  useradd -m -s "$(which bash)" "${APP_USER}" && \
-  echo "${APP_USER}"' ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && \
-  chown -R "${APP_USER}:${APP_USER}" ./ && \
-  ln -s "$(which python3)" /usr/local/bin/python && \
-  npm install -g \
+  yarn=1.* \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/* \
+  && rm -rf /usr/share/doc /usr/share/man /tmp/* /var/tmp/* \
+  && useradd -m -s "$(which bash)" "${APP_USER}" \
+  && echo "${APP_USER}"' ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers \
+  && chown -R "${APP_USER}:${APP_USER}" ./ \
+  && ln -s "$(which python3)" /usr/local/bin/python \
+  && npm install -g \
   @appnest/readme@1 \
   eslint@8 \
   hbs-cli@1 \
@@ -67,14 +67,14 @@ RUN set -ex && \
   pnpm@latest \
   prettier@2 \
   remark-cli@10 \
-  synp@1 && \
-  pip3 install --no-cache-dir \
+  synp@1 \
+  && pip3 install --no-cache-dir \
   ansible-base==2.* \
   ansibler==0.* \
   black==22.* \
   mod-ansible-autodoc==0.* \
-  toml-sort==0.* && \
-  for ITEM in $HOME/.local/bin/*; do ln -s "$ITEM" "/usr/local/bin/$(basename "$ITEM")"; done
+  toml-sort==0.* \
+  && for ITEM in $HOME/.local/bin/*; do ln -s "$ITEM" "/usr/local/bin/$(basename "$ITEM")"; done
 
 USER megabyte
 
@@ -98,9 +98,9 @@ LABEL space.megabyte.type="ci-pipeline"
 FROM updater AS poetry
 
 # Poetry **********************
-RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py > /tmp/get-poetry.py && \
-  python /tmp/get-poetry.py && \
-  rm /tmp/get-poetry.py
+RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py > /tmp/get-poetry.py \
+  && python /tmp/get-poetry.py \
+  && rm /tmp/get-poetry.py
 
 FROM updater AS brew
 
@@ -109,7 +109,8 @@ ENV HOMEBREW_NO_ANALYTICS=1
 ENV HOMEBREW_NO_AUTO_UPDATE=1
 ENV PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:${PATH}"
 WORKDIR /home/linuxbrew/.linuxbrew
-RUN mkdir -p \
+RUN sudo chown -R "${APP_USER}:${APP_USER}" . \
+  && mkdir -p \
   /home/linuxbrew/.linuxbrew/bin \
   /home/linuxbrew/.linuxbrew/etc \
   /home/linuxbrew/.linuxbrew/include \
@@ -138,3 +139,36 @@ WORKDIR /work
 USER root
 RUN apt-get install -y --no-install-recommends golang=*
 USER megabyte
+
+FROM brew AS dind
+
+# Poetry **********************
+RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py > /tmp/get-poetry.py \
+  && python /tmp/get-poetry.py \
+  && rm /tmp/get-poetry.py
+
+# Go **************************
+ENV GOPATH="${HOME}/.local/go"
+ENV GOROOT="/home/linuxbrew/.linuxbrew/opt/go/libexec"
+ENV PATH="${GOPATH}/bin:${GOROOT}/bin:${PATH}"
+WORKDIR /work
+USER root
+RUN apt-get install -y --no-install-recommends golang=*
+USER megabyte
+
+# Semantic ********************
+ARG DOCKER_VERSION="latest"
+ARG ENABLE_NONROOT_DOCKER="true"
+ARG USE_MOBY="true"
+ARG USERNAME="megabyte"
+
+COPY local/dind.sh dind.sh
+
+RUN npm install -g semantic-release@19 \
+  && bash dind.sh "${ENABLE_NONROOT_DOCKER}" "${USERNAME}" "${USE_MOBY}" "${DOCKER_VERSION}"
+
+VOLUME ["/var/lib/docker"]
+VOLUME ["/sys/fs/cgroup", "/tmp", "/run"]
+
+CMD ["/lib/systemd/systemd"]
+ENTRYPOINT ["dind-init"]
