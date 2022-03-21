@@ -85,18 +85,18 @@
     "description": "A general-purpose, compact Dockerfile project that includes various programs required for synchronizing projects with upstream repositories",
     "dockerLatestSize": {
       "brew": "",
-      "poetry": "",
-      "updater": "309M",
+      "dind": "",
       "golang": "",
-      "dind": ""
+      "poetry": "",
+      "updater": "309M"
     },
     "dockerSlimCommand": "--http-probe=false --exec-file './local/slim-exec.sh' --include-exe-file './local/exe.txt' --preserve-path-file './local/paths.txt'",
     "dockerSlimSize": {
       "brew": "",
-      "poetry": "",
-      "updater": "283M",
+      "dind": "",
       "golang": "",
-      "dind": ""
+      "poetry": "",
+      "updater": "283M"
     },
     "dockerTasksTag": "update",
     "github_id": "R_kgDOG3t0_w",

@@ -15,10 +15,7 @@ tasks:
       - bin
       - goofys
       - goreleaser
-      - minio
       - nfpm
-      - ots
-      - pup
 
   gitomatic:
     run: once
@@ -78,14 +75,6 @@ tasks:
     status:
       - type {{.BIN}} > /dev/null
 
-  minio:
-    run: once
-    cmds:
-      - task: install:go
-        vars:
-          BIN_NAME: mc
-          PACKAGE: github.com/minio/mc@latest
-
   misspell:
     run: once
     cmds:
@@ -112,20 +101,4 @@ tasks:
       - task: install:go
         vars:
           BIN_NAME: node-prune
-          PACKAGE: github.com/tj/node-prune@latest
-
-  ots:
-    run: once
-    cmds:
-      - task: install:go
-        vars:
-          BIN_NAME: ots
-          PACKAGE: github.com/sniptt-official/ots@latest
-
-  pup:
-    run: once
-    cmds:
-      - task: install:go
-        vars:
-          BIN_NAME: pup
-          PACKAGE: github.com/ericchiang/pup@latest
+          PACKAGE: go install github.com/tj/node-prune@latest

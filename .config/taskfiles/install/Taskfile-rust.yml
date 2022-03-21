@@ -4,9 +4,7 @@ version: '3'
 tasks:
   bundle:
     deps:
-      - grex
-      - htmlq
-      - hyperfine
+      - catfs
 
   catfs:
     run: once
@@ -15,30 +13,6 @@ tasks:
         vars:
           BIN_NAME: catfs
           PACKAGE: catfs
-
-  grex:
-    run: once
-    cmds:
-      - task: install:rust
-        vars:
-          BIN_NAME: grex
-          PACKAGE: grex
-
-  htmlq:
-    run: once
-    cmds:
-      - task: install:rust
-        vars:
-          BIN_NAME: htmlq
-          PACKAGE: htmlq
-
-  hyperfine:
-    run: once
-    cmds:
-      - task: install:rust
-        vars:
-          BIN_NAME: hyperfine
-          PACKAGE: hyperfine
 
   install:rust:
     vars:
