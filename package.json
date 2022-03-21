@@ -83,6 +83,7 @@
   },
   "blueprint": {
     "description": "A general-purpose, compact Dockerfile project that includes various programs required for synchronizing projects with upstream repositories",
+    "dockerBaseTag": "updater",
     "dockerLatestSize": {
       "brew": "",
       "dind": "",

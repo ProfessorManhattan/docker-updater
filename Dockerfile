@@ -71,6 +71,7 @@ RUN set -ex \
   synp@1 \
   && pip3 install --no-cache-dir \
   ansible-base==2.* \
+  ansible-autodoc-fork \
   ansibler==0.* \
   black==22.* \
   mod-ansible-autodoc==0.* \
