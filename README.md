@@ -18,8 +18,8 @@
 </div>
 <br/>
 <div align="center">
-  <a title="Version: pkg.version" href="https://github.com/ProfessorManhattan/docker-updater" target="_blank">
-    <img alt="Version: pkg.version" src="https://img.shields.io/badge/version-pkg.version-blue.svg?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgAQMAAABJtOi3AAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAACNJREFUCNdjIACY//+BEp9hhM3hAzYQwoBIAqEDYQrCZLwAAGlFKxU1nF9cAAAAAElFTkSuQmCC&cacheSeconds=2592000&style=flat-square" />
+  <a title="Version: 1.0.0" href="https://github.com/ProfessorManhattan/docker-updater" target="_blank">
+    <img alt="Version: 1.0.0" src="https://img.shields.io/badge/version-1.0.0-blue.svg?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgAQMAAABJtOi3AAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAACNJREFUCNdjIACY//+BEp9hhM3hAzYQwoBIAqEDYQrCZLwAAGlFKxU1nF9cAAAAAElFTkSuQmCC&cacheSeconds=2592000&style=flat-square" />
   </a>
   <a title="GitLab build status" href="https://gitlab.com/megabyte-labs/docker/ci-pipeline/updater/-/commits/master" target="_blank">
     <img alt="Build status" src="https://img.shields.io/gitlab/pipeline-status/megabyte-labs/docker/ci-pipeline/updater?branch=master&label=build&logo=gitlab&logoColor=white&style=flat-square">
@@ -101,7 +101,7 @@ You can also add a bash alias to your `~/.bashrc` file so that you can run the p
 
 ```shell
 docker_command_alias() {
-  docker run -v ${PWD}:/work -w /work megabytelabs/updater:preferred_tag "$@"
+    docker run -v ${PWD}:/work -w /work megabytelabs/updater:preferred_tag "$@"
 }
 ```
 

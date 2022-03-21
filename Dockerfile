@@ -68,6 +68,7 @@ RUN set -ex \
   pnpm-lock-export@latest \
   prettier@2 \
   remark-cli@10 \
+  semantic-release@19 \
   synp@1 \
   && pip3 install --no-cache-dir \
   ansible-base==2.* \
@@ -76,11 +77,18 @@ RUN set -ex \
   black==22.* \
   mod-ansible-autodoc==0.* \
   toml-sort==0.* \
-  && for ITEM in $HOME/.local/bin/*; do ln -s "$ITEM" "/usr/local/bin/$(basename "$ITEM")"; done
+  && for ITEM in $HOME/.local/bin/*; do ln -s "$ITEM" "/usr/local/bin/$(basename "$ITEM")"; done \
+  && curl -sSL https://golang.org/dl/go1.18.linux-amd64.tar.gz > /tmp/go.tar.gz \
+  && tar -C /usr/local -xzf /tmp/go.tar.gz
 
 USER megabyte
 
-VOLUME ["/sys/fs/cgroup", "/tmp", "/run"]
+ENV GOPATH="${HOME}/.local/go"
+ENV PATH="${GOPATH}/bin:/usr/local/go/bin:${HOME}/.poetry/bin:${PATH}"
+
+RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py > /tmp/get-poetry.py \
+  && python /tmp/get-poetry.py \
+  && rm /tmp/get-poetry.py
 
 ENTRYPOINT ["/bin/bash"]
 
@@ -97,20 +105,15 @@ LABEL org.opencontainers.image.vendor="Megabyte Labs"
 LABEL org.opencontainers.image.version=$VERSION
 LABEL space.megabyte.type="ci-pipeline"
 
-FROM updater AS poetry
-
-# Poetry **********************
-RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py > /tmp/get-poetry.py \
-  && python /tmp/get-poetry.py \
-  && rm /tmp/get-poetry.py
-
-FROM updater AS brew
+FROM updater AS extended
 
 # Homebrew ********************
 ENV HOMEBREW_NO_ANALYTICS=1
 ENV HOMEBREW_NO_AUTO_UPDATE=1
 ENV PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:${PATH}"
+
 WORKDIR /home/linuxbrew/.linuxbrew
+
 RUN sudo chown -R "${APP_USER}:${APP_USER}" . \
   && mkdir -p \
   /home/linuxbrew/.linuxbrew/bin \
@@ -131,63 +134,22 @@ RUN sudo chown -R "${APP_USER}:${APP_USER}" . \
   && { git -C /home/linuxbrew/.linuxbrew/Homebrew config --unset homebrew.devcmdrun; true; } \
   && rm -rf .cache
 
-FROM updater AS golang
-
-# Go **************************
-ENV GOPATH="${HOME}/.local/go"
-ENV GOROOT="/home/linuxbrew/.linuxbrew/opt/go/libexec"
-ENV PATH="${GOPATH}/bin:${GOROOT}/bin:${PATH}"
-
-WORKDIR /work
-
-USER root
-
-RUN apt-get update \
-  && apt-get install -y --no-install-recommends \
-  golang=* \
-  && apt-get clean \
-  && rm -rf /var/lib/apt/lists/*
-
-USER megabyte
-
-FROM brew AS dind
-
-# Poetry **********************
-RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py > /tmp/get-poetry.py \
-  && python /tmp/get-poetry.py \
-  && rm /tmp/get-poetry.py
-
-# Go **************************
-ENV GOPATH="${HOME}/.local/go"
-ENV GOROOT="/home/linuxbrew/.linuxbrew/opt/go/libexec"
-ENV PATH="${GOPATH}/bin:${GOROOT}/bin:${PATH}"
-
-WORKDIR /work
-
-USER root
-
-RUN apt-get update \
-  && apt-get install -y --no-install-recommends \
-  golang=* \
-  && apt-get clean \
-  && rm -rf /var/lib/apt/lists/*
-
-USER megabyte
-
-# Semantic ********************
 ARG DOCKER_VERSION="latest"
 ARG ENABLE_NONROOT_DOCKER="true"
 ARG USE_MOBY="true"
 ARG USERNAME="megabyte"
 
-COPY local/dind.sh dind.sh
+COPY local/dind.sh /tmp/dind.sh
 
 USER root
 
-RUN npm install -g semantic-release@19 \
-  && bash dind.sh "${ENABLE_NONROOT_DOCKER}" "${USERNAME}" "${USE_MOBY}" "${DOCKER_VERSION}"
+RUN bash /tmp/dind.sh "${ENABLE_NONROOT_DOCKER}" "${USERNAME}" "${USE_MOBY}" "${DOCKER_VERSION}"
+
+WORKDIR /work
 
 USER megabyte
+
+RUN sudo rm -rf *
 
 VOLUME ["/var/lib/docker"]
 VOLUME ["/sys/fs/cgroup", "/tmp", "/run"]

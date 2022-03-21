@@ -26,7 +26,6 @@ includes:
   git: ./.config/taskfiles/git/Taskfile.yml
   git:github: ./.config/taskfiles/git/Taskfile-github.yml
   git:gitlab: ./.config/taskfiles/git/Taskfile-gitlab.yml
-  git:gitomatic: ./.config/taskfiles/git/Taskfile-gitomatic.yml
   git:hook: ./.config/taskfiles/git/Taskfile-hook.yml
   go: ./.config/taskfiles/go/Taskfile.yml
   go:goreleaser: ./.config/taskfiles/go/Taskfile-goreleaser.yml
@@ -142,7 +141,13 @@ vars:
     sh: chmod +x .config/log
   MODEL_TASKFILE: https://gitlab.com/megabyte-labs/common/shared/-/raw/master/Taskfile.yml
   NPM_KEEP_UPDATED: ''
-  NPM_PROGRAM: npm
+  NPM_PROGRAM:
+    sh: |
+      if type pnpm &> /dev/null; then
+        echo 'pnpm'
+      elif type npm &> /dev/null; then
+        echo 'npm'
+      fi
   NPM_PROGRAM_LOCAL:
     sh: |
       if type pnpm &> /dev/null; then
@@ -189,13 +194,33 @@ vars:
       fi
   PYTHON_VIRTUALENV: true
   REPOSITORY_SUBTYPE:
-    sh: if type jq &> /dev/null && [ -f package.json ]; then VER="$(jq -r .blueprint.subgroup package.json)"; if [ "$VER" == null ]; then echo "$REPOSITORY_TYPE"; else echo "$VER"; fi; else echo "$REPOSITORY_TYPE"; fi
+    sh: |
+      if [ -n "$REPOSITORY_TYPE" ]; then REPO_SUBTYPE="$REPOSITORY_TYPE"; fi
+      if type jq &> /dev/null && [ -f package.json ]; then
+        VER="$(jq -r '.blueprint.subgroup' package.json)"
+        if [ "$VER" == 'null' ]; then
+          if [ -n "$REPO_SUBTYPE" ]; then echo "$REPO_SUBTYPE"; else echo "misc"; fi
+        else
+          echo "$VER"
+        fi
+      else
+        if [ -n "$REPO_SUBTYPE" ]; then echo "$REPO_SUBTYPE"; else echo "misc"; fi
+      fi
   REPOSITORY_TYPE:
-    sh: if type jq &> /dev/null && [ -f package.json ]; then VER="$(jq -r .blueprint.group package.json)"; if [ "$VER" == null ]; then echo "$GROUP_TYPE"; else echo "$VER"; fi; else echo "$GROUP_TYPE"; fi
+    sh: |
+      if [ -n "$GROUP_TYPE" ]; then REPO_TYPE="$GROUP_TYPE"; fi
+      if type jq &> /dev/null && [ -f package.json ]; then
+        VER="$(jq -r '.blueprint.group' package.json)"
+        if [ "$VER" == 'null' ]; then
+          if [ -n "$REPO_TYPE" ]; then echo "$REPO_TYPE"; else echo "misc"; fi
+        else
+          echo "$VER"
+        fi
+      else
+        if [ -n "$REPO_TYPE" ]; then echo "$REPO_TYPE"; else echo "misc"; fi
+      fi
   SEMANTIC_CONFIG: semantic-release-config
   TIMEZONE: America/New_York
-  includes:
-    common:start: ./.config/taskfiles/common/Taskfile-start.yml
 env:
   OSTYPE:
     sh: |

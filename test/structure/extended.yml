@@ -5,11 +5,11 @@ commandTests:
   - name: Test bin version
     command: bin --version
     exitCode: 0
-  - name: Test Docker version
-    command: docker --version
-    exitCode: 0
   - name: Test Homebrew version
     command: brew --version
+    exitCode: 0
+  - name: Test docker version
+    command: docker --version
     exitCode: 0
   - name: Test curl version
     command: curl --version
@@ -114,6 +114,5 @@ metadataTest:
       value: Megabyte Labs <help@megabyte.space>
     - key: space.megabyte.type
       value: ci-pipeline
-  volumes: [/work]
   workdir: /work
   user: megabyte
