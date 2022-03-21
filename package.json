@@ -51,7 +51,9 @@
     "git-cz-emoji": "latest",
     "prettier-config-sexy-mode": "latest",
     "semantic-release-config": "latest",
-    "typescript": "^4.5.5"
+    "typescript": "^4.5.5",
+    "@commitlint/config-conventional": "latest",
+    "handlebars-helpers": "latest"
   },
   "keywords": [
     "alias",
@@ -90,14 +92,14 @@
       "updater": "683M",
       "extended": "1.5G"
     },
-    "dockerSlimCommand": "--http-probe=false --exec-file './local/slim-exec.sh' --include-exe-file './local/exe.txt' --preserve-path-file './local/paths.txt'",
+    "dockerSlimCommand": "--http-probe=false --exec-file './local/slim-exec.sh' --include-exe-file './local/exe.txt' --preserve-path-file './local/paths.txt' --include-shell",
     "dockerSlimSize": {
       "brew": "",
       "dind": "",
       "golang": "",
       "poetry": "",
-      "updater": "303M",
-      "extended": "870M"
+      "updater": "304M",
+      "extended": "872M"
     },
     "dockerTasksTag": "update",
     "github_id": "R_kgDOG3t0_w",
