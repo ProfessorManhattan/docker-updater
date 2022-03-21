@@ -65,6 +65,7 @@ RUN set -ex \
   leasot@12 \
   liquidjs@9 \
   pnpm@latest \
+  pnpm-lock-export@latest \
   prettier@2 \
   remark-cli@10 \
   synp@1 \
