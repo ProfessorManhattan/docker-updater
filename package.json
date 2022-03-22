@@ -21,7 +21,7 @@
     "dist/"
   ],
   "scripts": {
-    "prebuild": "task install:gh:dasel && task install:gh:fusion && task install:gh:gh && task install:gh:glab && task install:gh:yq",
+    "prebuild": "task install:gh:dasel install:gh:deno install:gh:fusion install:gh:gh install:gh:glab install:gh:task install:gh:yq",
     "build": "bash start.sh && task docker:build",
     "bump": "npm run build && npm version patch --no-commit-hooks --no-git-tag-version --force && npm publish",
     "commit": "bash start.sh && task commit",
@@ -88,10 +88,10 @@
       "extended": "1.5G",
       "updater": "676M"
     },
-    "dockerSlimCommand": "--http-probe=false --exec 'export CI=true && export NO_INSTALL_HOMEBREW=true && cp -rf /test/* /work && alias git=true && bash /work/start.sh && . /home/megabyte/.profile && task update || true' --mount \"$PWD:/test\" --workdir '/work' --include-exe-file './local/exe.txt' --preserve-path-file './local/paths.txt'",
+    "dockerSlimCommand": "--http-probe=false --exec 'export CI=true && export NO_INSTALL_HOMEBREW=true && export NO_GIT_CREDS=true && cp -rf /test/.config /work/.config && cp /test/Taskfile.yml /work/Taskfile.yml && cp /test/package.json /work/package.json && (sudo task update || true) && ((type docker &> /dev/null && docker run -it --rm alpine:latest sh --help) || true) && ((type brew &> /dev/null && brew install grep) || true)' --mount \"$PWD:/test\" --workdir '/work' --include-exe-file './local/exe.txt' --preserve-path-file './local/paths.txt'",
     "dockerSlimSize": {
-      "extended": "871M",
-      "updater": "298M"
+      "extended": "960M",
+      "updater": "355M"
     },
     "dockerTasksTag": "update",
     "github_id": "R_kgDOG3t0_w",

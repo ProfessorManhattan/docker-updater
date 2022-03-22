@@ -8,7 +8,7 @@ ENV NO_INSTALL_POETRY=true
 
 WORKDIR /work
 
-COPY local/initctl start.sh Taskfile.yml ./
+COPY local/initctl ./
 COPY bin/ /usr/local/bin/
 
 SHELL ["/bin/bash", "-eo", "pipefail", "-c"]

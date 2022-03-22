@@ -2,6 +2,7 @@ bin
 brew
 curl
 docker
+docker-compose
 esbuild
 eslint
 exiftool
