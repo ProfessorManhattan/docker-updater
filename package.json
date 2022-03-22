@@ -2,7 +2,7 @@
   "private": false,
   "name": "@megabytelabs/docker-ci-updater",
   "version": "1.0.0",
-  "description": "A general-purpose, compact Dockerfile project that includes various programs required for synchronizing projects with upstream repositories",
+  "description": "A general-purpose, compact Dockerfile project that includes various programs required for CI/CD",
   "license": "MIT",
   "author": "Brian Zalewski <brian@megabyte.space> (https://megabyte.space)",
   "homepage": "https://megabyte.space",
@@ -85,13 +85,13 @@
     "description": "A general-purpose, compact Dockerfile project that includes various programs required for CI/CD",
     "dockerBaseTag": "updater",
     "dockerLatestSize": {
-      "updater": "685M",
-      "extended": "1.5G"
+      "extended": "1.5G",
+      "updater": "685M"
     },
-    "dockerSlimCommand": "--http-probe=false --exec 'NO_INSTALL_HOMEBREW=true bash /work/start.sh' --mount \"$PWD:/work\" --workdir '/work' --include-exe-file './local/exe.txt' --preserve-path-file './local/paths.txt'",
+    "dockerSlimCommand": "--http-probe=false --exec 'export CI=true && export NO_INSTALL_HOMEBREW=true && cp -rf /test/* /work && bash /work/start.sh && . /home/megabyte/.profile && task update || true' --mount \"$PWD:/test\" --workdir '/work' --include-exe-file './local/exe.txt' --preserve-path-file './local/paths.txt'",
     "dockerSlimSize": {
-      "updater": "304M",
-      "extended": "871M"
+      "extended": "871M",
+      "updater": "298M"
     },
     "dockerTasksTag": "update",
     "github_id": "R_kgDOG3t0_w",
@@ -119,7 +119,9 @@
     "showAuthor": true
   },
   "commitlint": {
-    "extends": [],
+    "extends": [
+      "@commitlint/config-conventional"
+    ],
     "helpUrl": "https://megabyte.space/docs/contributing/commits"
   },
   "eslintConfig": {
