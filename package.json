@@ -86,9 +86,9 @@
     "dockerBaseTag": "updater",
     "dockerLatestSize": {
       "extended": "1.5G",
-      "updater": "685M"
+      "updater": "676M"
     },
-    "dockerSlimCommand": "--http-probe=false --exec 'export CI=true && export NO_INSTALL_HOMEBREW=true && cp -rf /test/* /work && bash /work/start.sh && . /home/megabyte/.profile && task update || true' --mount \"$PWD:/test\" --workdir '/work' --include-exe-file './local/exe.txt' --preserve-path-file './local/paths.txt'",
+    "dockerSlimCommand": "--http-probe=false --exec 'export CI=true && export NO_INSTALL_HOMEBREW=true && cp -rf /test/* /work && alias git=true && bash /work/start.sh && . /home/megabyte/.profile && task update || true' --mount \"$PWD:/test\" --workdir '/work' --include-exe-file './local/exe.txt' --preserve-path-file './local/paths.txt'",
     "dockerSlimSize": {
       "extended": "871M",
       "updater": "298M"
