@@ -84,7 +84,13 @@
   "blueprint": {
     "description": "A general-purpose, compact Dockerfile project that includes various programs required for CI/CD",
     "dockerBaseTag": "updater",
+    "dockerLatestSize": {
+      "updater": "341M"
+    },
     "dockerSlimCommand": "--http-probe=false --exec 'export CI=true && export NO_INSTALL_HOMEBREW=true && export NO_GIT_CREDS=true && cd /work && cp -rf /test/.config /work/.config && cp /test/start.sh /work/start.sh && cp /test/Taskfile.yml /work/Taskfile.yml && cp /test/package.json /work/package.json && task update || true' --mount \"$PWD:/test\" --preserve-path-file 'local/paths.txt' --include-exe-file 'local/exe.txt' --remove-file-artifacts",
+    "dockerSlimSize": {
+      "updater": "154M"
+    },
     "dockerTasksTag": "update",
     "github_id": "R_kgDOG3t0_w",
     "gitlab_group_id": "11679983",
@@ -98,13 +104,7 @@
     },
     "slug": "updater",
     "subgroup": "ci-pipeline",
-    "title": "Megabyte Labs Updater Image",
-    "dockerSlimSize": {
-      "updater": "154M"
-    },
-    "dockerLatestSize": {
-      "updater": "341M"
-    }
+    "title": "Megabyte Labs Updater Image"
   },
   "changelog": {
     "displayTypes": [
