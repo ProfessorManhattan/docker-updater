@@ -2,6 +2,8 @@ FROM ubuntu:focal AS updater
 
 ENV container=docker
 ENV DEBIAN_FRONTEND=noninteractive
+ENV NO_INSTALL_HOMEBREW=true
+ENV NO_INSTALL_POETRY=true
 ENV USERNAME=megabyte
 
 WORKDIR /work
@@ -87,7 +89,7 @@ LABEL org.opencontainers.image.description="A general-purpose, compact Dockerfil
 LABEL org.opencontainers.image.documentation="https://github.com/ProfessorManhattan/docker-updater/blob/master/README.md"
 LABEL org.opencontainers.image.licenses="MIT"
 LABEL org.opencontainers.image.revision=$REVISION
-LABEL org.opencontainers.image.source="https://gitlab.com/megabyte-labs/dockerfile/ci-pipeline/updater.git"
+LABEL org.opencontainers.image.source="https://github.com/ProfessorManhattan/docker-updater.git"
 LABEL org.opencontainers.image.url="https://megabyte.space"
 LABEL org.opencontainers.image.vendor="Megabyte Labs"
 LABEL org.opencontainers.image.version=$VERSION
