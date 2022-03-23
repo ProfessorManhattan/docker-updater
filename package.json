@@ -85,13 +85,13 @@
     "description": "A general-purpose, compact Dockerfile project that includes various programs required for CI/CD",
     "dockerBaseTag": "updater",
     "dockerLatestSize": {
-      "extended": "1.5G",
-      "updater": "676M"
+      "extended": "1.4G",
+      "updater": "341M"
     },
-    "dockerSlimCommand": "--http-probe=false --exec 'export CI=true && export NO_INSTALL_HOMEBREW=true && export NO_GIT_CREDS=true && cp -rf /test/.config /work/.config && cp /test/Taskfile.yml /work/Taskfile.yml && cp /test/package.json /work/package.json && (sudo task update || true) && ((type docker &> /dev/null && docker run -it --rm alpine:latest sh --help) || true) && ((type brew &> /dev/null && brew install grep) || true)' --mount \"$PWD:/test\" --workdir '/work' --include-exe-file './local/exe.txt' --preserve-path-file './local/paths.txt'",
+    "dockerSlimCommand": "--http-probe=false --exec 'export CI=true && export NO_INSTALL_HOMEBREW=true && export NO_GIT_CREDS=true && cd /work && cp -rf /test/.config /work/.config && cp /test/start.sh /work/start.sh && cp /test/Taskfile.yml /work/Taskfile.yml && cp /test/package.json /work/package.json && task update || true' --mount \"$PWD:/test\" --preserve-path-file 'local/paths.txt' --include-exe-file 'local/exe.txt'",
     "dockerSlimSize": {
-      "extended": "960M",
-      "updater": "355M"
+      "extended": "395M",
+      "updater": "256M"
     },
     "dockerTasksTag": "update",
     "github_id": "R_kgDOG3t0_w",

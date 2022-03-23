@@ -1,4 +1,8 @@
+bash
 bin
+black
+cat
+ansible
 brew
 curl
 docker
@@ -13,10 +17,12 @@ git
 glab
 go
 goreleaser
+groups
 jq
 leasot
 liquidjs
 make
+mod-ansible-autodoc
 nfpm
 node
 npm
@@ -29,9 +35,15 @@ python3.10
 readme
 remark
 rsync
+semantic-release
+shuf
 snapcraft
 ssh
 sshpass
+su
+sudo
 task
+toml-sort
 whoami
+yarn
 yq

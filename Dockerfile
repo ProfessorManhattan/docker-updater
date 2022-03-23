@@ -1,6 +1,6 @@
 FROM ubuntu:focal AS updater
 
-ENV APP_USER="megabyte"
+ENV APP_USER=megabyte
 ENV container=docker
 ENV DEBIAN_FRONTEND=noninteractive
 ENV NO_INSTALL_HOMEBREW=true
@@ -13,11 +13,9 @@ COPY bin/ /usr/local/bin/
 
 SHELL ["/bin/bash", "-eo", "pipefail", "-c"]
 # hadolint ignore=DL3008
-RUN set -ex \
-  && chmod +x /usr/local/bin/* \
+RUN chmod +x /usr/local/bin/* \
   && apt-get update \
-  && apt-get upgrade -y \
-  && apt-get install -y --no-install-recommends \
+  && apt-get install -y \
   build-essential=12.* \
   ca-certificates=* \
   curl=7.* \
@@ -35,8 +33,6 @@ RUN set -ex \
   software-properties-common=0.* \
   ssh-client \
   sudo \
-  && add-apt-repository -y ppa:git-core/ppa \
-  && add-apt-repository -y ppa:deadsnakes/ppa \
   && curl -sL https://deb.nodesource.com/setup_16.x -o /tmp/node_setup.sh \
   && bash /tmp/node_setup.sh \
   && rm /tmp/node_setup.sh \
@@ -45,7 +41,6 @@ RUN set -ex \
   && apt-get update \
   && apt-get install -y --no-install-recommends \
   nodejs=16.* \
-  python3.10=* \
   python3-pip=20.* \
   yarn=1.* \
   && apt-get clean \
@@ -75,19 +70,9 @@ RUN set -ex \
   mod-ansible-autodoc==0.* \
   toml-sort==0.* \
   && for ITEM in $HOME/.local/bin/*; do ln -s "$ITEM" "/usr/local/bin/$(basename "$ITEM")"; done \
-  && curl -sSL https://golang.org/dl/go1.18.linux-amd64.tar.gz > /tmp/go.tar.gz \
-  && tar -C /usr/local -xzf /tmp/go.tar.gz
+  && chown -R "${APP_USER}:${APP_USER}" /usr/lib/node_modules
 
-USER megabyte
-
-ENV GOPATH="${HOME}/.local/go"
-ENV PATH="${GOPATH}/bin:/usr/local/go/bin:${HOME}/.poetry/bin:${PATH}"
-
-RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py > /tmp/get-poetry.py \
-  && python /tmp/get-poetry.py \
-  && rm /tmp/get-poetry.py
-
-CMD ["/bin/bash"]
+USER root
 
 ARG BUILD_DATE
 ARG REVISION
@@ -108,10 +93,29 @@ LABEL space.megabyte.type="ci-pipeline"
 
 FROM updater AS extended
 
+# Go *************************
+RUN curl -sSL https://golang.org/dl/go1.18.linux-amd64.tar.gz > /tmp/go.tar.gz \
+  && tar -C /usr/local -xzf /tmp/go.tar.gz \
+  && rm /tmp/go.tar.gz
+
+# Poetry *********************
+USER "${APP_USER}"
+
+WORKDIR "/home/${APP_USER}"
+
+ENV GOPATH="/home/${APP_USER}/.local/go"
+ENV PATH="${GOPATH}/bin:/usr/local/go/bin:/home/${APP_USER}/.poetry/bin:${PATH}"
+
+RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py > /tmp/get-poetry.py \
+  && python /tmp/get-poetry.py \
+  && rm /tmp/get-poetry.py
+
 # Homebrew ********************
 ENV HOMEBREW_NO_ANALYTICS=1
 ENV HOMEBREW_NO_AUTO_UPDATE=1
 ENV PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:${PATH}"
+
+USER "${APP_USER}"
 
 WORKDIR /home/linuxbrew/.linuxbrew
 
@@ -135,6 +139,7 @@ RUN sudo chown -R "${APP_USER}:${APP_USER}" . \
   && { git -C /home/linuxbrew/.linuxbrew/Homebrew config --unset homebrew.devcmdrun; true; } \
   && rm -rf .cache
 
+# Docker-in-Docker *************
 ARG DOCKER_VERSION="latest"
 ARG ENABLE_NONROOT_DOCKER="true"
 ARG USE_MOBY="true"
@@ -148,12 +153,7 @@ RUN bash /tmp/dind.sh "${ENABLE_NONROOT_DOCKER}" "${USERNAME}" "${USE_MOBY}" "${
 
 WORKDIR /work
 
-USER megabyte
-
-RUN sudo rm -rf *
-
 VOLUME ["/var/lib/docker"]
-VOLUME ["/sys/fs/cgroup", "/tmp", "/run"]
 
 CMD ["/lib/systemd/systemd"]
 ENTRYPOINT ["dind-init"]
