@@ -72,7 +72,11 @@ tasks:
     vars:
       DIND_MOUNT:
         sh: |
+<<<<<<< HEAD
           if [ "$(jq -r '.blueprint.dockerSlimDIND')" == 'true' ]; then
+=======
+          if [ "$(jq -r '.blueprint.dockerInDocker')" == 'true' ]; then
+>>>>>>> 90e310193c5d887691901f19825bd63d7f87a3c9
             echo "--mount {{.DIND_MOUNT_MAPPING}} "
           fi
       SLIM_COMMAND:
