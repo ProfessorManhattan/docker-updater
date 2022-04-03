@@ -15,32 +15,32 @@ SHELL ["/bin/bash", "-eo", "pipefail", "-c"]
 RUN chmod +x /usr/local/bin/* \
   && apt-get update \
   && apt-get install -y --no-install-recommends \
-  bash \
+  bash=* \
   build-essential=12.* \
   ca-certificates=* \
   curl=7.* \
   expect=5.* \
   file=* \
   g++=* \
-  gcc \
+  gcc=* \
   gawk=* \
   gcc=* \
   git=* \
-  grep \
-  gzip \
+  grep=* \
+  gzip=* \
   jq=1.* \
   libimage-exiftool-perl=11.* \
   make=4.* \
   procps=* \
   rsync=3.* \
-  ruby \
+  ruby=* \
   software-properties-common=0.* \
-  ssh-client \
-  sudo \
+  ssh-client=* \
+  sudo=* \
   && curl -sL https://deb.nodesource.com/setup_16.x -o /tmp/node_setup.sh \
   && bash /tmp/node_setup.sh \
   && rm /tmp/node_setup.sh \
-  && curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | tee /usr/share/keyrings/yarnkey.gpg >/dev/null \
+  && curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | gpg --dearmor | tee /usr/share/keyrings/yarnkey.gpg > /dev/null \
   && echo "deb [signed-by=/usr/share/keyrings/yarnkey.gpg] https://dl.yarnpkg.com/debian stable main" | tee /etc/apt/sources.list.d/yarn.list \
   && apt-get update \
   && apt-get install -y --no-install-recommends \
@@ -68,12 +68,12 @@ RUN chmod +x /usr/local/bin/* \
   synp@1 \
   && pip3 install --no-cache-dir \
   ansible-base==2.* \
-  ansible-autodoc-fork \
+  ansible-autodoc-fork==0.* \
   ansibler==0.* \
   black==22.* \
   mod-ansible-autodoc==0.* \
   toml-sort==0.* \
-  && for ITEM in $HOME/.local/bin/*; do ln -s "$ITEM" "/usr/local/bin/$(basename "$ITEM")"; done \
+  && for ITEM in "$HOME"/.local/bin/*; do ln -s "$ITEM" "/usr/local/bin/$(basename "$ITEM")"; done \
   && chown -R "${USERNAME}:${USERNAME}" /usr/lib/node_modules
 
 USER "${USERNAME}"
