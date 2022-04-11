@@ -67,11 +67,15 @@ RUN chmod +x /usr/local/bin/* \
   semantic-release@19 \
   synp@1 \
   && pip3 install --no-cache-dir \
+  add-trailing-comma==2.* \
   ansible-base==2.* \
   ansible-autodoc-fork==0.* \
   ansibler==0.* \
   black==22.* \
+  homebrew-pypi-poet==0.* \
+  isort==5.* \
   mod-ansible-autodoc==0.* \
+  pyformat==0.* \
   toml-sort==0.* \
   && for ITEM in "$HOME"/.local/bin/*; do ln -s "$ITEM" "/usr/local/bin/$(basename "$ITEM")"; done \
   && chown -R "${USERNAME}:${USERNAME}" /usr/lib/node_modules
