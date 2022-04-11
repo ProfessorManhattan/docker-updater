@@ -228,6 +228,7 @@ RUN sudo chown -R "${USERNAME}:${USERNAME}" . \
   && ln -s ../Homebrew/bin/brew /home/linuxbrew/.linuxbrew/bin/brew \
   && brew tap homebrew/core \
   && brew install-bundler-gems \
+  && brew install snapcraft \
   && brew cleanup \
   && { git -C /home/linuxbrew/.linuxbrew/Homebrew config --unset gc.auto; true; } \
   && { git -C /home/linuxbrew/.linuxbrew/Homebrew config --unset homebrew.devcmdrun; true; } \

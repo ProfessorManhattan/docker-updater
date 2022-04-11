@@ -21,7 +21,7 @@
     "dist/"
   ],
   "scripts": {
-    "prebuild": "task install:gh:dasel install:gh:deno install:gh:fusion install:gh:gh install:gh:glab install:gh:task install:gh:yq",
+    "prebuild": "task install:gh:dasel install:gh:deno install:gh:fusion install:gh:gh install:gh:glab install:gh:nfpm install:gh:task install:gh:yq",
     "build": "bash start.sh && task docker:build",
     "bump": "npm run build && npm version patch --no-commit-hooks --no-git-tag-version --force && npm publish",
     "commit": "bash start.sh && task commit",
