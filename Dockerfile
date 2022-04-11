@@ -31,11 +31,11 @@ RUN chmod +x /usr/local/bin/* \
   jq=1.* \
   libimage-exiftool-perl=11.* \
   make=4.* \
+  openssh-client=* \
   procps=* \
   rsync=3.* \
   ruby=* \
   software-properties-common=0.* \
-  ssh-client=* \
   sudo=* \
   && curl -sL https://deb.nodesource.com/setup_16.x -o /tmp/node_setup.sh \
   && bash /tmp/node_setup.sh \
