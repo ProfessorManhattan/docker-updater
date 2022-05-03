@@ -46,6 +46,7 @@ RUN chmod +x /usr/local/bin/* \
   && apt-get install -y --no-install-recommends \
   nodejs=16.* \
   python3-pip=20.* \
+  python3-venv=* \
   yarn=1.* \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* \
